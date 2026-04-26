@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Perlad — Innovación Sostenible v2</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: #F5F0E8; color: #1A1A1A; overflow-x: hidden; }
+  ::selection { background: #94C11F; color: #fff; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #F5F0E8; }
+  ::-webkit-scrollbar-thumb { background: #94C11F; border-radius: 3px; }
+
+  @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-16px) rotate(2deg); } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes hexPulse { 0%, 100% { transform: scale(1); opacity: 0.15; } 50% { transform: scale(1.1); opacity: 0.25; } }
+
+  .hover-lift { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; }
+  .hover-lift:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.1); }
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accentColor": "#94C11F",
+  "heroLayout": "centered",
+  "cardCorner": "hex",
+  "bgTone": "cream"
+}/*EDITMODE-END*/;
+
+const COLORS = {
+  green: '#94C11F',
+  darkGreen: '#6B8F0E',
+  black: '#1A1A1A',
+  cardboard: '#C4A265',
+  cardboardDark: '#8B6914',
+  cream: '#F5F0E8',
+  warmWhite: '#FDFBF7'
+};
+
+const bgTones = {
+  cream: { bg: '#F5F0E8', surface: '#FDFBF7', dark: '#1A1A1A' },
+  white: { bg: '#FDFBF7', surface: '#F5F0E8', dark: '#1A1A1A' },
+  dark: { bg: '#1A1A1A', surface: '#252525', dark: '#111' }
+};
+
+/* ── Hooks ── */
+const useReveal = (threshold = 0.15) => {
+  const ref = React.useRef(null);
+  const [v, setV] = React.useState(false);
+  React.useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setV(true); obs.disconnect(); } }, { threshold });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+  return [ref, v];
+};
+
+const AnimCounter = ({ end, suffix = '' }) => {
+  const [c, setC] = React.useState(0);
+  const ref = React.useRef(null);
+  const started = React.useRef(false);
+  React.useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !started.current) {
+        started.current = true;
+        const s = performance.now();
+        const run = (now) => { const p = Math.min((now - s) / 2000, 1); setC(Math.floor(p * end)); if (p < 1) requestAnimationFrame(run); };
+        requestAnimationFrame(run);
+      }
+    }, { threshold: 0.5 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [end]);
+  return <span ref={ref}>{c}{suffix}</span>;
+};
+
+/* ── Hex SVG helper ── */
+const HexSVG = ({ size = 100, stroke = '#94C11F', fill = 'none', strokeWidth = 1, opacity = 1, style = {} }) => (
+  <svg width={size} height={size * 1.15} viewBox="0 0 100 115" style={style}>
+    <polygon points="50,2 98,27 98,87 50,112 2,87 2,27" fill={fill} stroke={stroke} strokeWidth={strokeWidth} opacity={opacity} />
+  </svg>
+);
+
+/* ── Large hex decorative grid ── */
+const HexGrid = ({ count = 12, color = '#94C11F', style = {} }) => (
+  <div style={{ position: 'absolute', pointerEvents: 'none', ...style }}>
+    <svg width="400" height="500" viewBox="0 0 400 500" style={{ opacity: 0.06 }}>
+      {Array.from({ length: count }).map((_, i) => {
+        const col = i % 3;
+        const row = Math.floor(i / 3);
+        const x = col * 120 + (row % 2 ? 60 : 0);
+        const y = row * 100;
+        return <polygon key={i} points={`${x+60},${y} ${x+120},${y+30} ${x+120},${y+90} ${x+60},${y+120} ${x},${y+90} ${x},${y+30}`}
+          fill="none" stroke={color} strokeWidth="1.5" />;
+      })}
+    </svg>
+  </div>
+);
+
+/* ═══════ NAVBAR ═══════ */
+const Nav = ({ tweaks, scrollTo }) => {
+  const [scrolled, setScrolled] = React.useState(false);
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  React.useEffect(() => {
+    const h = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', h, { passive: true });
+    return () => window.removeEventListener('scroll', h);
+  }, []);
+
+  const isDark = tweaks.bgTone === 'dark';
+  const navBg = scrolled ? (isDark ? 'rgba(26,26,26,0.95)' : 'rgba(245,240,232,0.92)') : 'transparent';
+  const textColor = scrolled ? (isDark ? '#fff' : '#1A1A1A') : '#1A1A1A';
+
+  const links = [
+    { label: 'Productos', id: 'productos' },
+    { label: 'Nosotros', id: 'nosotros' },
+    { label: 'Sostenibilidad', id: 'sostenibilidad' },
+    { label: 'Blog', id: 'blog' },
+    { label: 'Contacto', id: 'contacto' }
+  ];
+
+  return (
+    <nav style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
+      background: navBg, backdropFilter: scrolled ? 'blur(16px)' : 'none',
+      transition: 'all 0.4s', borderBottom: scrolled ? `1px solid ${isDark ? 'rgba(148,193,31,0.15)' : 'rgba(0,0,0,0.06)'}` : 'none'
+    }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '18px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }} onClick={() => scrollTo('hero')}>
+          <HexSVG size={28} stroke={tweaks.accentColor} strokeWidth={2.5} />
+          <img src="assets/logo-perlad.png" alt="Perlad" style={{
+            height: 28, filter: isDark || !scrolled ? 'none' : 'none'
+          }} />
+        </div>
+
+        <div style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
+          {links.map(l => (
+            <a key={l.id} onClick={() => scrollTo(l.id)} style={{
+              fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 500,
+              color: textColor, textDecoration: 'none', cursor: 'pointer',
+              letterSpacing: '0.04em', transition: 'color 0.3s', opacity: 0.75
+            }}
+            onMouseEnter={e => { e.target.style.color = tweaks.accentColor; e.target.style.opacity = '1'; }}
+            onMouseLeave={e => { e.target.style.color = textColor; e.target.style.opacity = '0.75'; }}
+            >{l.label}</a>
+          ))}
+          <a onClick={() => scrollTo('contacto')} style={{
+            background: tweaks.accentColor, color: '#1A1A1A',
+            padding: '10px 28px', fontFamily: "'DM Sans', sans-serif",
+            fontSize: 13, fontWeight: 700, cursor: 'pointer', textDecoration: 'none',
+            borderRadius: 0, transition: 'transform 0.2s',
+            clipPath: 'polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%)'
+          }}
+          onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
+          onMouseLeave={e => e.target.style.transform = 'scale(1)'}
+          >Cotizar</a>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+/* ═══════ HERO — Split layout with hex mosaic ═══════ */
+const Hero = ({ tweaks, scrollTo }) => {
+  const tone = bgTones[tweaks.bgTone] || bgTones.cream;
+
+  return (
+    <section id="hero" style={{
+      minHeight: '100vh', background: tone.bg, position: 'relative', overflow: 'hidden',
+      display: 'flex', alignItems: 'center'
+    }}>
+      <HexGrid style={{ right: -80, top: -50 }} />
+      <HexGrid color={COLORS.cardboard} style={{ left: -150, bottom: -100 }} count={8} />
+
+      <div style={{
+        maxWidth: 1200, margin: '0 auto', padding: '140px 32px 80px', width: '100%',
+        display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center'
+      }}>
+        {/* Left: Copy */}
+        <div>
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            padding: '6px 16px', border: `1.5px solid ${tweaks.accentColor}`,
+            marginBottom: 28, animation: 'fadeIn 0.6s ease-out'
+          }}>
+            <div style={{ width: 6, height: 6, background: tweaks.accentColor, clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }}></div>
+            <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: tweaks.accentColor }}>
+              Empaques Sostenibles
+            </span>
+          </div>
+
+          <h1 style={{
+            fontFamily: "'Instrument Serif', serif",
+            fontSize: 'clamp(44px, 5.5vw, 72px)', fontWeight: 400,
+            lineHeight: 1.08, marginBottom: 28, color: tone.dark === '#111' ? '#fff' : '#1A1A1A',
+            animation: 'slideUp 0.8s ease-out 0.2s both'
+          }}>
+            Protegemos tu producto,{' '}
+            <em style={{ color: tweaks.accentColor, fontStyle: 'italic' }}>protegemos el planeta</em>
+          </h1>
+
+          <p style={{
+            fontSize: 17, lineHeight: 1.8, maxWidth: 480,
+            color: tweaks.bgTone === 'dark' ? 'rgba(255,255,255,0.6)' : '#6B6B6B',
+            marginBottom: 40, animation: 'slideUp 0.8s ease-out 0.4s both'
+          }}>
+            Estructuras de cartón panal fabricadas con papel 100% reciclable. Innovación que reemplaza al plástico y la madera.
+          </p>
+
+          <div style={{ display: 'flex', gap: 16, animation: 'slideUp 0.8s ease-out 0.6s both' }}>
+            <button onClick={() => scrollTo('productos')} style={{
+              background: '#1A1A1A', color: '#fff', padding: '16px 36px', border: 'none',
+              fontSize: 14, fontWeight: 600, cursor: 'pointer', letterSpacing: '0.04em',
+              transition: 'all 0.3s'
+            }}
+            onMouseEnter={e => { e.target.style.background = tweaks.accentColor; e.target.style.color = '#1A1A1A'; }}
+            onMouseLeave={e => { e.target.style.background = '#1A1A1A'; e.target.style.color = '#fff'; }}
+            >Ver catálogo</button>
+            <button onClick={() => scrollTo('nosotros')} style={{
+              background: 'transparent', color: '#1A1A1A', padding: '16px 36px',
+              border: '1.5px solid #1A1A1A', fontSize: 14, fontWeight: 500, cursor: 'pointer',
+              transition: 'all 0.3s'
+            }}>Conócenos</button>
+          </div>
+
+          {/* Mini stats */}
+          <div style={{
+            display: 'flex', gap: 40, marginTop: 56, animation: 'slideUp 0.8s ease-out 0.8s both'
+          }}>
+            {[{ n: 15, s: '+', l: 'Años' }, { n: 100, s: '%', l: 'Reciclable' }, { n: 500, s: '+', l: 'Clientes' }].map((d, i) => (
+              <div key={i}>
+                <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 36, color: tweaks.accentColor, fontWeight: 400 }}>
+                  <AnimCounter end={d.n} suffix={d.s} />
+                </div>
+                <div style={{ fontSize: 12, color: '#999', letterSpacing: '0.06em', textTransform: 'uppercase', marginTop: 2 }}>{d.l}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right: Hex mosaic with texture */}
+        <div style={{
+          position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center',
+          animation: 'fadeIn 1s ease-out 0.5s both'
+        }}>
+          {/* Central large hex */}
+          <div style={{
+            width: 340, height: 391,
+            clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+            background: 'url(assets/honeycomb-texture.png) center/cover',
+            position: 'relative', zIndex: 2
+          }}>
+            <div style={{
+              position: 'absolute', inset: 0,
+              background: 'linear-gradient(180deg, transparent 40%, rgba(26,26,26,0.7) 100%)',
+              display: 'flex', alignItems: 'flex-end', justifyContent: 'center', padding: 40
+            }}>
+              <img src="assets/logo-perlad.png" alt="Perlad" style={{ width: '55%', filter: 'brightness(0) invert(1)' }} />
+            </div>
+          </div>
+
+          {/* Orbiting small hexes */}
+          <div style={{
+            position: 'absolute', top: -20, right: 20, zIndex: 1,
+            animation: 'float 4s ease-in-out infinite'
+          }}>
+            <div style={{
+              width: 100, height: 115,
+              clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+              background: tweaks.accentColor, display: 'flex', alignItems: 'center', justifyContent: 'center'
+            }}>
+              <span style={{ fontSize: 11, fontWeight: 700, color: '#1A1A1A', textAlign: 'center', lineHeight: 1.3 }}>100%<br/>Reciclable</span>
+            </div>
+          </div>
+
+          <div style={{
+            position: 'absolute', bottom: 10, left: 0, zIndex: 1,
+            animation: 'float 5s ease-in-out infinite 1s'
+          }}>
+            <div style={{
+              width: 90, height: 103,
+              clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+              background: COLORS.cardboard, display: 'flex', alignItems: 'center', justifyContent: 'center'
+            }}>
+              <span style={{ fontSize: 11, fontWeight: 700, color: '#fff', textAlign: 'center', lineHeight: 1.3 }}>Eco<br/>Friendly</span>
+            </div>
+          </div>
+
+          <div style={{
+            position: 'absolute', top: '50%', right: -30, zIndex: 3,
+            animation: 'float 3.5s ease-in-out infinite 0.5s'
+          }}>
+            <div style={{
+              width: 70, height: 80,
+              clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+              background: '#1A1A1A', display: 'flex', alignItems: 'center', justifyContent: 'center'
+            }}>
+              <span style={{ fontSize: 28 }}>♻</span>
+            </div>
+          </div>
+
+          {/* Decorative hex outlines */}
+          <HexSVG size={420} stroke={tweaks.accentColor} strokeWidth={0.5} opacity={0.2}
+            style={{ position: 'absolute', top: -30, left: -50, zIndex: 0 }} />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* ═══════ MARQUEE BAND ═══════ */
+const MarqueeBand = ({ tweaks }) => {
+  const items = ['Cartón Panal', 'Empaques Sustentables', 'Estibas Ecológicas', 'Esquinas y Punteras', '100% Reciclable', 'Innovación Verde', 'Bolsa Bio', 'Papel Panal'];
+  return (
+    <div style={{
+      background: '#1A1A1A', padding: '18px 0', overflow: 'hidden', position: 'relative'
+    }}>
+      <div style={{
+        display: 'flex', gap: 48, animation: 'marquee 25s linear infinite', whiteSpace: 'nowrap',
+        width: 'max-content'
+      }}>
+        {[...items, ...items].map((t, i) => (
+          <span key={i} style={{
+            fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 600,
+            color: i % 2 === 0 ? '#fff' : tweaks.accentColor,
+            letterSpacing: '0.08em', textTransform: 'uppercase',
+            display: 'flex', alignItems: 'center', gap: 12
+          }}>
+            <span style={{
+              width: 8, height: 8, background: tweaks.accentColor,
+              clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
+              display: 'inline-block'
+            }}></span>
+            {t}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+/* ═══════ PRODUCTS ═══════ */
+const Products = ({ tweaks }) => {
+  const tone = bgTones[tweaks.bgTone] || bgTones.cream;
+  const products = [
+    { name: 'Empaques Personalizados', desc: 'Soluciones a medida en cartón panal para proteger cualquier tipo de producto.' },
+    { name: 'Estibas de Cartón', desc: 'Alternativa ecológica, liviana y resistente a las estibas de madera.' },
+    { name: 'Esquinas y Punteras', desc: 'Protección perimetral durante transporte y almacenamiento.' },
+    { name: 'Relleno Cartón Panal', desc: 'Material expandible que reemplaza al plástico de burbujas.' },
+    { name: 'Rollo de Papel Panal', desc: 'Envolvente biodegradable con excelente amortiguación.' },
+    { name: 'Bolsa Bio', desc: 'Bolsas compostables para un empaque verdaderamente responsable.' }
+  ];
+
+  return (
+    <section id="productos" style={{ padding: '120px 32px', background: tone.surface, position: 'relative' }}>
+      <HexGrid style={{ right: -100, top: 0 }} count={6} />
+      <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 56, flexWrap: 'wrap', gap: 20 }}>
+          <div>
+            <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: tweaks.accentColor, display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+              <span style={{ width: 32, height: 1.5, background: tweaks.accentColor, display: 'inline-block' }}></span>
+              Catálogo
+            </span>
+            <h2 style={{
+              fontFamily: "'Instrument Serif', serif", fontSize: 'clamp(32px, 4vw, 52px)',
+              fontWeight: 400, color: tweaks.bgTone === 'dark' ? '#fff' : '#1A1A1A'
+            }}>Nuestros <em style={{ color: tweaks.accentColor }}>Productos</em></h2>
+          </div>
+          <p style={{ fontSize: 15, color: '#888', maxWidth: 380, lineHeight: 1.7 }}>
+            Cada solución diseñada para maximizar protección y minimizar impacto ambiental.
+          </p>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+          {products.map((p, i) => {
+            const [ref, vis] = useReveal();
+            const [hov, setHov] = React.useState(false);
+            const isLarge = i === 0;
+            return (
+              <div key={i} ref={ref}
+                onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+                className="hover-lift"
+                style={{
+                  gridColumn: isLarge ? 'span 2' : 'span 1',
+                  gridRow: isLarge ? 'span 2' : 'span 1',
+                  background: tweaks.bgTone === 'dark' ? '#252525' : '#fff',
+                  position: 'relative', overflow: 'hidden', cursor: 'pointer',
+                  opacity: vis ? 1 : 0, transform: vis ? 'translateY(0)' : 'translateY(30px)',
+                  transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+                  transitionDelay: `${i * 80}ms`
+                }}>
+                {/* Hex corner accent */}
+                <div style={{
+                  position: 'absolute', top: -30, right: -30, zIndex: 0,
+                  transition: 'transform 0.5s'
+                }}>
+                  <HexSVG size={100} fill={`${tweaks.accentColor}10`} stroke={tweaks.accentColor} strokeWidth={1} opacity={hov ? 0.5 : 0.15} />
+                </div>
+
+                <div style={{
+                  height: isLarge ? '100%' : 180,
+                  minHeight: isLarge ? 300 : 180,
+                  background: `linear-gradient(135deg, ${COLORS.cardboard}22, ${COLORS.cardboard}08)`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  position: 'relative'
+                }}>
+                  <span style={{ fontFamily: 'monospace', color: '#aaa', fontSize: 12, position: 'relative', zIndex: 1 }}>product photo</span>
+                </div>
+
+                <div style={{ padding: isLarge ? '32px 36px' : '24px 24px', position: 'relative', zIndex: 1 }}>
+                  <h3 style={{
+                    fontFamily: "'Instrument Serif', serif",
+                    fontSize: isLarge ? 28 : 20, fontWeight: 400,
+                    color: tweaks.bgTone === 'dark' ? '#fff' : '#1A1A1A',
+                    marginBottom: 8
+                  }}>{p.name}</h3>
+                  <p style={{ fontSize: 14, color: '#888', lineHeight: 1.6, marginBottom: 16 }}>{p.desc}</p>
+                  <span style={{
+                    fontSize: 12, fontWeight: 700, color: tweaks.accentColor,
+                    letterSpacing: '0.08em', textTransform: 'uppercase',
+                    display: 'flex', alignItems: 'center', gap: 8
+                  }}>
+                    Explorar
+                    <span style={{ transition: 'transform 0.3s', transform: hov ? 'translateX(6px)' : 'none', display: 'inline-block' }}>→</span>
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* ═══════ ABOUT ═══════ */
+const About = ({ tweaks }) => {
+  const [ref, vis] = useReveal();
+  const tone = bgTones[tweaks.bgTone] || bgTones.cream;
+  return (
+    <section id="nosotros" ref={ref} style={{
+      padding: '120px 32px', background: tone.bg, position: 'relative', overflow: 'hidden'
+    }}>
+      <HexGrid color={COLORS.cardboard} style={{ left: -100, top: -50 }} count={9} />
+      <div style={{
+        maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1,
+        display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center'
+      }}>
+        {/* Image side with overlapping hex shapes */}
+        <div style={{
+          position: 'relative',
+          opacity: vis ? 1 : 0, transform: vis ? 'none' : 'translateX(-40px)',
+          transition: 'all 0.8s ease-out'
+        }}>
+          <div style={{
+            width: '100%', aspectRatio: '4/3', background: `linear-gradient(135deg, ${COLORS.cardboard}, ${COLORS.cardboardDark})`,
+            display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative'
+          }}>
+            <span style={{ fontFamily: 'monospace', color: 'rgba(255,255,255,0.5)', fontSize: 13 }}>factory / team photo</span>
+            {/* Overlapping hex badge */}
+            <div style={{
+              position: 'absolute', bottom: -40, right: -20,
+              width: 120, height: 138,
+              clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+              background: tweaks.accentColor,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              flexDirection: 'column', textAlign: 'center'
+            }}>
+              <span style={{ fontSize: 32, fontWeight: 700, color: '#1A1A1A', fontFamily: "'Instrument Serif', serif" }}>15+</span>
+              <span style={{ fontSize: 10, fontWeight: 600, color: '#1A1A1A', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Años</span>
+            </div>
+          </div>
+        </div>
+
+        <div style={{
+          opacity: vis ? 1 : 0, transform: vis ? 'none' : 'translateX(40px)',
+          transition: 'all 0.8s ease-out 0.2s'
+        }}>
+          <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: tweaks.accentColor, display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+            <span style={{ width: 32, height: 1.5, background: tweaks.accentColor, display: 'inline-block' }}></span>
+            Quiénes Somos
+          </span>
+          <h2 style={{
+            fontFamily: "'Instrument Serif', serif",
+            fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 400,
+            color: tweaks.bgTone === 'dark' ? '#fff' : '#1A1A1A',
+            marginBottom: 24, lineHeight: 1.15
+          }}>
+            Pioneros en <em style={{ color: tweaks.accentColor }}>cartón panal</em> en Latinoamérica
+          </h2>
+          <p style={{ fontSize: 16, lineHeight: 1.8, color: '#6B6B6B', marginBottom: 20 }}>
+            En Perlad desarrollamos tecnología propia para crear materiales de empaque que reemplazan al plástico y la madera. Nuestras estructuras de cartón panal son la solución más sostenible del mercado.
+          </p>
+          <p style={{ fontSize: 16, lineHeight: 1.8, color: '#6B6B6B', marginBottom: 32 }}>
+            Cada producto es diseñado con ingeniería de precisión para ofrecer máxima protección con el menor impacto ambiental.
+          </p>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            {['Reciclable', 'Biodegradable', 'Liviano', 'Resistente'].map((v, i) => (
+              <div key={i} style={{
+                display: 'flex', alignItems: 'center', gap: 12,
+                padding: '12px 16px', background: `${tweaks.accentColor}08`,
+                border: `1px solid ${tweaks.accentColor}20`
+              }}>
+                <div style={{
+                  width: 20, height: 23,
+                  clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                  background: tweaks.accentColor, flexShrink: 0
+                }}></div>
+                <span style={{ fontSize: 14, fontWeight: 600 }}>{v}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* ═══════ SUSTAINABILITY ═══════ */
+const Sustainability = ({ tweaks }) => {
+  const tone = bgTones[tweaks.bgTone] || bgTones.cream;
+  const pillars = [
+    { icon: '♻', title: 'Materiales Reciclables', desc: 'Papel 100% reciclable y reciclado en todos nuestros productos.' },
+    { icon: '🌱', title: 'Huella de Carbono', desc: 'Procesos optimizados para minimizar emisiones.' },
+    { icon: '📦', title: 'Cero Desperdicio', desc: 'Diseño eficiente que aprovecha al máximo cada hoja.' },
+    { icon: '🔄', title: 'Economía Circular', desc: 'Nuestros empaques se reintegran al ciclo productivo.' }
+  ];
+
+  return (
+    <section id="sostenibilidad" style={{
+      padding: '120px 32px', background: '#1A1A1A', position: 'relative', overflow: 'hidden'
+    }}>
+      <HexGrid style={{ right: -80, top: 0 }} />
+      <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+        <div style={{ textAlign: 'center', marginBottom: 64 }}>
+          <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: tweaks.accentColor }}>
+            Nuestro compromiso
+          </span>
+          <h2 style={{
+            fontFamily: "'Instrument Serif', serif",
+            fontSize: 'clamp(32px, 4vw, 52px)', fontWeight: 400, color: '#fff', marginTop: 12
+          }}>Sostenibilidad en cada <em style={{ color: tweaks.accentColor }}>fibra</em></h2>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
+          {pillars.map((p, i) => {
+            const [ref, vis] = useReveal();
+            const [hov, setHov] = React.useState(false);
+            return (
+              <div key={i} ref={ref}
+                onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+                style={{
+                  background: hov ? 'rgba(148,193,31,0.08)' : 'rgba(255,255,255,0.03)',
+                  border: `1px solid ${hov ? tweaks.accentColor + '40' : 'rgba(255,255,255,0.06)'}`,
+                  padding: '40px 28px', textAlign: 'center',
+                  opacity: vis ? 1 : 0, transform: vis ? 'translateY(0)' : 'translateY(30px)',
+                  transition: `all 0.6s ease-out ${i * 0.12}s`,
+                  position: 'relative', overflow: 'hidden'
+                }}>
+                <div style={{
+                  width: 64, height: 74, margin: '0 auto 20px',
+                  clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                  background: hov ? `${tweaks.accentColor}30` : 'rgba(255,255,255,0.05)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 28, transition: 'background 0.4s'
+                }}>{p.icon}</div>
+                <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 700, color: '#fff', marginBottom: 8 }}>{p.title}</h3>
+                <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.7 }}>{p.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Impact numbers */}
+        <div style={{
+          display: 'flex', justifyContent: 'center', gap: 80, marginTop: 72,
+          paddingTop: 48, borderTop: '1px solid rgba(255,255,255,0.06)'
+        }}>
+          {[
+            { n: 2000, s: '+', l: 'Toneladas de plástico evitadas' },
+            { n: 95, s: '%', l: 'Material reciclado' },
+            { n: 30, s: '%', l: 'Menos huella de carbono' }
+          ].map((d, i) => (
+            <div key={i} style={{ textAlign: 'center' }}>
+              <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 48, color: tweaks.accentColor }}>
+                <AnimCounter end={d.n} suffix={d.s} />
+              </div>
+              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', marginTop: 4 }}>{d.l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* ═══════ TESTIMONIALS ═══════ */
+const Testimonials = ({ tweaks }) => {
+  const tone = bgTones[tweaks.bgTone] || bgTones.cream;
+  const [active, setActive] = React.useState(0);
+  const testimonials = [
+    { text: 'Perlad transformó nuestra cadena de embalaje. Redujimos costos y nuestro impacto ambiental.', author: 'Carlos Méndez', role: 'Dir. Logística, Alimentos del Valle' },
+    { text: 'La calidad del cartón panal superó expectativas. Nuestros productos llegan intactos y sin plástico.', author: 'María Fernández', role: 'Gerente de Compras, TechPack' },
+    { text: 'Son nuestro aliado estratégico en empaques sostenibles. Excelente servicio y compromiso.', author: 'Roberto Silva', role: 'CEO, EcoExport' }
+  ];
+
+  return (
+    <section style={{ padding: '100px 32px', background: tone.surface }}>
+      <div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center' }}>
+        <HexSVG size={48} stroke={tweaks.accentColor} strokeWidth={2} style={{ margin: '0 auto 32px', display: 'block' }} />
+        <div style={{ position: 'relative', minHeight: 180 }}>
+          {testimonials.map((t, i) => (
+            <div key={i} style={{
+              position: i === active ? 'relative' : 'absolute', top: 0, left: 0, right: 0,
+              opacity: i === active ? 1 : 0, transform: i === active ? 'none' : 'translateY(16px)',
+              transition: 'all 0.5s ease-out'
+            }}>
+              <p style={{
+                fontFamily: "'Instrument Serif', serif", fontSize: 'clamp(20px, 3vw, 28px)',
+                fontWeight: 400, fontStyle: 'italic', lineHeight: 1.6, marginBottom: 28,
+                color: tweaks.bgTone === 'dark' ? '#fff' : '#1A1A1A'
+              }}>"{t.text}"</p>
+              <div style={{ fontSize: 15, fontWeight: 700, color: tweaks.bgTone === 'dark' ? '#fff' : '#1A1A1A' }}>{t.author}</div>
+              <div style={{ fontSize: 13, color: '#999', marginTop: 2 }}>{t.role}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: 32 }}>
+          {testimonials.map((_, i) => (
+            <button key={i} onClick={() => setActive(i)} style={{
+              width: i === active ? 28 : 8, height: 8, border: 'none',
+              background: i === active ? tweaks.accentColor : '#ccc',
+              borderRadius: 4, cursor: 'pointer', transition: 'all 0.3s'
+            }}></button>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* ═══════ BLOG ═══════ */
+const Blog = ({ tweaks }) => {
+  const tone = bgTones[tweaks.bgTone] || bgTones.cream;
+  const posts = [
+    { title: '¿Por qué el cartón panal es el futuro del empaque?', cat: 'Innovación', date: 'Mar 2026' },
+    { title: '5 formas de reducir plástico en tu supply chain', cat: 'Sostenibilidad', date: 'Feb 2026' },
+    { title: 'Estibas de cartón vs. madera: guía comparativa', cat: 'Productos', date: 'Ene 2026' }
+  ];
+
+  return (
+    <section id="blog" style={{ padding: '120px 32px', background: tone.bg }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 56 }}>
+          <div>
+            <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: tweaks.accentColor, display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+              <span style={{ width: 32, height: 1.5, background: tweaks.accentColor, display: 'inline-block' }}></span>
+              Últimas noticias
+            </span>
+            <h2 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 'clamp(28px, 3vw, 44px)', fontWeight: 400 }}>
+              Nuestro <em style={{ color: tweaks.accentColor }}>Blog</em>
+            </h2>
+          </div>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          {posts.map((p, i) => {
+            const [ref, vis] = useReveal();
+            const [hov, setHov] = React.useState(false);
+            return (
+              <article key={i} ref={ref}
+                onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+                className="hover-lift"
+                style={{
+                  background: tweaks.bgTone === 'dark' ? '#252525' : '#fff',
+                  cursor: 'pointer', overflow: 'hidden',
+                  opacity: vis ? 1 : 0, transform: vis ? 'translateY(0)' : 'translateY(24px)',
+                  transition: `all 0.5s ease-out ${i * 0.12}s`
+                }}>
+                <div style={{
+                  height: 200, background: `linear-gradient(135deg, ${tweaks.accentColor}15, ${COLORS.cardboard}15)`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative'
+                }}>
+                  <HexSVG size={80} stroke={tweaks.accentColor} strokeWidth={1} opacity={0.2}
+                    style={{ position: 'absolute', right: 20, bottom: 20 }} />
+                  <span style={{ fontFamily: 'monospace', color: '#aaa', fontSize: 12 }}>blog image</span>
+                </div>
+                <div style={{ padding: 28 }}>
+                  <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                    <span style={{ fontSize: 11, fontWeight: 700, color: tweaks.accentColor, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{p.cat}</span>
+                    <span style={{ fontSize: 11, color: '#999' }}>{p.date}</span>
+                  </div>
+                  <h3 style={{
+                    fontFamily: "'Instrument Serif', serif", fontSize: 20, fontWeight: 400,
+                    color: tweaks.bgTone === 'dark' ? '#fff' : '#1A1A1A', lineHeight: 1.35
+                  }}>{p.title}</h3>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* ═══════ CONTACT ═══════ */
+const Contact = ({ tweaks }) => {
+  const [ref, vis] = useReveal();
+  const [sent, setSent] = React.useState(false);
+
+  return (
+    <section id="contacto" ref={ref} style={{
+      padding: '120px 32px', background: '#1A1A1A', position: 'relative', overflow: 'hidden'
+    }}>
+      <HexGrid style={{ left: -100, top: -50 }} />
+      <div style={{
+        maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1,
+        display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 80, alignItems: 'start'
+      }}>
+        <div style={{
+          opacity: vis ? 1 : 0, transform: vis ? 'none' : 'translateX(-30px)',
+          transition: 'all 0.7s ease-out'
+        }}>
+          <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: tweaks.accentColor, display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+            <span style={{ width: 32, height: 1.5, background: tweaks.accentColor, display: 'inline-block' }}></span>
+            Contacto
+          </span>
+          <h2 style={{
+            fontFamily: "'Instrument Serif', serif",
+            fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 400, color: '#fff',
+            marginBottom: 20, lineHeight: 1.15
+          }}>
+            Hagamos el cambio <em style={{ color: tweaks.accentColor }}>juntos</em>
+          </h2>
+          <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.5)', lineHeight: 1.8, marginBottom: 40 }}>
+            ¿Listo para empaques sostenibles? Escríbenos y te asesoramos sin compromiso.
+          </p>
+
+          {[
+            { label: 'Email', value: 'contacto@perlad.com' },
+            { label: 'Teléfono', value: '+57 (1) 234-5678' },
+            { label: 'Ubicación', value: 'Bogotá, Colombia' }
+          ].map((c, i) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20 }}>
+              <div style={{
+                width: 40, height: 46,
+                clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                background: `${tweaks.accentColor}15`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
+              }}>
+                <div style={{ width: 10, height: 10, background: tweaks.accentColor, clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }}></div>
+              </div>
+              <div>
+                <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{c.label}</div>
+                <div style={{ fontSize: 15, color: '#fff', fontWeight: 500 }}>{c.value}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{
+          background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)',
+          padding: 44,
+          opacity: vis ? 1 : 0, transform: vis ? 'none' : 'translateX(30px)',
+          transition: 'all 0.7s ease-out 0.2s'
+        }}>
+          {sent ? (
+            <div style={{ textAlign: 'center', padding: 48 }}>
+              <div style={{
+                width: 72, height: 83, margin: '0 auto 20px',
+                clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                background: tweaks.accentColor,
+                display: 'flex', alignItems: 'center', justifyContent: 'center'
+              }}>
+                <span style={{ fontSize: 32, color: '#1A1A1A' }}>✓</span>
+              </div>
+              <h3 style={{ fontFamily: "'Instrument Serif', serif", color: '#fff', fontSize: 28, marginBottom: 8 }}>¡Mensaje enviado!</h3>
+              <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 15 }}>Te responderemos pronto.</p>
+            </div>
+          ) : (
+            <form onSubmit={e => { e.preventDefault(); setSent(true); }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+                {['Nombre', 'Email', 'Empresa', 'Teléfono'].map((f, i) => (
+                  <div key={i}>
+                    <label style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 8 }}>{f}</label>
+                    <input type={f === 'Email' ? 'email' : 'text'} required={i < 2} style={{
+                      width: '100%', padding: '14px 16px',
+                      background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
+                      color: '#fff', fontSize: 15, outline: 'none', fontFamily: "'DM Sans', sans-serif",
+                      transition: 'border-color 0.3s'
+                    }}
+                    onFocus={e => e.target.style.borderColor = tweaks.accentColor}
+                    onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.08)'}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div style={{ marginBottom: 24 }}>
+                <label style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 8 }}>Mensaje</label>
+                <textarea rows="4" required style={{
+                  width: '100%', padding: '14px 16px', resize: 'vertical',
+                  background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
+                  color: '#fff', fontSize: 15, outline: 'none', fontFamily: "'DM Sans', sans-serif",
+                  transition: 'border-color 0.3s'
+                }}
+                onFocus={e => e.target.style.borderColor = tweaks.accentColor}
+                onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.08)'}
+                ></textarea>
+              </div>
+              <button type="submit" style={{
+                width: '100%', padding: '16px',
+                background: tweaks.accentColor, color: '#1A1A1A', border: 'none',
+                fontSize: 14, fontWeight: 700, letterSpacing: '0.04em', cursor: 'pointer',
+                transition: 'transform 0.2s', fontFamily: "'DM Sans', sans-serif"
+              }}
+              onMouseEnter={e => e.target.style.transform = 'scale(1.02)'}
+              onMouseLeave={e => e.target.style.transform = 'scale(1)'}
+              >Enviar Mensaje</button>
+            </form>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* ═══════ FOOTER ═══════ */
+const Footer = ({ tweaks }) => (
+  <footer style={{ background: '#111', padding: '56px 32px 28px', borderTop: `2px solid ${tweaks.accentColor}` }}>
+    <div style={{
+      maxWidth: 1200, margin: '0 auto',
+      display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 40, marginBottom: 40
+    }}>
+      <div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+          <HexSVG size={20} stroke={tweaks.accentColor} strokeWidth={2} />
+          <img src="assets/logo-perlad.png" alt="Perlad" style={{ height: 24, filter: 'brightness(0) invert(1)' }} />
+        </div>
+        <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.4)', lineHeight: 1.7, maxWidth: 280 }}>
+          Innovación sostenible en soluciones de empaque.
+        </p>
+      </div>
+      {[
+        { title: 'Productos', links: ['Empaques', 'Estibas', 'Esquinas', 'Rollos', 'Bolsa Bio'] },
+        { title: 'Empresa', links: ['Nosotros', 'Sostenibilidad', 'Blog', 'Contacto'] },
+        { title: 'Legal', links: ['Privacidad', 'Términos'] }
+      ].map((col, i) => (
+        <div key={i}>
+          <h4 style={{ fontSize: 12, fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16 }}>{col.title}</h4>
+          {col.links.map((l, j) => (
+            <a key={j} href="#" style={{ display: 'block', fontSize: 14, color: 'rgba(255,255,255,0.35)', textDecoration: 'none', marginBottom: 10, transition: 'color 0.3s' }}
+              onMouseEnter={e => e.target.style.color = tweaks.accentColor}
+              onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.35)'}
+            >{l}</a>
+          ))}
+        </div>
+      ))}
+    </div>
+    <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 20, textAlign: 'center' }}>
+      <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.25)' }}>© 2026 Perlad. Innovación Sostenible.</p>
+    </div>
+  </footer>
+);
+
+/* ═══════ APP ═══════ */
+const App = () => {
+  const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
+  };
+
+  return (
+    <>
+      <Nav tweaks={tweaks} scrollTo={scrollTo} />
+      <Hero tweaks={tweaks} scrollTo={scrollTo} />
+      <MarqueeBand tweaks={tweaks} />
+      <Products tweaks={tweaks} />
+      <About tweaks={tweaks} />
+      <Sustainability tweaks={tweaks} />
+      <Testimonials tweaks={tweaks} />
+      <Blog tweaks={tweaks} />
+      <Contact tweaks={tweaks} />
+      <Footer tweaks={tweaks} />
+
+      <TweaksPanel>
+        <TweakSection title="Colores">
+          <TweakColor label="Color acento" value={tweaks.accentColor} onChange={v => setTweak('accentColor', v)} />
+          <TweakRadio label="Tono fondo" options={['cream', 'white', 'dark']} value={tweaks.bgTone} onChange={v => setTweak('bgTone', v)} />
+        </TweakSection>
+        <TweakSection title="Layout">
+          <TweakRadio label="Hero" options={['split', 'centered']} value={tweaks.heroLayout} onChange={v => setTweak('heroLayout', v)} />
+        </TweakSection>
+      </TweaksPanel>
+    </>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
