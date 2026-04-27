@@ -27,24 +27,27 @@
     background-size: 56px 100px;
   }
 
-  /* Responsive nav */
+  /* Responsive design */
   @media (max-width: 900px) {
     .nav-links-desktop { display: none !important; }
     .nav-hamburger { display: block !important; }
+    
+    /* Layout adjustments */
+    section { padding-inline: 24px !important; }
+    #hero > div:first-of-type { padding: 100px 24px 40px !important; text-align: center; }
+    #hero h1 { font-size: 40px !important; }
+    #hero .nav-cta { margin-inline: auto; }
+    
+    #nosotros > div { grid-template-columns: 1fr !important; gap: 40px !important; }
+    #contacto > div { grid-template-columns: 1fr !important; gap: 40px !important; }
+    
+    footer > div { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
   }
 
-  /* Hover helpers */
-  .nav-dropdown-item:hover { background: rgba(148,193,31,0.1); }
-  .nav-dropdown-sub:hover { color: #94C11F !important; }
-  .nav-cta:hover { transform: scale(1.05) !important; }
-
-  /* Parallax float animation */
-  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-  @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
-  @keyframes slideUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+  @media (max-width: 600px) {
+    footer > div { grid-template-columns: 1fr !important; }
+    .hero-stats { justify-content: center !important; gap: 24px !important; }
+  }
 </style>
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
@@ -206,7 +209,7 @@ const HeroSection = ({ tweaks, scrollTo }) => {
       </div>
 
       {/* Stats bar - separate row below hero */}
-      <div style={{
+      <div className="hero-stats" style={{
         maxWidth: 1280, margin: '0 auto', padding: '60px 40px 80px',
         position: 'relative', zIndex: 2
       }}>
@@ -260,7 +263,7 @@ const ProductsSection = ({ tweaks }) => {
         </SectionTitle>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
           gap: 28
         }}>
           {products.map((p, i) => (

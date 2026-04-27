@@ -22,6 +22,35 @@
 
   .hover-lift { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; }
   .hover-lift:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.1); }
+
+  @media (max-width: 1024px) {
+    #hero > div { grid-template-columns: 1fr !important; padding-top: 100px !important; text-align: center; }
+    #hero > div > div:first-child { display: flex; flexDirection: column; alignItems: center; }
+    #hero > div > div:first-child p { margin-inline: auto; }
+    #hero > div > div:first-child .mini-stats { justify-content: center; }
+    
+    #productos > div > div:last-child { grid-template-columns: 1fr 1fr !important; }
+    #productos > div > div:last-child > div:first-child { grid-column: span 2 !important; }
+    
+    #nosotros > div { grid-template-columns: 1fr !important; gap: 40px !important; }
+    #nosotros > div > div:first-child { order: 2; }
+    #nosotros > div > div:last-child { order: 1; text-align: center; }
+    #nosotros > div > div:last-child > div { justify-content: center; }
+    
+    #sostenibilidad > div > div:nth-child(2) { grid-template-columns: 1fr 1fr !important; }
+    #sostenibilidad > div > div:last-child { gap: 40px !important; }
+    
+    #contacto > div { grid-template-columns: 1fr !important; gap: 40px !important; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links-desktop { display: none !important; }
+    .nav-hamburger { display: block !important; }
+    #productos > div > div:last-child { grid-template-columns: 1fr !important; }
+    #productos > div > div:last-child > div:first-child { grid-column: span 1 !important; }
+    #sostenibilidad > div > div:nth-child(2) { grid-template-columns: 1fr !important; }
+    #blog > div > div:last-child { grid-template-columns: 1fr !important; }
+  }
 </style>
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
@@ -147,7 +176,7 @@ const Nav = ({ tweaks, scrollTo }) => {
           }} />
         </div>
 
-        <div style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: 28, alignItems: 'center' }} className="nav-links-desktop">
           {links.map(l => (
             <a key={l.id} onClick={() => scrollTo(l.id)} style={{
               fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 500,
@@ -169,7 +198,30 @@ const Nav = ({ tweaks, scrollTo }) => {
           onMouseLeave={e => e.target.style.transform = 'scale(1)'}
           >Cotizar</a>
         </div>
+
+        {/* Mobile Hamburger */}
+        <div className="nav-hamburger" onClick={() => setMenuOpen(!menuOpen)}
+          style={{ display: 'none', cursor: 'pointer', padding: 8 }}>
+          <div style={{ width: 24, height: 2, background: textColor, marginBottom: 6, transition: '0.3s', transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }}></div>
+          <div style={{ width: 24, height: 2, background: textColor, marginBottom: 6, opacity: menuOpen ? 0 : 1 }}></div>
+          <div style={{ width: 24, height: 2, background: textColor, transition: '0.3s', transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }}></div>
+        </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {menuOpen && (
+        <div style={{
+          background: isDark ? '#1A1A1A' : '#F5F0E8', padding: '24px 32px',
+          borderTop: `1px solid ${tweaks.accentColor}33`, display: 'flex', flexDirection: 'column', gap: 16
+        }}>
+          {links.map(l => (
+            <a key={l.id} onClick={() => { scrollTo(l.id); setMenuOpen(false); }}
+              style={{ color: textColor, textDecoration: 'none', fontSize: 18, fontWeight: 500 }}>{l.label}</a>
+          ))}
+          <a onClick={() => { scrollTo('contacto'); setMenuOpen(false); }}
+            style={{ color: tweaks.accentColor, textDecoration: 'none', fontSize: 18, fontWeight: 700 }}>Cotizar</a>
+        </div>
+      )}
     </nav>
   );
 };

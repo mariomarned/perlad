@@ -101,7 +101,8 @@ const NavBar = ({ tweaks, activeSection, scrollTo }) => {
     { label: 'Nosotros', id: 'nosotros' },
     { label: 'Sostenibilidad', id: 'sostenibilidad' },
     { label: 'Blog', id: 'blog' },
-    { label: 'Contacto', id: 'contacto' }
+    { label: 'Contacto', id: 'contacto' },
+    { label: 'Diseño 2', url: 'diseno2/index.html' }
   ];
 
   return (
@@ -112,10 +113,10 @@ const NavBar = ({ tweaks, activeSection, scrollTo }) => {
         
         <div style={{ display: 'flex', gap: 32, alignItems: 'center' }} className="nav-links-desktop">
           {links.map(l => (
-            <div key={l.id} style={{ position: 'relative' }}
+            <div key={l.label} style={{ position: 'relative' }}
               onMouseEnter={() => l.hasDropdown && setProdOpen(true)}
               onMouseLeave={() => l.hasDropdown && setProdOpen(false)}>
-              <a onClick={() => { scrollTo(l.id); setMenuOpen(false); }}
+              <a onClick={() => { if(l.url) window.location.href = l.url; else { scrollTo(l.id); setMenuOpen(false); } }}
                 style={{
                   color: activeSection === l.id ? (tweaks?.accentColor || '#94C11F') : '#fff',
                   fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 500,
@@ -189,7 +190,7 @@ const NavBar = ({ tweaks, activeSection, scrollTo }) => {
           borderTop: '1px solid rgba(148,193,31,0.2)'
         }} className="nav-mobile-menu">
           {links.map(l => (
-            <a key={l.id} onClick={() => { scrollTo(l.id); setMenuOpen(false); }}
+            <a key={l.label} onClick={() => { if(l.url) window.location.href = l.url; else { scrollTo(l.id); setMenuOpen(false); } }}
               style={{
                 display: 'block', color: '#fff', fontFamily: "'DM Sans', sans-serif",
                 fontSize: 18, padding: '12px 0', textDecoration: 'none', cursor: 'pointer'
