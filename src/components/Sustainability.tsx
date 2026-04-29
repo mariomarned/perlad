@@ -16,11 +16,11 @@ export const Sustainability = ({ accentColor = '#94C11F' }: { accentColor?: stri
           Sostenibilidad
         </SectionTitle>
 
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-12 max-w-5xl mx-auto mt-12">
+        <div className="flex flex-wrap justify-center gap-x-4 md:gap-x-6 gap-y-8 md:gap-y-12 max-w-5xl mx-auto mt-12">
           {pillars.map((p, i) => (
             <div 
               key={i} 
-              className={`w-64 h-72 relative group transition-all duration-500 hover:scale-105 ${i % 2 !== 0 ? 'md:mt-16' : ''}`}
+              className={`w-[220px] sm:w-64 h-64 sm:h-72 relative group transition-all duration-500 hover:scale-105 ${i % 2 !== 0 ? 'md:mt-16' : ''}`}
             >
               <div 
                 className="absolute inset-0 bg-white group-hover:bg-brand-warm transition-colors duration-300 shadow-sm"

@@ -10,7 +10,7 @@ interface DiamondProps {
 
 export const Diamond = ({ children, size = 120, bg = '#94C11F', className, style }: DiamondProps) => (
   <div 
-    className={cn("flex items-center justify-center", className)} 
+    className={cn("flex items-center justify-center shrink-0", className)} 
     style={{
       width: size, 
       height: size,

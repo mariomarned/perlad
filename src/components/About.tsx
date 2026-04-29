@@ -5,8 +5,8 @@ export const About = ({ accentColor = '#94C11F' }: { accentColor?: string }) => 
   return (
     <section id="nosotros" className="py-24 px-6 bg-brand-dark text-white relative overflow-hidden">
       <div className="honeycomb-bg-dark absolute inset-0 opacity-100 pointer-events-none"></div>
-      <div className="max-w-7xl mx-auto relative z-10 grid md:grid-cols-2 gap-16 items-center">
-        <div className="grid grid-cols-3 gap-2">
+      <div className="max-w-7xl mx-auto relative z-10 grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div className="grid grid-cols-3 gap-2 max-w-[360px] mx-auto md:max-w-none">
           {[...Array(6)].map((_, i) => (
             <div 
               key={i} 

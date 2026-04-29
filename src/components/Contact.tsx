@@ -36,7 +36,7 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
         </div>
 
         <div 
-          className="bg-white/[0.04] border border-white/[0.08] p-10 relative opacity-100 animate-fade-in [animation-delay:200ms]"
+          className="bg-white/[0.04] border border-white/[0.08] p-6 sm:p-10 relative opacity-100 animate-fade-in [animation-delay:200ms]"
           style={{ clipPath: 'polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px))' }}
         >
           {sent ? (
@@ -49,16 +49,40 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
             </div>
           ) : (
             <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="space-y-5">
-              {['Nombre', 'Email', 'Empresa', 'Teléfono'].map((f, i) => (
-                <div key={i}>
-                  <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">{f}</label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                <div className="space-y-2">
+                  <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">Nombre</label>
                   <input 
-                    type={f === 'Email' ? 'email' : 'text'} 
-                    required={i < 2} 
+                    type="text" 
+                    required 
                     className="w-full bg-white/[0.06] border border-white/[0.1] px-4 py-[14px] text-white font-sans text-[15px] outline-none focus:border-accent transition-colors"
                   />
                 </div>
-              ))}
+                <div className="space-y-2">
+                  <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">Email</label>
+                  <input 
+                    type="email" 
+                    required 
+                    className="w-full bg-white/[0.06] border border-white/[0.1] px-4 py-[14px] text-white font-sans text-[15px] outline-none focus:border-accent transition-colors"
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                <div className="space-y-2">
+                  <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">Empresa</label>
+                  <input 
+                    type="text" 
+                    className="w-full bg-white/[0.06] border border-white/[0.1] px-4 py-[14px] text-white font-sans text-[15px] outline-none focus:border-accent transition-colors"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">Teléfono</label>
+                  <input 
+                    type="text" 
+                    className="w-full bg-white/[0.06] border border-white/[0.1] px-4 py-[14px] text-white font-sans text-[15px] outline-none focus:border-accent transition-colors"
+                  />
+                </div>
+              </div>
               <div>
                 <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">Mensaje</label>
                 <textarea 
