@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
-import { DM_Sans, Outfit } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
-
-const dmSans = DM_Sans({ 
-  subsets: ["latin"],
-  variable: "--font-dm-sans",
-  weight: ["400", "500", "600", "700"]
-});
 
 const outfit = Outfit({ 
   subsets: ["latin"],
@@ -54,7 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={`${dmSans.variable} ${outfit.variable} font-sans antialiased`}>
+      <body className={`${outfit.variable} font-sans antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
