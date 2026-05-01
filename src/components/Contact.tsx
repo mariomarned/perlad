@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { SectionTitle } from './ui/SectionTitle';
-import { Diamond } from './ui/Diamond';
+import { Hexagon } from './ui/Hexagon';
 
 export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) => {
   const [sent, setSent] = useState(false);
@@ -23,9 +23,9 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
               { label: 'Ubicación', value: 'Bogotá, Colombia' }
             ].map((c, i) => (
               <div key={i} className="flex items-center gap-4">
-                <Diamond size={36} bg={`${accentColor}22`}>
-                  <Diamond size={12} bg={accentColor} />
-                </Diamond>
+                <Hexagon size={36} bg={`${accentColor}22`}>
+                  <Hexagon size={12} bg={accentColor} />
+                </Hexagon>
                 <div>
                   <div className="font-sans text-[12px] text-white/40 uppercase tracking-[0.08em]">{c.label}</div>
                   <div className="font-sans text-[15px] text-white font-medium">{c.value}</div>
@@ -41,9 +41,9 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
         >
           {sent ? (
             <div className="text-center py-10">
-              <Diamond size={60} bg={accentColor} className="mx-auto mb-5">
+              <Hexagon size={60} bg={accentColor} className="mx-auto mb-5">
                 <span className="text-[#1A1A1A] text-[28px] font-bold">✓</span>
-              </Diamond>
+              </Hexagon>
               <h3 className="font-display text-[24px] font-bold mb-2">¡Mensaje Enviado!</h3>
               <p className="font-sans text-white/60 text-[15px]">Te responderemos pronto.</p>
             </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Diamond } from './ui/Diamond';
+import { Hexagon } from './ui/Hexagon';
 import { cn } from '@/lib/utils';
 
 interface HeaderProps {
@@ -80,7 +80,7 @@ export const Header = ({ activeSection, accentColor = '#94C11F' }: HeaderProps) 
                     {products.map((p, i) => (
                       <div key={i} className={cn("group", p.sub ? "mb-3" : "mb-1")}>
                         <div className="text-white font-sans text-[14px] font-semibold py-1.5 px-2 flex items-center rounded-md hover:bg-white/5 transition-colors cursor-pointer">
-                          <Diamond size={8} bg={accentColor} className="mr-2" />
+                          <Hexagon size={8} bg={accentColor} className="mr-2" />
                           {p.name}
                         </div>
                           {p.sub && p.sub.map((s, j) => (

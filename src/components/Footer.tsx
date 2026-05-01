@@ -1,4 +1,4 @@
-import { Diamond } from "./ui/Diamond";
+import { Hexagon } from "./ui/Hexagon";
 
 export const Footer = ({ accentColor = '#94C11F' }: { accentColor?: string }) => {
   return (
@@ -6,9 +6,9 @@ export const Footer = ({ accentColor = '#94C11F' }: { accentColor?: string }) =>
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
         <div className="col-span-1 lg:col-span-1">
           <div className="flex items-center gap-3 mb-8">
-            <Diamond size={32} bg={accentColor}>
+            <Hexagon size={32} bg={accentColor}>
               <img src="/assets/logo-perlad.png" alt="P" className="w-1/2 brightness-0" />
-            </Diamond>
+            </Hexagon>
             <span className="text-white font-display text-xl font-bold tracking-tight">PERLAD</span>
           </div>
           <p className="text-white/40 text-sm leading-relaxed max-w-xs">

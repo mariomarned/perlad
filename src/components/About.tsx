@@ -1,5 +1,5 @@
 import { SectionTitle } from "./ui/SectionTitle";
-import { Diamond } from "./ui/Diamond";
+import { Hexagon } from "./ui/Hexagon";
 
 export const About = ({ accentColor = '#94C11F' }: { accentColor?: string }) => {
   return (
@@ -34,9 +34,9 @@ export const About = ({ accentColor = '#94C11F' }: { accentColor?: string }) => 
           <div className="flex flex-wrap gap-8 mt-10">
             {['Reciclable', 'Biodegradable', 'Liviano', 'Resistente'].map((v, i) => (
               <div key={i} className="flex items-center gap-3">
-                <Diamond size={24} bg={accentColor}>
+                <Hexagon size={24} bg={accentColor}>
                   <span className="text-[10px] text-brand-dark font-bold">✓</span>
-                </Diamond>
+                </Hexagon>
                 <span className="font-bold text-sm tracking-wide">{v}</span>
               </div>
             ))}

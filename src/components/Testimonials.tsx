@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { SectionTitle } from './ui/SectionTitle';
-import { Diamond } from './ui/Diamond';
+import { Hexagon } from './ui/Hexagon';
 import { cn } from '@/lib/utils';
 
 export const Testimonials = ({ accentColor = '#94C11F' }: { accentColor?: string }) => {
@@ -37,9 +37,9 @@ export const Testimonials = ({ accentColor = '#94C11F' }: { accentColor?: string
                 "{t.text}"
               </p>
               <div className="flex items-center justify-center gap-4">
-                <Diamond size={48} bg={accentColor}>
+                <Hexagon size={48} bg={accentColor}>
                   <span className="text-brand-dark font-bold text-xl">{t.author[0]}</span>
-                </Diamond>
+                </Hexagon>
                 <div className="text-left">
                   <div className="font-bold text-white text-lg">{t.author}</div>
                   <div className="text-white/40 text-sm">{t.role}</div>

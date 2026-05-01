@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import { Diamond } from "./ui/Diamond";
+import { Hexagon } from "./ui/Hexagon";
 import { AnimCounter } from "./ui/AnimCounter";
 
 interface HeroProps {
@@ -11,18 +11,21 @@ interface HeroProps {
 export const Hero = ({ accentColor = '#94C11F' }: HeroProps) => {
   return (
     <section id="hero" className="min-h-screen relative overflow-hidden bg-brand-dark flex flex-col justify-center">
-      {/* Honeycomb overlay */}
-      <div className="honeycomb-bg-dark absolute inset-0 z-10 pointer-events-none"></div>
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/assets/inicio/carton-panal-hero.png"
+          alt="Fondo Cartón Panal Perlad"
+          fill
+          className="object-cover opacity-40"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/80 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent"></div>
+      </div>
 
-      {/* Large honeycomb texture bg image */}
-      <div 
-        className="absolute right-[-100px] top-1/2 -translate-y-1/2 w-[55vw] h-[110vh] z-0 opacity-50 pointer-events-none hidden lg:block"
-        style={{
-          background: 'url(/assets/honeycomb-texture.png) center/cover',
-          maskImage: 'linear-gradient(to left, rgba(0,0,0,0.4) 0%, transparent 80%)',
-          WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,0.4) 0%, transparent 80%)',
-        }}
-      ></div>
+      {/* Honeycomb overlay */}
+      <div className="honeycomb-bg-dark absolute inset-0 z-10 pointer-events-none opacity-30"></div>
 
       {/* Floating diamonds */}
       <div className="absolute inset-0 pointer-events-none">
@@ -36,7 +39,7 @@ export const Hero = ({ accentColor = '#94C11F' }: HeroProps) => {
               animationDelay: `${i * 0.4}s`
             }}
           >
-            <Diamond size={20 + i * 8} bg={accentColor} style={{ opacity: 0.1 + i * 0.03 }} />
+            <Hexagon size={20 + i * 8} bg={accentColor} style={{ opacity: 0.1 + i * 0.03 }} />
           </div>
         ))}
       </div>
@@ -47,7 +50,7 @@ export const Hero = ({ accentColor = '#94C11F' }: HeroProps) => {
             className="inline-flex items-center gap-3 bg-accent/10 border border-accent/20 px-5 py-2 mb-6 md:mb-8 animate-fade-in"
             style={{ clipPath: 'polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)' }}
           >
-            <Diamond size={10} bg={accentColor} />
+            <Hexagon size={10} bg={accentColor} />
             <span className="text-accent text-[10px] md:text-xs font-bold uppercase tracking-widest">
               Empaques 100% Reciclables
             </span>
@@ -84,26 +87,14 @@ export const Hero = ({ accentColor = '#94C11F' }: HeroProps) => {
         </div>
 
         <div className="flex-1 flex justify-center animate-scale-in w-full max-w-[300px] md:max-w-none">
-          <div 
-            className="w-full aspect-[1/1.15] relative flex items-center justify-center bg-gradient-to-br from-accent/20 to-accent/5"
-            style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
-          >
-             <div 
-               className="absolute inset-0 opacity-30 pointer-events-none" 
-               style={{ 
-                 background: 'url(/assets/honeycomb-texture.png) center/cover',
-                 clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' 
-               }}
-             ></div>
-             <Image 
-               src="/assets/logo-perlad.png" 
-               alt="Perlad - Innovación Sostenible en Cartón Panal" 
-               width={500} 
-               height={500} 
-               priority
-               className="w-1/2 md:w-2/3 brightness-0 invert drop-shadow-2xl z-10 h-auto" 
-             />
-          </div>
+          <Image 
+            src="/assets/logo-perlad.png" 
+            alt="Perlad - Innovación Sostenible en Cartón Panal" 
+            width={500} 
+            height={500} 
+            priority
+            className="w-1/2 md:w-2/3 brightness-0 invert drop-shadow-2xl z-10 h-auto" 
+          />
         </div>
       </div>
 
@@ -115,9 +106,9 @@ export const Hero = ({ accentColor = '#94C11F' }: HeroProps) => {
             { n: 500, s: '+', label: 'Clientes satisfechos' }
           ].map((d, i) => (
             <div key={i} className="flex items-center gap-4 text-left">
-              <Diamond size={40} bg={`${accentColor}22`} className="shrink-0">
-                <Diamond size={16} bg={accentColor} />
-              </Diamond>
+              <Hexagon size={40} bg={`${accentColor}22`} className="shrink-0">
+                <Hexagon size={16} bg={accentColor} />
+              </Hexagon>
               <div>
                 <div className="font-display text-2xl md:text-3xl font-bold text-white">
                   <AnimCounter end={d.n} />{d.s}
