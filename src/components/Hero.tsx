@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import { Diamond } from "./ui/Diamond";
 import { AnimCounter } from "./ui/AnimCounter";
 
@@ -94,7 +95,14 @@ export const Hero = ({ accentColor = '#94C11F' }: HeroProps) => {
                  clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' 
                }}
              ></div>
-             <img src="/assets/logo-perlad.png" alt="Perlad" className="w-1/2 md:w-2/3 brightness-0 invert drop-shadow-2xl z-10" />
+             <Image 
+               src="/assets/logo-perlad.png" 
+               alt="Perlad - Innovación Sostenible en Cartón Panal" 
+               width={500} 
+               height={500} 
+               priority
+               className="w-1/2 md:w-2/3 brightness-0 invert drop-shadow-2xl z-10 h-auto" 
+             />
           </div>
         </div>
       </div>
