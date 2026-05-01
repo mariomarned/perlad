@@ -18,9 +18,9 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
           </p>
           <div className="flex flex-col gap-5">
             {[
-              { label: 'Email', value: 'contacto@perlad.com' },
-              { label: 'Teléfono', value: '+57 (1) 234-5678' },
-              { label: 'Ubicación', value: 'Bogotá, Colombia' }
+              { label: 'Email', value: '[EMAIL_ADDRESS]' },
+              { label: 'Teléfono', value: '+57 (310) 414 1626' },
+              { label: 'Ubicación', value: 'Kilometro 25 Autopista Norte, Bodega 114-Girardota-Antioquia' }
             ].map((c, i) => (
               <div key={i} className="flex items-center gap-4">
                 <Hexagon size={36} bg={`${accentColor}22`}>
@@ -32,6 +32,28 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Google Maps Integration */}
+          <div className="mt-12 group">
+            <div 
+              className="w-full h-[250px] bg-white/5 border border-white/10 relative overflow-hidden grayscale contrast-125 opacity-70 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500"
+              style={{ clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%)' }}
+            >
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15899.927638350522!2d-73.9569159128418!3d4.942653500000008!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4076aac5cc66c7%3A0x23804bd14171206a!2sParque%20Industrial%20del%20Norte!5e0!3m2!1ses-419!2sus!4v1777604731484!5m2!1ses-419!2sus" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen={true} 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                className="mix-blend-lighten"
+              ></iframe>
+            </div>
+            <p className="text-[10px] text-white/30 mt-3 uppercase tracking-widest font-medium">
+              Parque Industrial del Norte - Girardota, Antioquia
+            </p>
           </div>
         </div>
 
