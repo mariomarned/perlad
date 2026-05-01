@@ -2,8 +2,9 @@ import { Hexagon } from "./ui/Hexagon";
 
 export const Footer = ({ accentColor = '#94C11F' }: { accentColor?: string }) => {
   return (
-    <footer className="bg-brand-dark py-20 px-6 border-t border-white/5">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="bg-brand-dark py-20 px-6 border-t border-white/5 relative overflow-hidden">
+      <div className="honeycomb-bg-dark absolute inset-0 opacity-100 pointer-events-none"></div>
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
         <div className="col-span-1 lg:col-span-1">
           <div className="flex items-center gap-3 mb-8">
             <Hexagon size={32} bg={accentColor}>

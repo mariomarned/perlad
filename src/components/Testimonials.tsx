@@ -20,7 +20,7 @@ export const Testimonials = ({ accentColor = '#94C11F' }: { accentColor?: string
 
   return (
     <section className="py-24 px-6 bg-brand-dark relative overflow-hidden">
-      <div className="honeycomb-bg-dark absolute inset-0 opacity-10"></div>
+      <div className="honeycomb-bg-dark absolute inset-0 opacity-100"></div>
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <SectionTitle light accentColor={accentColor}>Lo que dicen nuestros clientes</SectionTitle>
         

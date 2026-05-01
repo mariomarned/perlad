@@ -31,7 +31,7 @@ export const Header = ({ activeSection, accentColor = '#94C11F' }: HeaderProps) 
     { label: 'Inicio', id: 'hero' },
     { label: 'Productos', id: 'productos', hasDropdown: true },
     { label: 'Nosotros', id: 'nosotros' },
-    { label: 'Sostenibilidad', id: 'sostenibilidad' },
+    { label: 'Distribuidores', id: 'distribuidores' },
     { label: 'Blog', id: 'blog' },
     { label: 'Contacto', id: 'contacto' }
   ];

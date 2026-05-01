@@ -1,5 +1,6 @@
 import { SectionTitle } from "./ui/SectionTitle";
 import { AnimCounter } from "./ui/AnimCounter";
+import { Hexagon } from "./ui/Hexagon";
 
 export const Sustainability = ({ accentColor = '#94C11F' }: { accentColor?: string }) => {
   const pillars = [
@@ -10,47 +11,56 @@ export const Sustainability = ({ accentColor = '#94C11F' }: { accentColor?: stri
   ];
 
   return (
-    <section id="sostenibilidad" className="py-24 px-6 bg-gradient-to-b from-brand-warm to-white">
-      <div className="max-w-7xl mx-auto">
+    <section id="sostenibilidad" className="py-24 px-6 bg-gradient-to-b from-brand-warm to-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="honeycomb-bg absolute inset-0 opacity-[0.08]"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <SectionTitle sub="Nuestro compromiso con el planeta" accentColor={accentColor}>
           Sostenibilidad
         </SectionTitle>
 
-        <div className="flex flex-wrap justify-center gap-x-4 md:gap-x-6 gap-y-8 md:gap-y-12 max-w-5xl mx-auto mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
           {pillars.map((p, i) => (
-            <div 
-              key={i} 
-              className={`w-[220px] sm:w-64 h-64 sm:h-72 relative group transition-all duration-500 hover:scale-105 ${i % 2 !== 0 ? 'md:mt-16' : ''}`}
+            <div
+              key={i}
+              className="relative group transition-all duration-500 hover:-translate-y-2 flex flex-col items-center"
             >
-              <div 
-                className="absolute inset-0 bg-white group-hover:bg-brand-warm transition-colors duration-300 shadow-sm"
-                style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
-              ></div>
-              <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 115">
-                <polygon 
-                  points="50,0 100,25 100,75 50,100 0,75 0,25"
-                  fill="none" 
-                  stroke={accentColor} 
-                  strokeWidth="0.5" 
-                  className="opacity-20 group-hover:opacity-100 transition-opacity duration-300"
-                />
-              </svg>
-              <div className="relative z-10 flex flex-col items-center justify-center h-full p-8 text-center">
-                <div 
-                  className="w-14 h-14 mb-4 flex items-center justify-center text-2xl transition-colors duration-300 bg-accent/10 group-hover:bg-accent"
+              <div
+                className="w-48 h-48 sm:w-56 sm:h-56 relative flex items-center justify-center"
+              >
+                <div
+                  className="absolute inset-0 bg-white border border-gray-100 group-hover:bg-accent/5 group-hover:border-accent/20 transition-all duration-300 shadow-xl"
                   style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
-                >
-                  <span className="group-hover:brightness-0 group-hover:invert transition-all">{p.icon}</span>
+                ></div>
+                <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 115">
+                  <polygon
+                    points="50,0 100,25 100,75 50,100 0,75 0,25"
+                    fill="none"
+                    stroke={accentColor}
+                    strokeWidth="0.5"
+                    className="opacity-20 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                </svg>
+                <div className="relative z-10 flex flex-col items-center justify-center h-full p-8 text-center">
+                  <div
+                    className="w-14 h-14 mb-4 flex items-center justify-center text-2xl transition-colors duration-300 bg-accent/10 group-hover:bg-accent"
+                    style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
+                  >
+                    <span className="group-hover:brightness-0 group-hover:invert transition-all">{p.icon}</span>
+                  </div>
+                  <h3 className="font-display text-sm font-bold text-brand-dark mb-2">{p.title}</h3>
+                  <p className="text-[11px] leading-relaxed text-gray-500">{p.desc}</p>
                 </div>
-                <h3 className="font-display text-sm font-bold text-brand-dark mb-2">{p.title}</h3>
-                <p className="text-[11px] leading-relaxed text-gray-500">{p.desc}</p>
               </div>
             </div>
           ))}
         </div>
 
         <div className="mt-24 bg-brand-dark p-12 relative overflow-hidden flex flex-wrap justify-around gap-8"
-             style={{ clipPath: 'polygon(16px 0%, calc(100% - 16px) 0%, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0% calc(100% - 16px), 0% 16px)' }}>
+          style={{ clipPath: 'polygon(16px 0%, calc(100% - 16px) 0%, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0% calc(100% - 16px), 0% 16px)' }}>
           <div className="honeycomb-bg-dark absolute inset-0 opacity-20"></div>
           {[
             { n: 2000, s: '+', label: 'Toneladas de plástico evitadas' },
