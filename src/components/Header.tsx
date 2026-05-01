@@ -24,14 +24,27 @@ export const Header = ({ activeSection, accentColor = '#94C11F' }: HeaderProps) 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const products = [
+  interface Product {
+    name: string;
+    href?: string;
+    sub?: string[];
+  }
+
+  const products: Product[] = [
     { name: 'Empaques y embalajes', sub: ['Contenedores (Octabines, Guacales)', 'Estibas de cartón', 'Relleno cartón panal', 'Esquinas y punteras'] },
     { name: 'Tablero industria gráfica', href: '/tablero-industria-grafica' },
     { name: 'Rollo de papel panal' },
     { name: 'Bolsa bio' }
   ];
 
-  const navLinks = [
+  interface NavLink {
+    label: string;
+    id: string;
+    hasDropdown?: boolean;
+    href?: string;
+  }
+
+  const navLinks: NavLink[] = [
     { label: 'Inicio', id: 'hero' },
     { label: 'Productos', id: 'productos', hasDropdown: true },
     { label: 'Nosotros', id: 'nosotros' },
