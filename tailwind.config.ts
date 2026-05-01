@@ -22,7 +22,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-dm-sans)", "sans-serif"],
-        display: ["var(--font-playfair)", "serif"],
+        display: ["var(--font-outfit)", "sans-serif"],
       },
       animation: {
         'float': 'float 3s ease-in-out infinite',

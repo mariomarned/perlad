@@ -45,7 +45,7 @@ export const Header = ({ activeSection, accentColor = '#94C11F' }: HeaderProps) 
   return (
     <header className={cn(
       "fixed top-0 left-0 w-full z-[1000] transition-all duration-400",
-      scrolled ? "bg-[#1A1A1A]/95 backdrop-blur-md border-b border-accent/20" : "bg-transparent border-b border-transparent"
+      (scrolled || menuOpen) ? "bg-[#0D0D0D] border-b border-accent/20 shadow-lg" : "bg-transparent border-b border-transparent"
     )}>
       <div className="max-w-[1280px] mx-auto px-8 py-4 flex items-center justify-between">
         <img 
@@ -75,18 +75,18 @@ export const Header = ({ activeSection, accentColor = '#94C11F' }: HeaderProps) 
               </a>
 
               {link.hasDropdown && prodOpen && (
-                <div className="absolute top-full left-[-20px] pt-3 min-w-[280px] animate-fade-in">
-                  <div className="bg-[#1A1A1A]/97 backdrop-blur-[20px] rounded-xl p-4 border border-accent/15 shadow-2xl">
+                <div className="absolute top-full left-[-20px] pt-3 min-w-[300px] animate-fade-in">
+                  <div className="bg-[#121212] rounded-xl p-5 border border-accent/30 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
                     {products.map((p, i) => (
                       <div key={i} className={cn("group", p.sub ? "mb-3" : "mb-1")}>
                         <div className="text-white font-sans text-[14px] font-semibold py-1.5 px-2 flex items-center rounded-md hover:bg-white/5 transition-colors cursor-pointer">
                           <Diamond size={8} bg={accentColor} className="mr-2" />
                           {p.name}
                         </div>
-                        {p.sub && p.sub.map((s, j) => (
+                          {p.sub && p.sub.map((s, j) => (
                           <div 
                             key={j} 
-                            className="text-white/60 font-sans text-[13px] py-1 pl-7 hover:text-white transition-colors cursor-pointer"
+                            className="text-white/80 font-sans text-[13px] py-1.5 pl-7 hover:text-accent hover:pl-8 transition-all cursor-pointer border-l border-white/5 ml-2.5"
                           >
                             {s}
                           </div>
@@ -121,16 +121,28 @@ export const Header = ({ activeSection, accentColor = '#94C11F' }: HeaderProps) 
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-[#1A1A1A]/98 p-6 border-t border-accent/20 animate-fade-in">
-          {navLinks.map((link) => (
-            <a
-              key={link.id}
-              onClick={() => scrollTo(link.id)}
-              className="block text-white font-sans text-[18px] py-3 cursor-pointer hover:text-accent transition-colors"
+        <div className="md:hidden fixed inset-x-0 top-[70px] bottom-0 bg-[#0D0D0D] p-8 overflow-y-auto animate-fade-in z-[999]">
+          <div className="flex flex-col gap-2">
+            {navLinks.map((link) => (
+              <div key={link.id} className="border-b border-white/5">
+                <a
+                  onClick={() => scrollTo(link.id)}
+                  className="block text-white font-display text-[22px] font-bold py-5 cursor-pointer hover:text-accent transition-colors flex justify-between items-center"
+                >
+                  {link.label}
+                  <span className="text-accent">→</span>
+                </a>
+              </div>
+            ))}
+          </div>
+          <div className="mt-12">
+            <button 
+              className="w-full bg-accent text-[#0D0D0D] py-4 font-bold uppercase tracking-widest"
+              style={{ clipPath: 'polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)' }}
             >
-              {link.label}
-            </a>
-          ))}
+              Ver Catálogo
+            </button>
+          </div>
         </div>
       )}
     </header>

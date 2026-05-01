@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Playfair_Display } from "next/font/google";
+import { DM_Sans, Outfit } from "next/font/google";
 import "./globals.css";
 
 const dmSans = DM_Sans({ 
@@ -8,10 +8,10 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "600", "700"]
 });
 
-const playfair = Playfair_Display({ 
+const outfit = Outfit({ 
   subsets: ["latin"],
-  variable: "--font-playfair",
-  weight: ["400", "600", "700", "800"]
+  variable: "--font-outfit",
+  weight: ["400", "500", "600", "700", "800"]
 });
 
 export const metadata: Metadata = {
@@ -54,7 +54,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={`${dmSans.variable} ${playfair.variable} font-sans antialiased`}>
+      <body className={`${dmSans.variable} ${outfit.variable} font-sans antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
