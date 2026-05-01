@@ -7,11 +7,11 @@ import { Hexagon } from './ui/Hexagon';
 import { cn } from '@/lib/utils';
 
 interface HeaderProps {
-  activeSection: string;
+  activeSection?: string;
   accentColor?: string;
 }
 
-export const Header = ({ activeSection, accentColor = '#94C11F' }: HeaderProps) => {
+export const Header = ({ activeSection = '', accentColor = '#94C11F' }: HeaderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [prodOpen, setProdOpen] = useState(false);
