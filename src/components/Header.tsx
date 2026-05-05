@@ -9,9 +9,10 @@ import { cn } from '@/lib/utils';
 interface HeaderProps {
   activeSection?: string;
   accentColor?: string;
+  forceBackground?: boolean;
 }
 
-export const Header = ({ activeSection = '', accentColor = '#94C11F' }: HeaderProps) => {
+export const Header = ({ activeSection = '', accentColor = '#94C11F', forceBackground = false }: HeaderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [prodOpen, setProdOpen] = useState(false);
@@ -49,6 +50,7 @@ export const Header = ({ activeSection = '', accentColor = '#94C11F' }: HeaderPr
   const navLinks: NavLink[] = [
     { label: 'Inicio', id: 'hero' },
     { label: 'Productos', id: 'productos', hasDropdown: true },
+    { label: 'Catálogos', id: 'catalogos', href: '/catalogos' },
     { label: 'Nosotros', id: 'nosotros' },
     { label: 'Distribuidores', id: 'distribuidores' },
     { label: 'Blog', id: 'blog' },
@@ -69,7 +71,7 @@ export const Header = ({ activeSection = '', accentColor = '#94C11F' }: HeaderPr
   return (
     <header className={cn(
       "fixed top-0 left-0 w-full z-[1000] transition-all duration-400",
-      (scrolled || menuOpen) ? "bg-[#0D0D0D] border-b border-accent/20 shadow-lg" : "bg-transparent border-b border-transparent"
+      (scrolled || menuOpen || forceBackground) ? "bg-[#0D0D0D] border-b border-accent/20 shadow-lg" : "bg-transparent border-b border-transparent"
     )}>
       <div className="max-w-[1280px] mx-auto px-8 py-4 flex items-center justify-between">
         <Link href="/">
@@ -149,13 +151,13 @@ export const Header = ({ activeSection = '', accentColor = '#94C11F' }: HeaderPr
             </div>
           ))}
 
-          <a
-            onClick={() => scrollTo('contacto')}
+          <Link
+            href="/catalogos"
             className="bg-accent hover:scale-[1.02] text-[#1A1A1A] px-6 py-2.5 text-[13px] font-bold uppercase tracking-[0.05em] transition-all cursor-pointer"
             style={{ clipPath: 'polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)' }}
           >
             Ver Catálogo
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile Hamburger */}
@@ -237,12 +239,14 @@ export const Header = ({ activeSection = '', accentColor = '#94C11F' }: HeaderPr
             ))}
           </div>
           <div className="mt-12">
-            <button 
-              className="w-full bg-accent text-[#0D0D0D] py-4 font-bold uppercase tracking-widest"
+            <Link 
+              href="/catalogos"
+              onClick={() => setMenuOpen(false)}
+              className="block w-full bg-accent text-[#0D0D0D] py-4 font-bold uppercase tracking-widest text-center"
               style={{ clipPath: 'polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)' }}
             >
               Ver Catálogo
-            </button>
+            </Link>
           </div>
         </div>
       )}

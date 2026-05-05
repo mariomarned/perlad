@@ -1,6 +1,7 @@
 'use client';
 
 import Image from "next/image";
+import Link from "next/link";
 import { Hexagon } from "./ui/Hexagon";
 import { AnimCounter } from "./ui/AnimCounter";
 
@@ -71,13 +72,18 @@ export const Hero = ({ accentColor = '#94C11F' }: HeroProps) => {
           </p>
 
           <div className="flex flex-wrap justify-center md:justify-start gap-4 animate-slide-up [animation-delay:400ms]">
-            <button 
-              className="bg-accent hover:bg-accent-dark text-brand-dark px-8 md:px-10 py-3 md:py-4 font-bold uppercase tracking-wider transition-all text-sm md:text-base"
+            <Link 
+              href="/catalogos"
+              className="bg-accent hover:bg-accent-dark text-brand-dark px-8 md:px-10 py-3 md:py-4 font-bold uppercase tracking-wider transition-all text-sm md:text-base flex items-center justify-center"
               style={{ clipPath: 'polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)' }}
             >
               Ver Catálogo
-            </button>
+            </Link>
             <button 
+              onClick={() => {
+                const el = document.getElementById('contacto');
+                if (el) window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
+              }}
               className="bg-transparent border border-white/30 text-white hover:bg-white/5 px-8 md:px-10 py-3 md:py-4 font-medium transition-all text-sm md:text-base"
               style={{ clipPath: 'polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)' }}
             >

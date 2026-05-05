@@ -22,6 +22,7 @@ export const Footer = ({ accentColor = '#94C11F' }: { accentColor?: string }) =>
           <ul className="space-y-4 text-white/40 text-sm">
             <li><a href="#hero" className="hover:text-accent transition-colors">Inicio</a></li>
             <li><a href="#productos" className="hover:text-accent transition-colors">Productos</a></li>
+            <li><a href="/catalogos" className="hover:text-accent transition-colors">Catálogos</a></li>
             <li><a href="#nosotros" className="hover:text-accent transition-colors">Nosotros</a></li>
             <li><a href="#blog" className="hover:text-accent transition-colors">Blog</a></li>
           </ul>
