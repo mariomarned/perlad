@@ -31,10 +31,12 @@ export const Header = ({ activeSection = '', accentColor = '#94C11F' }: HeaderPr
   }
 
   const products: Product[] = [
-    { name: 'Empaques y embalajes', sub: ['Contenedores (Octabines, Guacales)', 'Estibas de cartón', 'Relleno cartón panal', 'Esquinas y punteras'] },
-    { name: 'Tablero industria gráfica', href: '/tablero-industria-grafica' },
-    { name: 'Rollo de papel panal' },
-    { name: 'Bolsa bio' }
+    { name: 'Packingboard', href: '/packingboard' },
+    { name: 'Graphicboard' },
+    { name: 'Papel Panal' },
+    { name: 'Relleno de puertas' },
+    { name: 'Polietileno' },
+    { name: 'Separadores - Estabilizadores' }
   ];
 
   interface NavLink {

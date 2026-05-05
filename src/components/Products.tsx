@@ -54,32 +54,32 @@ const ProductCard = ({ name, desc, image, accentColor }: ProductCardProps) => (
 export const Products = ({ accentColor = '#94C11F' }: { accentColor?: string }) => {
   const products = [
     { 
-      name: 'Empaques Personalizados', 
-      desc: 'Soluciones a medida en cartón panal para proteger cualquier tipo de producto con máxima eficiencia.',
+      name: 'Packingboard', 
+      desc: 'Solución robusta de cartón para empaques industriales de alta resistencia y máxima protección.',
       image: '/assets/productos/Captura de pantalla 2026-04-30 a la(s) 21.48.47.png'
     },
     { 
-      name: 'Estibas de Cartón', 
-      desc: 'Alternativa liviana y resistente a las estibas de madera. 100% reciclables y libres de fumigación.',
+      name: 'Graphicboard', 
+      desc: 'Tablero de cartón ideal para la industria gráfica, impresión y exhibición publicitaria.',
       image: '/assets/productos/Captura de pantalla 2026-04-30 a la(s) 21.49.04.png'
     },
     { 
-      name: 'Esquinas y Punteras', 
-      desc: 'Protección perimetral para tus productos durante el transporte y almacenamiento.',
+      name: 'Papel Panal', 
+      desc: 'Material de amortiguación biodegradable en rollo o lámina, versátil y ecológico.',
       image: '/assets/productos/Captura de pantalla 2026-04-30 a la(s) 21.49.19.png'
     },
     { 
-      name: 'Relleno Cartón Panal', 
-      desc: 'Material de relleno expandible que se adapta a la forma del producto, reemplazando el plástico.',
+      name: 'Relleno de puertas', 
+      desc: 'Estructura interna de cartón panal para la fabricación de puertas ligeras, resistentes y acústicas.',
       image: '/assets/productos/Captura de pantalla 2026-04-30 a la(s) 21.49.26.png'
     },
     { 
-      name: 'Rollo de Papel Panal', 
-      desc: 'Papel panal en rollo para envolver y proteger. Biodegradable y con excelente amortiguación.' 
+      name: 'Polietileno', 
+      desc: 'Películas y espumas de polietileno para protección adicional, embalaje y sellado.' 
     },
     { 
-      name: 'Bolsa Bio', 
-      desc: 'Bolsas biodegradables y compostables para un empaque responsable con el medio ambiente.' 
+      name: 'Separadores - Estabilizadores', 
+      desc: 'Láminas y componentes diseñados para estabilizar cargas y separar productos en el transporte.' 
     }
   ];
 
