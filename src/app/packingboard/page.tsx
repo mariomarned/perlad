@@ -38,19 +38,31 @@ export default function PackingboardPage() {
               </button>
             </div>
             
-            <div className="relative aspect-square animate-scale-in">
-              <div 
-                className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent"
-                style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
-              ></div>
-              <div className="absolute inset-4 overflow-hidden" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}>
-                 <Image 
-                   src="/assets/productos/Captura de pantalla 2026-04-30 a la(s) 21.48.47.png" 
-                   alt="Packingboard Perlad" 
-                   fill 
-                   className="object-cover"
-                 />
+            <div className="relative aspect-[16/9] md:aspect-[2/1] animate-scale-in flex items-center justify-center group">
+              {/* Background Glow */}
+              <div className="absolute inset-0 bg-accent/20 blur-[100px] rounded-full opacity-30"></div>
+              
+              {/* Decorative Frames */}
+              <div className="absolute -inset-6 border border-white/5 rounded-2xl"></div>
+              <div className="absolute -inset-3 border border-white/10 rounded-xl"></div>
+              
+              {/* Image Container with Frame */}
+              <div className="relative w-full h-full p-[1px] bg-gradient-to-br from-accent via-accent/20 to-transparent rounded-xl overflow-hidden shadow-2xl">
+                <div className="relative w-full h-full bg-brand-dark rounded-[10px] overflow-hidden">
+                   <Image 
+                     src="/assets/imgcategorias/packingboard.png" 
+                     alt="Packingboard Perlad" 
+                     fill 
+                     className="object-cover transition-transform duration-700 group-hover:scale-110"
+                     quality={80}
+                     priority
+                   />
+                </div>
               </div>
+              
+              {/* Corner Accents */}
+              <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-accent -translate-x-3 -translate-y-3 opacity-50 group-hover:opacity-100 transition-all duration-500"></div>
+              <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-accent translate-x-3 translate-y-3 opacity-50 group-hover:opacity-100 transition-all duration-500"></div>
             </div>
           </div>
         </div>
