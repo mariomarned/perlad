@@ -44,7 +44,7 @@ const catalogos: Catalogo[] = [
     id: 'bolsas-de-basura',
     name: 'Bolsas de basura',
     description: 'Bolsas de alta resistencia para la gestión de residuos, embalaje y protección industrial.',
-    image: '/assets/productos/placeholder.png',
+    image: '/assets/productos/bosasdebasura/Imagen1.jpg',
     pdfUrl: '/catalogos/bolsas-de-basura.pdf'
   }
 ];

@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from "react";
 import { SectionTitle } from "./ui/SectionTitle";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,22 +9,35 @@ interface ProductCardProps {
   name: string;
   desc: string;
   image?: string;
+  images?: string[];
   accentColor: string;
   href?: string;
 }
 
-const ProductCard = ({ name, desc, image, accentColor, href }: ProductCardProps) => {
+const ProductCard = ({ name, desc, image, images, accentColor, href }: ProductCardProps) => {
+  const allImages = images || (image ? [image] : []);
+  const [currentIdx, setCurrentIdx] = useState(0);
+
+  const displayImage = allImages.length > 0 ? allImages[currentIdx] : undefined;
+
   const CardContent = (
-    <div className="group relative w-full aspect-[1/1.1] transition-all duration-500 hover:-translate-y-2 cursor-pointer">
+    <div 
+      className="group relative w-full aspect-[1/1.1] transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+      onMouseEnter={() => {
+        if (allImages.length > 1) {
+          setCurrentIdx((prev) => (prev + 1) % allImages.length);
+        }
+      }}
+    >
       <div 
         className="absolute inset-0 bg-white border border-gray-100 shadow-lg group-hover:shadow-2xl transition-all duration-500"
         style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
       >
         {/* Product Image Area */}
         <div className="h-[48%] relative overflow-hidden bg-gray-100">
-          {image ? (
+          {displayImage ? (
             <Image 
-              src={image} 
+              src={displayImage} 
               alt={name} 
               fill 
               className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -30,6 +46,17 @@ const ProductCard = ({ name, desc, image, accentColor, href }: ProductCardProps)
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-amber-700 to-amber-900 flex items-center justify-center">
               <div className="absolute inset-0 opacity-20 honeycomb-bg"></div>
+            </div>
+          )}
+
+          {allImages.length > 1 && (
+            <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5 z-10 pointer-events-none">
+              {allImages.map((_, idx) => (
+                <span 
+                  key={idx} 
+                  className={`w-1.5 h-1.5 rounded-full transition-all ${idx === currentIdx ? 'bg-white scale-125' : 'bg-white/50'}`}
+                />
+              ))}
             </div>
           )}
         </div>
@@ -87,7 +114,13 @@ export const Products = ({ accentColor = '#94C11F' }: { accentColor?: string }) 
     },
     { 
       name: 'Bolsas de basura', 
-      desc: 'Bolsas de alta resistencia para la gestión de residuos, embalaje y protección industrial.' 
+      desc: 'Bolsas de alta resistencia para la gestión de residuos, embalaje y protección industrial.',
+      image: '/assets/productos/bosasdebasura/Imagen1.jpg',
+      images: [
+        '/assets/productos/bosasdebasura/Imagen1.jpg',
+        '/assets/productos/bosasdebasura/Imagen2.jpg',
+        '/assets/productos/bosasdebasura/Imagen3.jpg'
+      ]
     }
   ];
 

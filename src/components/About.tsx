@@ -6,19 +6,16 @@ export const About = ({ accentColor = '#94C11F' }: { accentColor?: string }) => 
     <section id="nosotros" className="py-24 px-6 bg-brand-dark text-white relative overflow-hidden">
       <div className="honeycomb-bg-dark absolute inset-0 opacity-100 pointer-events-none"></div>
       <div className="max-w-7xl mx-auto relative z-10 grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-        <div className="grid grid-cols-3 gap-2 max-w-[360px] mx-auto md:max-w-none">
-          {[...Array(6)].map((_, i) => (
-            <div 
-              key={i} 
-              className="aspect-[1/1.15] flex items-center justify-center transition-all duration-500"
-              style={{ 
-                clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
-                background: i === 2 ? accentColor : i === 4 ? '#8B6914' : '#333'
-              }}
-            >
-              {i === 2 && <img src="/assets/logo-perlad.png" className="w-1/2 brightness-0" alt="" />}
-            </div>
-          ))}
+        <div className="flex items-center justify-center">
+          <div 
+            className="w-64 sm:w-80 aspect-[1/1.15] flex items-center justify-center transition-all duration-500 hover:scale-105 shadow-2xl"
+            style={{ 
+              clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+              background: accentColor
+            }}
+          >
+            <img src="/assets/logo-perlad.png" className="w-1/2 brightness-0 drop-shadow" alt="Perlad Logo" />
+          </div>
         </div>
 
         <div>
