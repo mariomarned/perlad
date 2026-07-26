@@ -10,6 +10,7 @@ import { Testimonials } from "@/components/Testimonials";
 import { Blog } from "@/components/Blog";
 import { Clients } from "@/components/Clients";
 import { Distributors } from "@/components/Distributors";
+import { SocialMedia } from "@/components/SocialMedia";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 
@@ -18,7 +19,7 @@ export default function Home() {
   const accentColor = "#94C11F";
 
   useEffect(() => {
-    const sections = ['hero', 'productos', 'nosotros', 'sostenibilidad', 'blog', 'contacto'];
+    const sections = ['hero', 'productos', 'nosotros', 'sostenibilidad', 'redes', 'blog', 'contacto'];
     const handler = () => {
       const y = window.scrollY + 200;
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -44,6 +45,7 @@ export default function Home() {
       <Testimonials accentColor={accentColor} />
       <Distributors accentColor={accentColor} />
       <Blog accentColor={accentColor} />
+      <SocialMedia accentColor={accentColor} />
       <Contact accentColor={accentColor} />
       <Footer accentColor={accentColor} />
     </main>
