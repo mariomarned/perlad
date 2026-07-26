@@ -36,8 +36,7 @@ export const Header = ({ activeSection = '', accentColor = '#94C11F', forceBackg
     { name: 'Graphicboard' },
     { name: 'Papel Panal' },
     { name: 'Relleno de puertas' },
-    { name: 'Polietileno' },
-    { name: 'Separadores - Estabilizadores' }
+    { name: 'Bolsas de basura' }
   ];
 
   interface NavLink {

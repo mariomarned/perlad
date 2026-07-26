@@ -86,13 +86,8 @@ export const Products = ({ accentColor = '#94C11F' }: { accentColor?: string }) 
       image: '/assets/imgcategorias/rellenodepuertas.png'
     },
     { 
-      name: 'Polietileno', 
-      desc: 'Películas y espumas de polietileno para protección adicional, embalaje y sellado.' 
-    },
-    { 
-      name: 'Separadores - Estabilizadores', 
-      desc: 'Láminas y componentes diseñados para estabilizar cargas y separar productos en el transporte.',
-      image: '/assets/imgcategorias/separadores- estabilizadores.png'
+      name: 'Bolsas de basura', 
+      desc: 'Bolsas de alta resistencia para la gestión de residuos, embalaje y protección industrial.' 
     }
   ];
 

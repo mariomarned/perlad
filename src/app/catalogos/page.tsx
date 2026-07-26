@@ -41,18 +41,11 @@ const catalogos: Catalogo[] = [
     pdfUrl: '/catalogos/relleno-puertas.pdf'
   },
   {
-    id: 'polietileno',
-    name: 'Polietileno',
-    description: 'Películas y espumas de polietileno para protección adicional, embalaje y sellado industrial.',
-    image: '/assets/productos/placeholder.png', // Assuming we might need a placeholder
-    pdfUrl: '/catalogos/polietileno.pdf'
-  },
-  {
-    id: 'separadores',
-    name: 'Separadores - Estabilizadores',
-    description: 'Láminas diseñadas para estabilizar cargas y separar productos durante el transporte y almacenaje.',
+    id: 'bolsas-de-basura',
+    name: 'Bolsas de basura',
+    description: 'Bolsas de alta resistencia para la gestión de residuos, embalaje y protección industrial.',
     image: '/assets/productos/placeholder.png',
-    pdfUrl: '/catalogos/separadores.pdf'
+    pdfUrl: '/catalogos/bolsas-de-basura.pdf'
   }
 ];
 
