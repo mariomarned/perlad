@@ -6,6 +6,54 @@ import { Hexagon } from './ui/Hexagon';
 
 export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) => {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const [formData, setFormData] = useState({
+    nombre: '',
+    email: '',
+    empresa: '',
+    telefono: '',
+    mensaje: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(false);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/comercial@perlad.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: "Nuevo mensaje de contacto desde el sitio web Perlad",
+          _template: "table",
+          ...formData
+        })
+      });
+
+      if (response.ok) {
+        setSent(true);
+      } else {
+        setError(true);
+      }
+    } catch (err) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section id="contacto" className="py-[120px] px-10 bg-[#1A1A1A] relative overflow-hidden text-white">
@@ -18,9 +66,9 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
           </p>
           <div className="flex flex-col gap-5">
             {[
-              { label: 'Email', value: '[EMAIL_ADDRESS]' },
-              { label: 'Teléfono', value: '+57 (310) 414 1626' },
-              { label: 'Ubicación', value: 'Kilometro 25 Autopista Norte, Bodega 114-Girardota-Antioquia' }
+              { label: 'Email', value: 'comercial@perlad.com', href: 'mailto:comercial@perlad.com' },
+              { label: 'Teléfono', value: '302 464 7165- 324 392 9060', href: 'tel:3024647165' },
+              { label: 'Ubicación', value: 'Autopista Norte, Kilometro25, Parque industrial del Norte bodega 114' }
             ].map((c, i) => (
               <div key={i} className="flex items-center gap-4">
                 <Hexagon size={36} bg={`${accentColor}22`}>
@@ -28,7 +76,13 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
                 </Hexagon>
                 <div>
                   <div className="font-sans text-[12px] text-white/40 uppercase tracking-[0.08em]">{c.label}</div>
-                  <div className="font-sans text-[15px] text-white font-medium">{c.value}</div>
+                  {c.href ? (
+                    <a href={c.href} className="font-sans text-[15px] text-white font-medium hover:underline hover:text-accent transition-colors">
+                      {c.value}
+                    </a>
+                  ) : (
+                    <div className="font-sans text-[15px] text-white font-medium">{c.value}</div>
+                  )}
                 </div>
               </div>
             ))}
@@ -67,15 +121,18 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
                 <span className="text-[#1A1A1A] text-[28px] font-bold">✓</span>
               </Hexagon>
               <h3 className="font-display text-[24px] font-bold mb-2">¡Mensaje Enviado!</h3>
-              <p className="font-sans text-white/60 text-[15px]">Te responderemos pronto.</p>
+              <p className="font-sans text-white/60 text-[15px]">Te responderemos pronto a tu correo electrónico.</p>
             </div>
           ) : (
-            <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                 <div className="space-y-2">
                   <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">Nombre</label>
                   <input 
                     type="text" 
+                    name="nombre"
+                    value={formData.nombre}
+                    onChange={handleChange}
                     required 
                     className="w-full bg-white/[0.06] border border-white/[0.1] px-4 py-[14px] text-white font-sans text-[15px] outline-none focus:border-accent transition-colors"
                   />
@@ -84,6 +141,9 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
                   <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">Email</label>
                   <input 
                     type="email" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     required 
                     className="w-full bg-white/[0.06] border border-white/[0.1] px-4 py-[14px] text-white font-sans text-[15px] outline-none focus:border-accent transition-colors"
                   />
@@ -94,6 +154,9 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
                   <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">Empresa</label>
                   <input 
                     type="text" 
+                    name="empresa"
+                    value={formData.empresa}
+                    onChange={handleChange}
                     className="w-full bg-white/[0.06] border border-white/[0.1] px-4 py-[14px] text-white font-sans text-[15px] outline-none focus:border-accent transition-colors"
                   />
                 </div>
@@ -101,6 +164,9 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
                   <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">Teléfono</label>
                   <input 
                     type="text" 
+                    name="telefono"
+                    value={formData.telefono}
+                    onChange={handleChange}
                     className="w-full bg-white/[0.06] border border-white/[0.1] px-4 py-[14px] text-white font-sans text-[15px] outline-none focus:border-accent transition-colors"
                   />
                 </div>
@@ -109,16 +175,27 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
                 <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">Mensaje</label>
                 <textarea 
                   rows={4} 
+                  name="mensaje"
+                  value={formData.mensaje}
+                  onChange={handleChange}
                   required 
                   className="w-full bg-white/[0.06] border border-white/[0.1] px-4 py-[14px] text-white font-sans text-[15px] outline-none focus:border-accent transition-colors resize-none"
                 ></textarea>
               </div>
+
+              {error && (
+                <p className="text-red-400 text-xs">
+                  Hubo un error al enviar el mensaje. Inténtalo nuevamente o escríbenos directamente a comercial@perlad.com.
+                </p>
+              )}
+
               <button 
                 type="submit" 
-                className="w-full bg-accent hover:bg-accent-dark text-[#1A1A1A] py-4 font-sans font-bold uppercase tracking-[0.06em] transition-transform active:scale-[0.98]"
+                disabled={loading}
+                className="w-full bg-accent hover:bg-accent-dark text-[#1A1A1A] py-4 font-sans font-bold uppercase tracking-[0.06em] transition-transform active:scale-[0.98] disabled:opacity-50"
                 style={{ clipPath: 'polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)' }}
               >
-                Enviar Mensaje
+                {loading ? 'Enviando...' : 'Enviar Mensaje'}
               </button>
             </form>
           )}

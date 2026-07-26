@@ -1,26 +1,23 @@
 import { SectionTitle } from "./ui/SectionTitle";
 import { Hexagon } from "./ui/Hexagon";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, User, Smartphone, Building2 } from "lucide-react";
 
 export const Distributors = ({ accentColor = '#94C11F' }: { accentColor?: string }) => {
   const distributors = [
     { 
-      name: "Distribuidora del Norte", 
-      location: "Zona Guajira",
-      phone: "+52 (81) 0000-0000",
-      email: "norte@perlad.com"
+      name: "EDIVACOSTA S.A.", 
+      city: "Barranquilla",
+      address: "CL 110 No. 6-335 M1 BG 8 METROPARQUE",
+      phone: "(605) 3851788",
+      contactName: "Santiago Arango",
+      mobile: "316 8756152",
     },
     { 
-      name: "Soluciones de Empaque Centro", 
-      location: "Zona costa Atlantica",
-      phone: "+52 (958) 123 4567",
-      email: "[EMAIL_ADDRESS]"
-    },
-    { 
-      name: "Logística Sustentable", 
-      location: "Zona Centro",
-      phone: "+52 (33) 0000-0000",
-      email: "occidente@perlad.com"
+      name: "EDIVA", 
+      city: "Cali, Valle del Cauca",
+      address: "CRA 6 No 45-120 bodega 15 plataforma logística Salomia",
+      contact: "350 810 77 13- (604) 4480232",
+      email: "servicioalcliente@ediva.com.co"
     }
   ];
 
@@ -37,7 +34,7 @@ export const Distributors = ({ accentColor = '#94C11F' }: { accentColor?: string
           Distribuidores Autorizados
         </SectionTitle>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 max-w-5xl mx-auto">
           {distributors.map((dist, i) => (
             <div 
               key={i} 
@@ -45,30 +42,71 @@ export const Distributors = ({ accentColor = '#94C11F' }: { accentColor?: string
               style={{ clipPath: 'polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)' }}
             >
               <div className="flex items-center gap-4 mb-6">
-                <Hexagon size={40} bg={accentColor} className="opacity-20 group-hover:opacity-100 transition-opacity">
-                  <MapPin size={18} className="text-white" />
+                <Hexagon size={44} bg={accentColor} className="opacity-20 group-hover:opacity-100 transition-opacity shrink-0">
+                  <Building2 size={20} className="text-white" />
                 </Hexagon>
-                <h3 className="text-xl font-bold font-display">{dist.name}</h3>
+                <div>
+                  <h3 className="text-xl font-bold font-display">{dist.name}</h3>
+                  <p className="text-sm font-semibold" style={{ color: accentColor }}>{dist.city}</p>
+                </div>
               </div>
               
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 text-white/60">
-                  <MapPin size={16} className="text-accent" />
-                  <span className="text-sm">{dist.location}</span>
+              <div className="space-y-3.5 text-white/80">
+                <div className="flex items-start gap-3">
+                  <MapPin size={18} className="mt-0.5 shrink-0" style={{ color: accentColor }} />
+                  <span className="text-sm">
+                    <strong className="text-white/90">Dirección:</strong> {dist.address}
+                  </span>
                 </div>
-                <div className="flex items-center gap-3 text-white/60">
-                  <Phone size={16} className="text-accent" />
-                  <span className="text-sm">{dist.phone}</span>
-                </div>
-                <div className="flex items-center gap-3 text-white/60">
-                  <Mail size={16} className="text-accent" />
-                  <span className="text-sm">{dist.email}</span>
-                </div>
-              </div>
 
-              <button className="mt-8 w-full py-3 border border-white/20 text-xs uppercase tracking-widest font-bold hover:bg-white hover:text-brand-dark transition-all">
-                Contactar Distribuidor
-              </button>
+                {dist.phone && (
+                  <div className="flex items-center gap-3">
+                    <Phone size={18} className="shrink-0" style={{ color: accentColor }} />
+                    <span className="text-sm">
+                      <strong className="text-white/90">Teléfono:</strong> {dist.phone}
+                    </span>
+                  </div>
+                )}
+
+                {dist.contactName && (
+                  <div className="flex items-center gap-3">
+                    <User size={18} className="shrink-0" style={{ color: accentColor }} />
+                    <span className="text-sm">
+                      <strong className="text-white/90">Contacto:</strong> {dist.contactName}
+                    </span>
+                  </div>
+                )}
+
+                {dist.mobile && (
+                  <div className="flex items-center gap-3">
+                    <Smartphone size={18} className="shrink-0" style={{ color: accentColor }} />
+                    <span className="text-sm">
+                      <strong className="text-white/90">Celular:</strong> {dist.mobile}
+                    </span>
+                  </div>
+                )}
+
+                {dist.contact && (
+                  <div className="flex items-center gap-3">
+                    <Phone size={18} className="shrink-0" style={{ color: accentColor }} />
+                    <span className="text-sm">
+                      <strong className="text-white/90">Contacto:</strong> {dist.contact}
+                    </span>
+                  </div>
+                )}
+
+                {dist.email && (
+                  <div className="flex items-center gap-3">
+                    <Mail size={18} className="shrink-0" style={{ color: accentColor }} />
+                    <span className="text-sm">
+                      <strong className="text-white/90">Correo Electrónico:</strong>{" "}
+                      <a href={`mailto:${dist.email}`} className="hover:underline text-white">
+                        {dist.email}
+                      </a>
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>
@@ -76,3 +114,4 @@ export const Distributors = ({ accentColor = '#94C11F' }: { accentColor?: string
     </section>
   );
 };
+

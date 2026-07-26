@@ -61,12 +61,14 @@ export default function RootLayout({
               "description": "Estructuras de cartón panal fabricadas con papel 100% reciclable. Soluciones de empaque sostenibles.",
               "address": {
                 "@type": "PostalAddress",
-                "addressCountry": "MX"
+                "streetAddress": "Autopista Norte, Kilometro25, Parque industrial del Norte bodega 114",
+                "addressCountry": "CO"
               },
               "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "customer service",
-                "email": "contacto@perlad.com"
+                "email": "comercial@perlad.com",
+                "telephone": "+57 302 464 7165"
               }
             })
           }}
