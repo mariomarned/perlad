@@ -1,3 +1,5 @@
+'use client';
+
 import { Hexagon } from "./ui/Hexagon";
 import { ExternalLink, Star } from "lucide-react";
 
