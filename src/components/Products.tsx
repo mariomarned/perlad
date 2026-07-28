@@ -71,7 +71,25 @@ const ProductCard = ({ name, desc, image, images, accentColor, href }: ProductCa
               Detalles <span className="transition-transform group-hover:translate-x-1">→</span>
             </div>
             <button 
-              className="bg-accent hover:bg-accent-dark text-brand-dark px-4 py-1.5 text-[9px] font-bold uppercase tracking-widest transition-all"
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const targetUrl = `/#contacto?producto=${encodeURIComponent(name)}`;
+                if (typeof window !== 'undefined') {
+                  if (window.location.pathname === '/') {
+                    const el = document.getElementById('contacto');
+                    window.history.pushState({}, '', targetUrl);
+                    window.dispatchEvent(new Event('popstate'));
+                    if (el) {
+                      window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
+                    }
+                  } else {
+                    window.location.href = targetUrl;
+                  }
+                }
+              }}
+              className="bg-accent hover:bg-accent-dark text-brand-dark px-4 py-1.5 text-[9px] font-bold uppercase tracking-widest transition-all z-20 relative cursor-pointer"
               style={{ clipPath: 'polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%)' }}
             >
               Cotizar

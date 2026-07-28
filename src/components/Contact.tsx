@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SectionTitle } from './ui/SectionTitle';
 import { Hexagon } from './ui/Hexagon';
 
@@ -14,10 +14,26 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
     email: '',
     empresa: '',
     telefono: '',
+    producto: '',
     mensaje: ''
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const handleParam = () => {
+        const params = new URLSearchParams(window.location.search);
+        const prodParam = params.get('producto');
+        if (prodParam) {
+          setFormData(prev => ({ ...prev, producto: prodParam }));
+        }
+      };
+      handleParam();
+      window.addEventListener('popstate', handleParam);
+      return () => window.removeEventListener('popstate', handleParam);
+    }
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -171,6 +187,26 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
                   />
                 </div>
               </div>
+
+              <div className="space-y-2">
+                <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">
+                  Producto de Interés <span className="text-white/30 text-[10px] lowercase font-normal">(opcional)</span>
+                </label>
+                <select 
+                  name="producto"
+                  value={formData.producto}
+                  onChange={handleChange}
+                  className="w-full bg-[#242424] border border-white/[0.1] px-4 py-[14px] text-white font-sans text-[15px] outline-none focus:border-accent transition-colors cursor-pointer"
+                >
+                  <option value="" className="bg-[#1A1A1A] text-white/60">Selecciona un producto (opcional)</option>
+                  <option value="Packingboard" className="bg-[#1A1A1A] text-white">Packingboard</option>
+                  <option value="Graphicboard" className="bg-[#1A1A1A] text-white">Graphicboard</option>
+                  <option value="Papel Panal" className="bg-[#1A1A1A] text-white">Papel Panal</option>
+                  <option value="Relleno de puertas" className="bg-[#1A1A1A] text-white">Relleno de puertas</option>
+                  <option value="Bolsas de basura" className="bg-[#1A1A1A] text-white">Bolsas de basura</option>
+                </select>
+              </div>
+
               <div>
                 <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">Mensaje</label>
                 <textarea 
