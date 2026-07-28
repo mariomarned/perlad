@@ -21,7 +21,9 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const handleParam = () => {
-        const params = new URLSearchParams(window.location.search);
+        const hashQuery = window.location.hash.includes('?') ? window.location.hash.split('?')[1] : '';
+        const searchStr = window.location.search ? window.location.search.replace('?', '') : hashQuery;
+        const params = new URLSearchParams(searchStr);
         const prodParam = params.get('producto');
         if (prodParam) {
           setFormData(prev => ({ ...prev, producto: prodParam }));
