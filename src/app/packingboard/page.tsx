@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Hexagon } from "@/components/ui/Hexagon";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function PackingboardPage() {
   const accentColor = '#94C11F';
@@ -30,12 +31,13 @@ export default function PackingboardPage() {
               <p className="text-white/60 text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
                 La solución definitiva para empaques industriales que requieren máxima protección. Estructuras de cartón panal diseñadas para soportar las condiciones más exigentes.
               </p>
-              <button 
-                className="bg-accent text-brand-dark px-10 py-4 font-bold uppercase tracking-wider hover:bg-white transition-all"
+              <Link 
+                href="/#contacto?producto=Packingboard"
+                className="inline-block bg-accent text-brand-dark px-10 py-4 font-bold uppercase tracking-wider hover:bg-white transition-all cursor-pointer text-center"
                 style={{ clipPath: 'polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)' }}
               >
                 Solicitar Cotización
-              </button>
+              </Link>
             </div>
             
             <div className="relative aspect-[16/9] md:aspect-[2/1] animate-scale-in flex items-center justify-center group">
