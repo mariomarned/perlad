@@ -1,6 +1,10 @@
 import { SectionTitle } from "./ui/SectionTitle";
 
 export const Blog = ({ accentColor = '#94C11F' }: { accentColor?: string }) => {
+  // Seccion del blog comentada temporalmente - reactivar luego
+  return null;
+
+  /*
   const posts = [
     { title: '¿Por qué el cartón panal es el futuro del empaque?', cat: 'Innovación', date: 'Mar 2026' },
     { title: '5 formas de reducir plástico en tu cadena de suministro', cat: 'Sostenibilidad', date: 'Feb 2026' },
@@ -38,4 +42,6 @@ export const Blog = ({ accentColor = '#94C11F' }: { accentColor?: string }) => {
       </div>
     </section>
   );
+  */
 };
+

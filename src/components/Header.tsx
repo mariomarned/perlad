@@ -52,7 +52,7 @@ export const Header = ({ activeSection = '', accentColor = '#94C11F', forceBackg
     { label: 'Catálogos', id: 'catalogos', href: '/catalogos' },
     { label: 'Nosotros', id: 'nosotros' },
     { label: 'Distribuidores', id: 'distribuidores' },
-    { label: 'Blog', id: 'blog' },
+    // { label: 'Blog', id: 'blog' },
     { label: 'Contacto', id: 'contacto' }
   ];
 

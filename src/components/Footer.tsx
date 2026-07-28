@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import { Hexagon } from "./ui/Hexagon";
 import { ExternalLink, Star } from "lucide-react";
 
@@ -57,12 +58,12 @@ export const Footer = ({ accentColor = '#94C11F' }: { accentColor?: string }) =>
       <div className="honeycomb-bg-dark absolute inset-0 opacity-100 pointer-events-none"></div>
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
         <div className="col-span-1 lg:col-span-1">
-          <div className="flex items-center gap-3 mb-6">
+          <Link href="/" className="flex items-center gap-3 mb-6 w-fit group">
             <Hexagon size={36} bg={accentColor}>
               <img src="/assets/logo-perlad.png" alt="P" className="w-1/2 brightness-0" />
             </Hexagon>
-            <span className="text-white font-display text-xl font-bold tracking-tight">PERLAD</span>
-          </div>
+            <span className="text-white font-display text-xl font-bold tracking-tight group-hover:text-accent transition-colors">PERLAD</span>
+          </Link>
           <p className="text-white/50 text-sm leading-relaxed max-w-xs mb-6">
             Líderes en soluciones de empaque sostenible en cartón panal. Protegiendo tus productos y el futuro de nuestro planeta.
           </p>
@@ -83,12 +84,12 @@ export const Footer = ({ accentColor = '#94C11F' }: { accentColor?: string }) =>
         <div>
           <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Secciones</h4>
           <ul className="space-y-3 text-white/50 text-sm">
-            <li><a href="#hero" className="hover:text-accent transition-colors">Inicio</a></li>
-            <li><a href="#productos" className="hover:text-accent transition-colors">Productos</a></li>
-            <li><a href="/catalogos" className="hover:text-accent transition-colors">Catálogos</a></li>
-            <li><a href="#nosotros" className="hover:text-accent transition-colors">Nosotros</a></li>
-            <li><a href="#redes" className="hover:text-accent transition-colors">Redes Sociales</a></li>
-            <li><a href="#contacto" className="hover:text-accent transition-colors">Contacto</a></li>
+            <li><Link href="/#hero" className="hover:text-accent transition-colors">Inicio</Link></li>
+            <li><Link href="/#productos" className="hover:text-accent transition-colors">Productos</Link></li>
+            <li><Link href="/catalogos" className="hover:text-accent transition-colors">Catálogos</Link></li>
+            <li><Link href="/#nosotros" className="hover:text-accent transition-colors">Nosotros</Link></li>
+            <li><Link href="/#redes" className="hover:text-accent transition-colors">Redes Sociales</Link></li>
+            <li><Link href="/#contacto" className="hover:text-accent transition-colors">Contacto</Link></li>
           </ul>
         </div>
 
