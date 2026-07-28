@@ -167,7 +167,9 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                 <div className="space-y-2">
-                  <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">Empresa</label>
+                  <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">
+                    Empresa <span className="text-white/30 text-[10px] lowercase font-normal">(opcional)</span>
+                  </label>
                   <input 
                     type="text" 
                     name="empresa"
@@ -177,7 +179,9 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">Teléfono</label>
+                  <label className="font-sans text-[12px] text-white/50 uppercase tracking-[0.08em] block mb-2">
+                    Teléfono <span className="text-white/30 text-[10px] lowercase font-normal">(opcional)</span>
+                  </label>
                   <input 
                     type="text" 
                     name="telefono"
