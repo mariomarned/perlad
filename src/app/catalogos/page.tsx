@@ -18,36 +18,29 @@ const catalogos: Catalogo[] = [
     id: 'packingboard',
     name: 'Packingboard',
     description: 'Catálogo completo de soluciones robustas de cartón para empaques industriales de alta resistencia.',
-    image: '/assets/productos/Captura de pantalla 2026-04-30 a la(s) 21.48.47.png',
-    pdfUrl: '/catalogos/packingboard.pdf'
+    image: '/assets/imgcategorias/packingboard.png',
+    pdfUrl: '/assets/catalogos/PackingboardV1.pdf'
   },
   {
     id: 'graphicboard',
     name: 'Graphicboard',
     description: 'Tablero de cartón ideal para la industria gráfica, impresión y exhibición publicitaria de alta calidad.',
-    image: '/assets/productos/Captura de pantalla 2026-04-30 a la(s) 21.49.04.png',
-    pdfUrl: '/catalogos/graphicboard.pdf'
+    image: '/assets/imgcategorias/GRAPHICBOARD2.png',
+    pdfUrl: '/assets/catalogos/GRAPHICBOARDV1.pdf'
   },
   {
     id: 'papel-panal',
     name: 'Papel Panal',
     description: 'Material de amortiguación biodegradable versátil y ecológico para protección de productos.',
-    image: '/assets/productos/Captura de pantalla 2026-04-30 a la(s) 21.49.19.png',
-    pdfUrl: '/catalogos/papel-panal.pdf'
+    image: '/assets/imgcategorias/papelpanalysususos.png',
+    pdfUrl: '/assets/catalogos/PAPELPANALV1.pdf'
   },
   {
     id: 'relleno-puertas',
     name: 'Relleno de puertas',
     description: 'Estructura interna de cartón panal para la fabricación de puertas ligeras y resistentes.',
-    image: '/assets/productos/Captura de pantalla 2026-04-30 a la(s) 21.49.26.png',
-    pdfUrl: '/catalogos/relleno-puertas.pdf'
-  },
-  {
-    id: 'bolsas-de-basura',
-    name: 'Bolsas de basura',
-    description: 'Bolsas de alta resistencia para la gestión de residuos, embalaje y protección industrial.',
-    image: '/assets/productos/bosasdebasura/Imagen1.jpg',
-    pdfUrl: '/catalogos/bolsas-de-basura.pdf'
+    image: '/assets/imgcategorias/rellenodepuertas.png',
+    pdfUrl: '/assets/catalogos/RELLENO DE PUERTASV1.pdf'
   }
 ];
 

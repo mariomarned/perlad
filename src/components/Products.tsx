@@ -118,7 +118,8 @@ export const Products = ({ accentColor = '#94C11F' }: { accentColor?: string }) 
     { 
       name: 'Graphicboard', 
       desc: 'Tablero de cartón ideal para la industria gráfica, impresión y exhibición publicitaria.',
-      image: '/assets/imgcategorias/GRAPHICBOARD2.png'
+      image: '/assets/imgcategorias/GRAPHICBOARD2.png',
+      href: '/graphicboard'
     },
     { 
       name: 'Papel Panal', 
