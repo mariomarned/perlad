@@ -124,12 +124,14 @@ export const Products = ({ accentColor = '#94C11F' }: { accentColor?: string }) 
     { 
       name: 'Papel Panal', 
       desc: 'Material de amortiguación biodegradable en rollo o lámina, versátil y ecológico.',
-      image: '/assets/imgcategorias/papelpanalysususos.png'
+      image: '/assets/imgcategorias/papelpanalysususos.png',
+      href: '/papel-panal'
     },
     { 
       name: 'Relleno de puertas', 
       desc: 'Estructura interna de cartón panal para la fabricación de puertas ligeras, resistentes y acústicas.',
-      image: '/assets/imgcategorias/rellenodepuertas.png'
+      image: '/assets/imgcategorias/rellenodepuertas.png',
+      href: '/relleno-puertas'
     },
     { 
       name: 'Bolsas de basura', 

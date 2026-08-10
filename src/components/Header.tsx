@@ -34,8 +34,8 @@ export const Header = ({ activeSection = '', accentColor = '#94C11F', forceBackg
   const products: Product[] = [
     { name: 'Packingboard', href: '/packingboard' },
     { name: 'Graphicboard', href: '/graphicboard' },
-    { name: 'Papel Panal' },
-    { name: 'Relleno de puertas' }
+    { name: 'Papel Panal', href: '/papel-panal' },
+    { name: 'Relleno de puertas', href: '/relleno-puertas' }
   ];
 
   interface NavLink {
