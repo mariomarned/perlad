@@ -56,7 +56,7 @@ export const Footer = ({ accentColor = '#94C11F' }: { accentColor?: string }) =>
   return (
     <footer className="bg-brand-dark py-20 px-6 border-t border-white/5 relative overflow-hidden text-white">
       <div className="honeycomb-bg-dark absolute inset-0 opacity-100 pointer-events-none"></div>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
         <div className="col-span-1 lg:col-span-1">
           <Link href="/" className="flex items-center gap-3 mb-6 w-fit group">
             <Hexagon size={36} bg={accentColor}>
@@ -114,22 +114,6 @@ export const Footer = ({ accentColor = '#94C11F' }: { accentColor?: string }) =>
               );
             })}
           </ul>
-        </div>
-
-        <div>
-          <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Newsletter</h4>
-          <p className="text-white/50 text-sm mb-6">Suscríbete para recibir noticias sobre sostenibilidad e innovación.</p>
-          <form className="flex" onSubmit={(e) => e.preventDefault()}>
-            <input 
-              type="email" 
-              placeholder="Tu email" 
-              className="bg-white/5 border border-white/10 px-4 py-3 text-sm text-white outline-none flex-1 focus:border-accent" 
-            />
-            <button className="bg-accent px-4 py-3 text-brand-dark font-bold hover:bg-accent-dark transition-colors">
-              <span className="sr-only">Suscribirse</span>
-              →
-            </button>
-          </form>
         </div>
       </div>
 
