@@ -44,7 +44,7 @@ export default function PapelPanalPage() {
     cosmetica: {
       title: "Cosmética y Cuidado Personal",
       badge: "Estética Premium & Protección",
-      image: "/assets/imgcategorias/papelpanalysususos.png",
+      image: "/assets/imgcategorias/papelpanalysususos.jpg",
       description: "Ideal para marcas que buscan proyectar una imagen limpia, moderna y profesional desde el primer contacto táctil.",
       items: [
         "Protección acolchada perfecta para frascos de vidrio, perfumes, sueros y cremas.",
@@ -56,7 +56,7 @@ export default function PapelPanalPage() {
     ecommerce: {
       title: "Comercio Electrónico y D2C Premium",
       badge: "Alta Velocidad de Despacho",
-      image: "/assets/imgcategorias/papelpanalysususos.png",
+      image: "/assets/imgcategorias/papelpanalysususos.jpg",
       description: "Optimice el embalaje de sus envíos diarios garantizando llegada en perfecto estado y cero uso de plásticos.",
       items: [
         "Aumento de la velocidad de empaque de hasta un 30% con dispensadores ergonómicos.",
@@ -80,7 +80,7 @@ export default function PapelPanalPage() {
     industrial: {
       title: "Piezas Industriales y Hardware de Precisión",
       badge: "Relleno Eficiente de Vacíos",
-      image: "/assets/imgcategorias/packingboard.png",
+      image: "/assets/imgcategorias/packingboard.jpg",
       description: "Solución versátil para proteger partes mecánicas, moldes y herramientas delicadas dentro de cajas de exportación.",
       items: [
         "Excelente capacidad para amortiguar repuestos mecánicos y componentes electrónicos.",
@@ -163,7 +163,7 @@ export default function PapelPanalPage() {
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-accent/20 bg-gradient-to-b from-white/10 to-brand-dark p-2 shadow-2xl group">
                 <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#121212]">
                   <Image 
-                    src="/assets/imgcategorias/papelpanalysususos.png" 
+                    src="/assets/imgcategorias/papelpanalysususos.jpg" 
                     alt="Papel Panal Perlad Embalaje Ecológico" 
                     fill 
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -378,7 +378,7 @@ export default function PapelPanalPage() {
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 bg-[#141414] p-3 shadow-2xl">
                 <div className="relative w-full h-full rounded-xl overflow-hidden">
                   <Image 
-                    src="/assets/imgcategorias/papelpanalysususos.png" 
+                    src="/assets/imgcategorias/papelpanalysususos.jpg" 
                     alt="Dispensador y Rollo de Papel Panal Perlad" 
                     fill 
                     className="object-cover"

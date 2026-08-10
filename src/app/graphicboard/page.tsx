@@ -103,7 +103,7 @@ export default function GraphicboardPage() {
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-accent/20 bg-gradient-to-b from-white/10 to-brand-dark p-2 shadow-2xl group">
                 <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#121212]">
                   <Image 
-                    src="/assets/imgcategorias/GRAPHICBOARD2.png" 
+                    src="/assets/imgcategorias/GRAPHICBOARD2.jpg" 
                     alt="Graphicboard Perlad Tablero Rígido Blanco" 
                     fill 
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -203,7 +203,7 @@ export default function GraphicboardPage() {
             {/* Visual Diagram */}
             <div className="lg:col-span-6 relative aspect-square bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-xl p-8 flex flex-col justify-between group">
               <Image 
-                src="/assets/imgcategorias/GRAPHICBOARD2.png" 
+                src="/assets/imgcategorias/GRAPHICBOARD2.jpg" 
                 alt="Estructura de Graphicboard Perlad" 
                 fill 
                 className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"

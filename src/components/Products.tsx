@@ -112,25 +112,25 @@ export const Products = ({ accentColor = '#94C11F' }: { accentColor?: string }) 
     { 
       name: 'Packingboard', 
       desc: 'Solución robusta de cartón para empaques industriales de alta resistencia y máxima protección.',
-      image: '/assets/imgcategorias/packingboard.png',
+      image: '/assets/imgcategorias/packingboard.jpg',
       href: '/packingboard'
     },
     { 
       name: 'Graphicboard', 
       desc: 'Tablero de cartón ideal para la industria gráfica, impresión y exhibición publicitaria.',
-      image: '/assets/imgcategorias/GRAPHICBOARD2.png',
+      image: '/assets/imgcategorias/GRAPHICBOARD2.jpg',
       href: '/graphicboard'
     },
     { 
       name: 'Papel Panal', 
       desc: 'Material de amortiguación biodegradable en rollo o lámina, versátil y ecológico.',
-      image: '/assets/imgcategorias/papelpanalysususos.png',
+      image: '/assets/imgcategorias/papelpanalysususos.jpg',
       href: '/papel-panal'
     },
     { 
       name: 'Relleno de puertas', 
       desc: 'Estructura interna de cartón panal para la fabricación de puertas ligeras, resistentes y acústicas.',
-      image: '/assets/imgcategorias/rellenodepuertas.png',
+      image: '/assets/imgcategorias/rellenodepuertas.jpg',
       href: '/relleno-puertas'
     },
     { 

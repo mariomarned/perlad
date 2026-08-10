@@ -91,6 +91,7 @@ export const Header = ({ activeSection = '', accentColor = '#94C11F', forceBackg
               {link.href ? (
                 <Link
                   href={link.href}
+                  prefetch={true}
                   className={cn(
                     "font-sans text-[14px] font-medium uppercase tracking-[0.03em] cursor-pointer transition-colors flex items-center gap-1",
                     activeSection === link.id ? "text-accent" : "text-white hover:text-accent"
@@ -113,22 +114,23 @@ export const Header = ({ activeSection = '', accentColor = '#94C11F', forceBackg
               )}
 
               {link.hasDropdown && prodOpen && (
-                <div className="absolute top-full left-[-20px] pt-3 min-w-[300px] animate-fade-in">
-                  <div className="bg-[#121212] rounded-xl p-5 border border-accent/30 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+                <div className="absolute top-full left-[-20px] pt-2 min-w-[300px] animate-fade-in z-50">
+                  <div className="bg-[#121212] rounded-xl p-4 border border-accent/30 shadow-[0_20px_50px_rgba(0,0,0,0.7)]">
                     {products.map((p, i) => (
                       <div key={i} className={cn("group", p.sub ? "mb-3" : "mb-1")}>
                         {p.href ? (
                           <Link 
                             href={p.href}
-                            className="text-white font-sans text-[14px] font-semibold py-1.5 px-2 flex items-center rounded-md hover:bg-white/5 transition-colors cursor-pointer"
+                            prefetch={true}
+                            className="text-white font-sans text-[14px] font-semibold py-2 px-3 flex items-center rounded-md hover:bg-white/10 hover:text-accent transition-colors cursor-pointer"
                             onClick={() => setProdOpen(false)}
                           >
-                            <Hexagon size={8} bg={accentColor} className="mr-2" />
+                            <Hexagon size={8} bg={accentColor} className="mr-2.5 flex-shrink-0" />
                             {p.name}
                           </Link>
                         ) : (
-                          <div className="text-white font-sans text-[14px] font-semibold py-1.5 px-2 flex items-center rounded-md hover:bg-white/5 transition-colors cursor-pointer">
-                            <Hexagon size={8} bg={accentColor} className="mr-2" />
+                          <div className="text-white/60 font-sans text-[14px] font-semibold py-2 px-3 flex items-center rounded-md">
+                            <Hexagon size={8} bg={accentColor} className="mr-2.5 flex-shrink-0 opacity-40" />
                             {p.name}
                           </div>
                         )}
@@ -151,6 +153,7 @@ export const Header = ({ activeSection = '', accentColor = '#94C11F', forceBackg
 
           <Link
             href="/catalogos"
+            prefetch={true}
             className="bg-accent hover:scale-[1.02] text-[#1A1A1A] px-6 py-2.5 text-[13px] font-bold uppercase tracking-[0.05em] transition-all cursor-pointer"
             style={{ clipPath: 'polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)' }}
           >

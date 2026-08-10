@@ -18,28 +18,28 @@ const catalogos: Catalogo[] = [
     id: 'packingboard',
     name: 'Packingboard',
     description: 'Catálogo completo de soluciones robustas de cartón para empaques industriales de alta resistencia.',
-    image: '/assets/imgcategorias/packingboard.png',
+    image: '/assets/imgcategorias/packingboard.jpg',
     pdfUrl: '/assets/catalogos/PackingboardV1.pdf'
   },
   {
     id: 'graphicboard',
     name: 'Graphicboard',
     description: 'Tablero de cartón ideal para la industria gráfica, impresión y exhibición publicitaria de alta calidad.',
-    image: '/assets/imgcategorias/GRAPHICBOARD2.png',
+    image: '/assets/imgcategorias/GRAPHICBOARD2.jpg',
     pdfUrl: '/assets/catalogos/GRAPHICBOARDV1.pdf'
   },
   {
     id: 'papel-panal',
     name: 'Papel Panal',
     description: 'Material de amortiguación biodegradable versátil y ecológico para protección de productos.',
-    image: '/assets/imgcategorias/papelpanalysususos.png',
+    image: '/assets/imgcategorias/papelpanalysususos.jpg',
     pdfUrl: '/assets/catalogos/PAPELPANALV1.pdf'
   },
   {
     id: 'relleno-puertas',
     name: 'Relleno de puertas',
     description: 'Estructura interna de cartón panal para la fabricación de puertas ligeras y resistentes.',
-    image: '/assets/imgcategorias/rellenodepuertas.png',
+    image: '/assets/imgcategorias/rellenodepuertas.jpg',
     pdfUrl: '/assets/catalogos/RELLENO DE PUERTASV1.pdf'
   }
 ];

@@ -15,7 +15,7 @@ export const Hero = ({ accentColor = '#94C11F' }: HeroProps) => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/assets/inicio/carton-panal-hero.png"
+          src="/assets/inicio/carton-panal-hero.jpg"
           alt="Fondo Cartón Panal Perlad"
           fill
           className="object-cover opacity-40"

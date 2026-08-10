@@ -122,7 +122,7 @@ export default function RellenoPuertasPage() {
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-accent/30 bg-gradient-to-b from-white/10 via-[#141414] to-[#0A0A0A] p-3 shadow-[0_0_50px_rgba(0,0,0,0.8)] group">
                 <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#121212] flex items-center justify-center">
                   <Image 
-                    src="/assets/imgcategorias/rellenodepuertas.png" 
+                    src="/assets/imgcategorias/rellenodepuertas.jpg" 
                     alt="Núcleo de Cartón Panal Perlad para Puertas Metálicas" 
                     fill 
                     className="object-contain p-2 transition-transform duration-700 group-hover:scale-105"
@@ -292,7 +292,7 @@ export default function RellenoPuertasPage() {
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border-2 border-accent/40 bg-[#161616] p-3 shadow-2xl group">
                 <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#101010] flex items-center justify-center">
                   <Image 
-                    src="/assets/imgcategorias/rellenodepuertas.png" 
+                    src="/assets/imgcategorias/rellenodepuertas.jpg" 
                     alt="Instalación de cerraduras inteligentes con núcleo de cartón panal" 
                     fill 
                     className="object-contain p-2 transition-transform duration-700 group-hover:scale-105"

@@ -38,7 +38,7 @@ export default function PackingboardPage() {
     estibas: {
       title: "Estibas y Guacales para Exportación Pesada",
       badge: "Hasta 500 kg Certificados",
-      image: "/assets/imgcategorias/packingboard.png",
+      image: "/assets/imgcategorias/packingboard.jpg",
       items: [
         "Capacidad de carga certificada para pesos de hasta 500 kilos.",
         "Eliminación total de inspecciones fitosanitarias en aduanas internacionales (sin NIMF 15).",
@@ -49,7 +49,7 @@ export default function PackingboardPage() {
     refrigeracion: {
       title: "Geometrías Complejas & Línea Blanca",
       badge: "Reemplazo Directo de EPS / Icopor",
-      image: "/assets/imgcategorias/GRAPHICBOARD2.png",
+      image: "/assets/imgcategorias/GRAPHICBOARD2.jpg",
       items: [
         "Reemplazo absoluto del poliestireno expandido (EPS/Icopor) en electrodomésticos y refrigeración industrial.",
         "Diseño troquelado a la medida exacta del producto para encaje perfecto.",
@@ -71,7 +71,7 @@ export default function PackingboardPage() {
     estructural: {
       title: "Aplicaciones Estructurales y Manufactura",
       badge: "Multiuso Industrial",
-      image: "/assets/imgcategorias/rellenodepuertas.png",
+      image: "/assets/imgcategorias/rellenodepuertas.jpg",
       items: [
         "Núcleos para Puertas: Otorga volumen y alta resistencia al impacto sin recargar peso en las bisagras.",
         "Separadores de Carga: Protección de tableros de melamina, vidrio y mármol contra rayones y fracturas.",
@@ -152,7 +152,7 @@ export default function PackingboardPage() {
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-accent/20 bg-gradient-to-b from-white/10 to-brand-dark p-2 shadow-2xl group">
                 <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#121212]">
                   <Image 
-                    src="/assets/imgcategorias/packingboard.png" 
+                    src="/assets/imgcategorias/packingboard.jpg" 
                     alt="Packingboard Perlad Cartón Panal" 
                     fill 
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -320,7 +320,7 @@ export default function PackingboardPage() {
             {/* Tech Image Visual */}
             <div className="lg:col-span-6 relative aspect-video lg:aspect-square bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-xl group">
               <Image 
-                src="/assets/imgcategorias/packingboard.png" 
+                src="/assets/imgcategorias/packingboard.jpg" 
                 alt="Estructura Hexagonal Cartón Panal" 
                 fill 
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
