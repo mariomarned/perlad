@@ -647,63 +647,130 @@ export default function PapelPanalPage() {
         </div>
       </section>
 
-      {/* Comparison Table vs Bubble Wrap */}
+      {/* Beneficios del Papel Panal */}
       <section className="py-24 border-t border-white/5 relative">
         <div className="max-w-7xl mx-auto px-6">
           
           <SectionTitle 
-            sub="Compare el impacto ecológico, operativo y estético de ambas alternativas" 
+            sub="Una alternativa sostenible para reducir el uso de plástico en tus empaques" 
             light
             accentColor={accentColor} 
           >
-            Papel Panal vs Plástico de Burbuja (Bubble Wrap)
+            Beneficios del Papel Panal Perlad
           </SectionTitle>
 
-          <div className="mt-16 overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[600px]">
-              <thead>
-                <tr className="border-b border-white/10 text-xs font-bold uppercase tracking-wider text-white/50">
-                  <th className="py-4 px-6">Característica</th>
-                  <th className="py-4 px-6 text-accent bg-accent/5">Papel Panal Perlad</th>
-                  <th className="py-4 px-6 text-white/40">Plástico Burbuja (EPS)</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5 text-sm">
-                <tr>
-                  <td className="py-4 px-6 font-semibold text-white">Impacto Ambiental</td>
-                  <td className="py-4 px-6 bg-accent/5 text-accent font-semibold flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4" /> 100% Biodegradable & Compostable
-                  </td>
-                  <td className="py-4 px-6 text-white/50 flex items-center gap-2">
-                    <XCircle className="w-4 h-4 text-red-400" /> Plástico de un solo uso (siglos)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="py-4 px-6 font-semibold text-white">Espacio en Almacén</td>
-                  <td className="py-4 px-6 bg-accent/5 text-white/90">Rollo comprimible (ahorra 20%-30% espacio)</td>
-                  <td className="py-4 px-6 text-white/50">Voluminoso, ocupa gran espacio de almacenamiento</td>
-                </tr>
-                <tr>
-                  <td className="py-4 px-6 font-semibold text-white">Uso de Cintas Adhesivas</td>
-                  <td className="py-4 px-6 bg-accent/5 text-accent font-semibold flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4" /> Cero cinta (anclaje natural)
-                  </td>
-                  <td className="py-4 px-6 text-white/50 flex items-center gap-2">
-                    <XCircle className="w-4 h-4 text-red-400" /> Requiere abundante cinta plástica
-                  </td>
-                </tr>
-                <tr>
-                  <td className="py-4 px-6 font-semibold text-white">Corte Operacional</td>
-                  <td className="py-4 px-6 bg-accent/5 text-white/90">Fácil de rasgar a mano sin herramientas</td>
-                  <td className="py-4 px-6 text-white/50">Requiere tijeras o bisturís en mesa</td>
-                </tr>
-                <tr>
-                  <td className="py-4 px-6 font-semibold text-white">Percepción de Cliente (Unboxing)</td>
-                  <td className="py-4 px-6 bg-accent/5 text-accent font-semibold">Premium, elegante, responsable</td>
-                  <td className="py-4 px-6 text-white/50">Genérico, desechable y contaminante</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="mt-16 bg-[#121212]/90 border border-white/10 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-sm">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse min-w-[620px]">
+                <thead>
+                  <tr className="border-b border-white/10 bg-white/[0.02] text-xs font-bold uppercase tracking-wider text-white/50">
+                    <th className="py-5 px-6 sm:px-8 w-1/3">Característica</th>
+                    <th className="py-5 px-6 sm:px-8 text-accent">Papel Panal Perlad</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5 text-sm">
+                  <tr className="hover:bg-white/[0.02] transition-colors">
+                    <td className="py-4 px-6 sm:px-8 font-semibold text-white">
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg">🌱</span>
+                        <span>Material</span>
+                      </div>
+                    </td>
+                    <td className="py-4 px-6 sm:px-8 text-white/80 leading-relaxed">
+                      Fabricado a base de papel, una alternativa para reducir el uso de materiales plásticos en el empaque.
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-white/[0.02] transition-colors">
+                    <td className="py-4 px-6 sm:px-8 font-semibold text-white">
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg">♻️</span>
+                        <span>Fin de vida</span>
+                      </div>
+                    </td>
+                    <td className="py-4 px-6 sm:px-8 text-white/80 leading-relaxed">
+                      Biodegradable, facilitando una gestión más responsable del material después de su uso.
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-white/[0.02] transition-colors">
+                    <td className="py-4 px-6 sm:px-8 font-semibold text-white">
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg">📦</span>
+                        <span>Almacenamiento</span>
+                      </div>
+                    </td>
+                    <td className="py-4 px-6 sm:px-8 text-white/80 leading-relaxed">
+                      Su presentación en rollo permite optimizar el espacio de almacenamiento y transporte.
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-white/[0.02] transition-colors">
+                    <td className="py-4 px-6 sm:px-8 font-semibold text-white">
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg">✂️</span>
+                        <span>Facilidad de uso</span>
+                      </div>
+                    </td>
+                    <td className="py-4 px-6 sm:px-8 text-white/80 leading-relaxed">
+                      Se corta y rasga fácilmente a mano, agilizando las operaciones de empaque.
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-white/[0.02] transition-colors">
+                    <td className="py-4 px-6 sm:px-8 font-semibold text-white">
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg">🛡️</span>
+                        <span>Protección</span>
+                      </div>
+                    </td>
+                    <td className="py-4 px-6 sm:px-8 text-white/80 leading-relaxed">
+                      Su estructura tipo panal permite envolver, separar y proteger productos durante su manipulación y transporte.
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-white/[0.02] transition-colors">
+                    <td className="py-4 px-6 sm:px-8 font-semibold text-white">
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg">🧴</span>
+                        <span>Reducción de plástico</span>
+                      </div>
+                    </td>
+                    <td className="py-4 px-6 sm:px-8 text-white/80 leading-relaxed">
+                      Permite sustituir o disminuir el uso de materiales plásticos en diferentes aplicaciones de protección y embalaje.
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-white/[0.02] transition-colors">
+                    <td className="py-4 px-6 sm:px-8 font-semibold text-white">
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg">🎀</span>
+                        <span>Presentación</span>
+                      </div>
+                    </td>
+                    <td className="py-4 px-6 sm:px-8 text-white/80 leading-relaxed">
+                      Aporta una apariencia natural, limpia y premium al empaque.
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-white/[0.02] transition-colors">
+                    <td className="py-4 px-6 sm:px-8 font-semibold text-white">
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg">🛍️</span>
+                        <span>Experiencia del cliente</span>
+                      </div>
+                    </td>
+                    <td className="py-4 px-6 sm:px-8 text-white/80 leading-relaxed">
+                      Convierte el empaque en parte de la experiencia de compra, transmitiendo una imagen de responsabilidad y cuidado.
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-white/[0.02] transition-colors">
+                    <td className="py-4 px-6 sm:px-8 font-semibold text-white">
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg">🌍</span>
+                        <span>Imagen de marca</span>
+                      </div>
+                    </td>
+                    <td className="py-4 px-6 sm:px-8 text-white/80 leading-relaxed">
+                      Ayuda a las empresas a avanzar hacia estrategias de empaque más sostenibles.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
 
         </div>

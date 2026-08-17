@@ -32,27 +32,18 @@ export const Sustainability = ({ accentColor = '#94C11F' }: { accentColor?: stri
                 className="w-48 h-48 sm:w-56 sm:h-56 relative flex items-center justify-center"
               >
                 <div
-                  className="absolute inset-0 bg-white border border-gray-100 group-hover:bg-accent/5 group-hover:border-accent/20 transition-all duration-300 shadow-xl"
+                  className="absolute inset-0 bg-white border border-gray-100 shadow-xl transition-shadow duration-300 group-hover:shadow-2xl"
                   style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
                 ></div>
-                <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 115">
-                  <polygon
-                    points="50,0 100,25 100,75 50,100 0,75 0,25"
-                    fill="none"
-                    stroke={accentColor}
-                    strokeWidth="0.5"
-                    className="opacity-20 group-hover:opacity-100 transition-opacity duration-300"
-                  />
-                </svg>
-                <div className="relative z-10 flex flex-col items-center justify-center h-full p-8 text-center">
+                <div className="relative z-10 flex flex-col items-center justify-center h-full p-7 text-center">
                   <div
-                    className="w-14 h-14 mb-4 flex items-center justify-center text-2xl transition-colors duration-300 bg-accent/10 group-hover:bg-accent"
+                    className="w-12 h-12 mb-3 flex items-center justify-center text-xl bg-accent/10"
                     style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
                   >
-                    <span className="group-hover:brightness-0 group-hover:invert transition-all">{p.icon}</span>
+                    <span>{p.icon}</span>
                   </div>
-                  <h3 className="font-display text-sm font-bold text-brand-dark mb-2">{p.title}</h3>
-                  <p className="text-[11px] leading-relaxed text-gray-500">{p.desc}</p>
+                  <h3 className="font-display text-sm font-bold text-brand-dark mb-1.5">{p.title}</h3>
+                  <p className="text-[12px] leading-relaxed text-gray-600 font-sans">{p.desc}</p>
                 </div>
               </div>
             </div>

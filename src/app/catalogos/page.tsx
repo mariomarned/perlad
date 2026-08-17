@@ -41,6 +41,20 @@ const catalogos: Catalogo[] = [
     description: 'Estructura interna de cartón panal para la fabricación de puertas ligeras y resistentes.',
     image: '/assets/imgcategorias/rellenodepuertas.jpg',
     pdfUrl: '/assets/catalogos/RELLENO DE PUERTASV1.pdf'
+  },
+  {
+    id: 'bolsas-de-basura',
+    name: 'Bolsas de basura',
+    description: 'Catálogo de bolsas de alta resistencia para la gestión eficiente de residuos, embalaje y protección industrial.',
+    image: '/assets/imgcategorias/imgbolsas.jpg',
+    pdfUrl: '/assets/catalogos/PRESENTACI%C3%93N%20COMERCIALbolsas.pdf'
+  },
+  {
+    id: 'cubrepallets',
+    name: 'Cubrepallets',
+    description: 'Soluciones protectoras para estibas y carga paletizada, garantizando máxima protección y estabilidad durante el transporte.',
+    image: '/assets/imgcategorias/cubrepallets1.jpg',
+    pdfUrl: '/assets/catalogos/PRESENTACIONCOMERCIALCUBREPALLETS.pdf'
   }
 ];
 

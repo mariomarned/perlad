@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { SectionTitle } from "./ui/SectionTitle";
+import { Hexagon } from "./ui/Hexagon";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 interface ProductCardProps {
   name: string;
@@ -20,91 +22,105 @@ const ProductCard = ({ name, desc, image, images, accentColor, href }: ProductCa
 
   const displayImage = allImages.length > 0 ? allImages[currentIdx] : undefined;
 
+  const handleCotizar = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const targetUrl = `/#contacto?producto=${encodeURIComponent(name)}`;
+    if (typeof window !== 'undefined') {
+      if (window.location.pathname === '/') {
+        const el = document.getElementById('contacto');
+        window.history.pushState({}, '', targetUrl);
+        window.dispatchEvent(new Event('popstate'));
+        if (el) {
+          window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
+        }
+      } else {
+        window.location.href = targetUrl;
+      }
+    }
+  };
+
   const CardContent = (
     <div 
-      className="group relative w-full aspect-[1/1.1] transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+      className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full hover:-translate-y-2 cursor-pointer relative"
       onMouseEnter={() => {
         if (allImages.length > 1) {
           setCurrentIdx((prev) => (prev + 1) % allImages.length);
         }
       }}
     >
-      <div 
-        className="absolute inset-0 bg-white border border-gray-100 shadow-lg group-hover:shadow-2xl transition-all duration-500"
-        style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
-      >
-        {/* Product Image Area */}
-        <div className="h-[48%] relative overflow-hidden bg-gray-100">
-          {displayImage ? (
-            <Image 
-              src={displayImage} 
-              alt={name} 
-              fill 
-              className="object-cover transition-transform duration-500 group-hover:scale-110"
-              quality={75}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-700 to-amber-900 flex items-center justify-center">
-              <div className="absolute inset-0 opacity-20 honeycomb-bg"></div>
-            </div>
-          )}
+      {/* Product Image Area */}
+      <div className="h-64 sm:h-60 relative overflow-hidden bg-gray-100">
+        {displayImage ? (
+          <Image 
+            src={displayImage} 
+            alt={name} 
+            fill 
+            className="object-cover transition-transform duration-700 group-hover:scale-108"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            quality={85}
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-700 to-amber-900 flex items-center justify-center">
+            <div className="absolute inset-0 opacity-20 honeycomb-bg"></div>
+          </div>
+        )}
 
-          {allImages.length > 1 && (
-            <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5 z-10 pointer-events-none">
-              {allImages.map((_, idx) => (
-                <span 
-                  key={idx} 
-                  className={`w-1.5 h-1.5 rounded-full transition-all ${idx === currentIdx ? 'bg-white scale-125' : 'bg-white/50'}`}
-                />
-              ))}
-            </div>
-          )}
+        {/* Honeycomb hover watermark */}
+        <div className="honeycomb-bg absolute inset-0 opacity-20 pointer-events-none group-hover:opacity-0 transition-opacity duration-500" />
+
+        {/* Badge with Hexagon accent */}
+        <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-brand-dark text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full border border-gray-100 shadow-sm flex items-center gap-2">
+          <Hexagon size={8} bg={accentColor} />
+          <span>Perlad</span>
         </div>
 
-        {/* Content Area */}
-        <div className="p-6 sm:p-8 flex flex-col items-center text-center">
-          <h3 className="font-display text-base sm:text-lg font-bold text-brand-dark mb-2 leading-tight">{name}</h3>
-          <p className="text-[10px] sm:text-xs text-gray-500 leading-relaxed mb-4 line-clamp-3 px-2">{desc}</p>
-          
-          <div className="flex flex-col items-center gap-3">
-            <div className="text-accent font-bold text-[10px] uppercase tracking-wider flex items-center gap-1">
-              Detalles <span className="transition-transform group-hover:translate-x-1">→</span>
-            </div>
-            <button 
-              type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                const targetUrl = `/#contacto?producto=${encodeURIComponent(name)}`;
-                if (typeof window !== 'undefined') {
-                  if (window.location.pathname === '/') {
-                    const el = document.getElementById('contacto');
-                    window.history.pushState({}, '', targetUrl);
-                    window.dispatchEvent(new Event('popstate'));
-                    if (el) {
-                      window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
-                    }
-                  } else {
-                    window.location.href = targetUrl;
-                  }
-                }
-              }}
-              className="bg-accent hover:bg-accent-dark text-brand-dark px-4 py-1.5 text-[9px] font-bold uppercase tracking-widest transition-all z-20 relative cursor-pointer"
-              style={{ clipPath: 'polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%)' }}
-            >
-              Cotizar
-            </button>
+        {allImages.length > 1 && (
+          <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-10 pointer-events-none">
+            {allImages.map((_, idx) => (
+              <span 
+                key={idx} 
+                className={`w-1.5 h-1.5 rounded-full transition-all ${idx === currentIdx ? 'bg-white scale-125 shadow' : 'bg-white/60'}`}
+              />
+            ))}
           </div>
+        )}
+      </div>
+
+      {/* Content Area */}
+      <div className="p-7 flex flex-col flex-1">
+        <h3 className="font-display text-xl font-bold text-brand-dark mb-2.5 group-hover:text-accent transition-colors leading-snug">
+          {name}
+        </h3>
+        
+        <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
+          {desc}
+        </p>
+        
+        <div className="flex items-center justify-between mt-auto pt-5 border-t border-gray-100 gap-3">
+          <span className="inline-flex items-center gap-1.5 text-accent-dark group-hover:text-accent font-bold text-xs uppercase tracking-wider group-hover:translate-x-1 transition-all">
+            <span>Detalles</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </span>
+
+          <button 
+            type="button"
+            onClick={handleCotizar}
+            className="bg-accent hover:bg-accent-dark text-brand-dark px-5 py-2 text-[10px] font-bold uppercase tracking-widest transition-all shadow-sm hover:shadow-md cursor-pointer shrink-0"
+            style={{ clipPath: 'polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%)' }}
+          >
+            Cotizar
+          </button>
         </div>
       </div>
     </div>
   );
 
   if (href) {
-    return <Link href={href}>{CardContent}</Link>;
+    return <Link href={href} className="block h-full">{CardContent}</Link>;
   }
 
-  return CardContent;
+  return <div className="h-full">{CardContent}</div>;
 };
 
 export const Products = ({ accentColor = '#94C11F' }: { accentColor?: string }) => {
@@ -136,23 +152,25 @@ export const Products = ({ accentColor = '#94C11F' }: { accentColor?: string }) 
     { 
       name: 'Bolsas de basura', 
       desc: 'Bolsas de alta resistencia para la gestión de residuos, embalaje y protección industrial.',
-      image: '/assets/productos/bosasdebasura/Imagen1.jpg',
-      images: [
-        '/assets/productos/bosasdebasura/Imagen1.jpg',
-        '/assets/productos/bosasdebasura/Imagen2.jpg',
-        '/assets/productos/bosasdebasura/Imagen3.jpg'
-      ]
+      image: '/assets/imgcategorias/imgbolsas.jpg',
+      href: '/catalogos'
+    },
+    { 
+      name: 'Cubrepallets', 
+      desc: 'Protección superior y estabilización para estibas y carga paletizada durante el almacenamiento y transporte.',
+      image: '/assets/imgcategorias/cubrepallets1.jpg',
+      href: '/catalogos'
     }
   ];
 
   return (
     <section id="productos" className="py-24 px-6 bg-brand-warm relative">
-      <div className="honeycomb-bg absolute inset-0 opacity-50 pointer-events-none"></div>
+      <div className="honeycomb-bg absolute inset-0 opacity-40 pointer-events-none"></div>
       <div className="max-w-7xl mx-auto relative z-10">
         <SectionTitle sub="Soluciones de empaque sustentables para cada necesidad" accentColor={accentColor}>
           Nuestros Productos
         </SectionTitle>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {products.map((p, i) => (
             <ProductCard key={i} {...p} accentColor={accentColor} />
           ))}

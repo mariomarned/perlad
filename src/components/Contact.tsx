@@ -26,7 +26,15 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
         const params = new URLSearchParams(searchStr);
         const prodParam = params.get('producto');
         if (prodParam) {
-          setFormData(prev => ({ ...prev, producto: prodParam }));
+          const lower = prodParam.toLowerCase();
+          let matched = prodParam;
+          if (lower.includes('cubrepallet')) matched = 'Cubrepallets';
+          else if (lower.includes('bolsa')) matched = 'Bolsas de basura';
+          else if (lower.includes('packing')) matched = 'Packingboard';
+          else if (lower.includes('graphic')) matched = 'Graphicboard';
+          else if (lower.includes('papel') || lower.includes('panal')) matched = 'Papel Panal';
+          else if (lower.includes('puerta') || lower.includes('relleno')) matched = 'Relleno de puertas';
+          setFormData(prev => ({ ...prev, producto: matched }));
         }
       };
       handleParam();
@@ -210,6 +218,7 @@ export const Contact = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
                   <option value="Papel Panal" className="bg-[#1A1A1A] text-white">Papel Panal</option>
                   <option value="Relleno de puertas" className="bg-[#1A1A1A] text-white">Relleno de puertas</option>
                   <option value="Bolsas de basura" className="bg-[#1A1A1A] text-white">Bolsas de basura</option>
+                  <option value="Cubrepallets" className="bg-[#1A1A1A] text-white">Cubrepallets</option>
                 </select>
               </div>
 

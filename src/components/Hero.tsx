@@ -92,14 +92,14 @@ export const Hero = ({ accentColor = '#94C11F' }: HeroProps) => {
           </div>
         </div>
 
-        <div className="flex-1 flex justify-center animate-scale-in w-full max-w-[300px] md:max-w-none">
+        <div className="flex-1 flex justify-center animate-scale-in w-full max-w-[320px] md:max-w-none">
           <Image 
             src="/assets/logo-perlad.png" 
             alt="Perlad - Innovación Sostenible en Cartón Panal" 
             width={500} 
             height={500} 
             priority
-            className="w-1/2 md:w-2/3 brightness-0 invert drop-shadow-2xl z-10 h-auto" 
+            className="w-2/3 md:w-4/5 max-w-[380px] drop-shadow-2xl z-10 h-auto object-contain" 
           />
         </div>
       </div>
