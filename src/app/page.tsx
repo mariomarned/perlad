@@ -49,7 +49,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const sections = ['hero', 'productos', 'nosotros', 'sostenibilidad', 'contacto'];
+    const sections = ['hero', 'productos', 'nosotros', 'sostenibilidad', 'distribuidores', 'blog', 'contacto'];
     const handler = () => {
       const y = window.scrollY + 200;
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -74,7 +74,7 @@ export default function Home() {
       <Clients accentColor={accentColor} />
       <Testimonials accentColor={accentColor} />
       <Distributors accentColor={accentColor} />
-      {/* <Blog accentColor={accentColor} /> */}
+      <Blog accentColor={accentColor} />
       <Contact accentColor={accentColor} />
       <Footer accentColor={accentColor} />
     </main>

@@ -9,6 +9,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://perlad.com'),
   title: "Perlad — Innovación Sostenible en Cartón Panal",
   description: "Estructuras de cartón panal fabricadas con papel 100% reciclable. Soluciones de empaque sostenibles que protegen tu producto y el planeta.",
   keywords: ["cartón panal", "empaque sostenible", "reciclaje", "innovación", "Perlad", "estructuras de papel"],

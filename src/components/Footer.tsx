@@ -87,6 +87,7 @@ export const Footer = ({ accentColor = '#94C11F' }: { accentColor?: string }) =>
             <li><Link href="/#hero" className="hover:text-accent transition-colors">Inicio</Link></li>
             <li><Link href="/#productos" className="hover:text-accent transition-colors">Productos</Link></li>
             <li><Link href="/catalogos" className="hover:text-accent transition-colors">Catálogos</Link></li>
+            <li><Link href="/blog" className="hover:text-accent transition-colors">Blog</Link></li>
             <li><Link href="/#nosotros" className="hover:text-accent transition-colors">Nosotros</Link></li>
             <li><Link href="/#contacto" className="hover:text-accent transition-colors">Contacto</Link></li>
           </ul>
