@@ -19,7 +19,7 @@ export const Clients = ({ accentColor = '#94C11F' }: { accentColor?: string }) =
       <div className="honeycomb-bg absolute inset-0 opacity-30 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <SectionTitle sub="Empresas y marcas que confían en nuestras soluciones de empaque sostenible" accentColor={accentColor}>
+        <SectionTitle sub="Algunas de las empresas y marcas que confían en nuestras soluciones de empaque sostenible" accentColor={accentColor}>
           Nuestros Clientes
         </SectionTitle>
         
