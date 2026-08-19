@@ -49,7 +49,7 @@ export const Header = ({ activeSection = '', accentColor = '#94C11F', forceBackg
   const navLinks: NavLink[] = [
     { label: 'Inicio', id: 'hero' },
     { label: 'Productos', id: 'productos', hasDropdown: true },
-    { label: 'Catálogos', id: 'catalogos', href: '/catalogos' },
+    // { label: 'Catálogos', id: 'catalogos', href: '/catalogos' },
     { label: 'Nosotros', id: 'nosotros' },
     { label: 'Distribuidores', id: 'distribuidores' },
     { label: 'Blog', id: 'blog', href: '/blog' },
@@ -155,14 +155,13 @@ export const Header = ({ activeSection = '', accentColor = '#94C11F', forceBackg
             </div>
           ))}
 
-          <Link
-            href="/catalogos"
-            prefetch={true}
+          <button
+            onClick={() => scrollTo('contacto')}
             className="bg-accent hover:scale-[1.02] text-[#1A1A1A] px-6 py-2.5 text-[13px] font-bold uppercase tracking-[0.05em] transition-all cursor-pointer"
             style={{ clipPath: 'polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)' }}
           >
-            Ver Catálogo
-          </Link>
+            Cotizar
+          </button>
         </nav>
 
         {/* Mobile Hamburger */}
@@ -213,7 +212,7 @@ export const Header = ({ activeSection = '', accentColor = '#94C11F', forceBackg
                             {p.sub && (
                               <div className="mt-3 ml-6 space-y-3 border-l border-white/10 pl-4">
                                 {p.sub.map((s, j) => (
-                                  <div key={j} className="text-white/40 text-sm">{s}</div>
+                                   <div key={j} className="text-white/40 text-sm">{s}</div>
                                 ))}
                               </div>
                             )}
@@ -244,14 +243,13 @@ export const Header = ({ activeSection = '', accentColor = '#94C11F', forceBackg
             ))}
           </div>
           <div className="mt-12">
-            <Link 
-              href="/catalogos"
-              onClick={() => setMenuOpen(false)}
-              className="block w-full bg-accent text-[#0D0D0D] py-4 font-bold uppercase tracking-widest text-center"
+            <button 
+              onClick={() => { scrollTo('contacto'); setMenuOpen(false); }}
+              className="block w-full bg-accent text-[#0D0D0D] py-4 font-bold uppercase tracking-widest text-center cursor-pointer"
               style={{ clipPath: 'polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)' }}
             >
-              Ver Catálogo
-            </Link>
+              Cotizar
+            </button>
           </div>
         </div>
       )}

@@ -72,13 +72,16 @@ export const Hero = ({ accentColor = '#94C11F' }: HeroProps) => {
           </p>
 
           <div className="flex flex-wrap justify-center md:justify-start gap-4 animate-slide-up [animation-delay:400ms]">
-            <Link 
-              href="/catalogos"
-              className="bg-accent hover:bg-accent-dark text-brand-dark px-8 md:px-10 py-3 md:py-4 font-bold uppercase tracking-wider transition-all text-sm md:text-base flex items-center justify-center"
+            <button 
+              onClick={() => {
+                const el = document.getElementById('productos');
+                if (el) window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
+              }}
+              className="bg-accent hover:bg-accent-dark text-brand-dark px-8 md:px-10 py-3 md:py-4 font-bold uppercase tracking-wider transition-all text-sm md:text-base flex items-center justify-center cursor-pointer"
               style={{ clipPath: 'polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)' }}
             >
-              Ver Catálogo
-            </Link>
+              Ver Productos
+            </button>
             <button 
               onClick={() => {
                 const el = document.getElementById('contacto');

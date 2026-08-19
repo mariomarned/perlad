@@ -244,10 +244,10 @@ export default async function BlogPostPage({ params }: Props) {
                   Cotizar Ahora
                 </Link>
                 <Link
-                  href="/catalogos"
+                  href="/#productos"
                   className="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3.5 rounded-xl text-xs uppercase tracking-wider text-center transition-colors border border-white/10"
                 >
-                  Ver Catálogos
+                  Ver Productos
                 </Link>
               </div>
             </div>
