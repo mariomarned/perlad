@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { Hexagon } from './ui/Hexagon';
 import { cn } from '@/lib/utils';
@@ -72,11 +73,14 @@ export const Header = ({ activeSection = '', accentColor = '#94C11F', forceBackg
       (scrolled || menuOpen || forceBackground) ? "bg-[#0D0D0D] border-b border-accent/20 shadow-lg" : "bg-transparent border-b border-transparent"
     )}>
       <div className="max-w-[1280px] mx-auto px-8 py-4 flex items-center justify-between">
-        <Link href="/">
-          <img 
-            src="/assets/logo-perlad.png" 
+        <Link href="/" className="flex items-center">
+          <Image 
+            src="/assets/logomenu.png" 
             alt="Perlad" 
-            className="h-9 cursor-pointer brightness-0 invert" 
+            width={852}
+            height={366}
+            className="h-9 w-auto object-contain cursor-pointer" 
+            priority
           />
         </Link>
         
