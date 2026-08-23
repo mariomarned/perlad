@@ -95,15 +95,35 @@ export const Hero = ({ accentColor = '#94C11F' }: HeroProps) => {
           </div>
         </div>
 
-        <div className="flex-1 flex justify-center animate-scale-in w-full max-w-[360px] md:max-w-none">
-          <Image 
-            src="/assets/logo-perlad.png" 
-            alt="Perlad - Innovación Sostenible en Cartón Panal" 
-            width={1311} 
-            height={549} 
-            priority
-            className="w-full max-w-[380px] md:max-w-[460px] drop-shadow-2xl z-10 h-auto object-contain" 
-          />
+        <div className="flex-1 flex justify-center animate-scale-in w-full max-w-[400px] md:max-w-none">
+          <div className="relative group max-w-[440px] md:max-w-[540px] w-full">
+            {/* Resplandor ambiental de fondo */}
+            <div 
+              className="absolute -inset-2 rounded-3xl opacity-40 blur-2xl transition-opacity duration-500 group-hover:opacity-75"
+              style={{ background: `radial-gradient(circle, ${accentColor}55 0%, transparent 70%)` }}
+            />
+            
+            {/* Contenedor principal de la imagen */}
+            <div className="relative rounded-2xl overflow-hidden bg-brand-surface shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-accent/20">
+              <Image 
+                src="/assets/Honeycombprotegemos.jpg" 
+                alt="Perlad - Innovación Sostenible en Cartón Panal" 
+                width={732} 
+                height={488} 
+                priority
+                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.02]" 
+              />
+              
+              {/* Degradado sutil inferior para suavizar la integración */}
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/40 via-transparent to-transparent pointer-events-none" />
+            </div>
+
+            {/* Placa decorativa de marca */}
+            <div className="absolute -bottom-3 -right-2 hidden sm:flex items-center gap-2 bg-brand-dark/95 border border-accent/30 backdrop-blur-md px-3.5 py-1.5 rounded-lg shadow-xl z-20">
+              <Hexagon size={10} bg={accentColor} />
+              <span className="text-white text-[11px] font-bold uppercase tracking-wider">Protección Sostenible</span>
+            </div>
+          </div>
         </div>
       </div>
 

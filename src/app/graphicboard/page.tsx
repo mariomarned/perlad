@@ -101,24 +101,24 @@ export default function GraphicboardPage() {
             {/* Visual Card Showcase */}
             <div className="lg:col-span-5 relative animate-scale-in">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-accent/20 bg-gradient-to-b from-white/10 to-brand-dark p-2 shadow-2xl group">
-                <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#121212]">
+                <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#161616] flex items-center justify-center">
                   <Image 
-                    src="/assets/imgcategorias/GRAPHICBOARD2.jpg" 
-                    alt="Graphicboard Perlad Tablero Rígido Blanco" 
+                    src="/assets/imgcategorias/GRAPHICBOARD/GRAPHICBOARD4.png" 
+                    alt="Graphicboard Perlad - Muestras con Impresión UV Directa" 
                     fill 
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-contain p-3 transition-transform duration-700 group-hover:scale-105"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-80"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent opacity-80 pointer-events-none"></div>
                   
                   {/* Floating Overlay Badge */}
-                  <div className="absolute bottom-6 left-6 right-6 bg-[#161616]/90 backdrop-blur-md border border-white/10 p-4 rounded-xl flex items-center justify-between">
+                  <div className="absolute bottom-4 left-4 right-4 bg-[#161616]/95 backdrop-blur-md border border-white/10 p-3.5 rounded-xl flex items-center justify-between z-10 shadow-lg">
                     <div>
-                      <div className="text-xs text-accent font-bold uppercase tracking-widest">Superficie Estucada</div>
-                      <div className="text-sm font-bold text-white">Liner Blanco de Alta Tensión</div>
+                      <div className="text-[11px] text-accent font-bold uppercase tracking-widest">Impresión UV Directa</div>
+                      <div className="text-xs sm:text-sm font-bold text-white">Liner Blanco Estucado de Alta Fidelidad</div>
                     </div>
-                    <div className="bg-accent/20 text-accent p-2 rounded-lg border border-accent/30">
-                      <Sparkles className="w-5 h-5" />
+                    <div className="bg-accent/20 text-accent p-2 rounded-lg border border-accent/30 shrink-0">
+                      <Sparkles className="w-4 h-4" />
                     </div>
                   </div>
                 </div>
@@ -294,28 +294,28 @@ export default function GraphicboardPage() {
               </div>
             </div>
 
-            {/* Formato Ágil */}
+            {/* Formato Personalizado / A Medida */}
             <div className="bg-[#161616] border border-white/10 rounded-2xl p-8 flex flex-col justify-between group hover:border-accent/50 transition-colors">
               <div>
                 <div className="flex justify-between items-start mb-6">
                   <div className="p-3 bg-accent/10 border border-accent/30 rounded-xl text-accent">
                     <Grid className="w-6 h-6" />
                   </div>
-                  <div className="bg-white/10 text-white/80 font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full">
-                    Corte Rápido
+                  <div className="bg-accent/20 text-accent font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full">
+                    A Medida
                   </div>
                 </div>
                 
-                <h3 className="font-display text-3xl font-extrabold text-white mb-2">60 x 100 cm</h3>
-                <div className="text-accent text-sm font-semibold mb-4">Formato Ágil</div>
+                <h3 className="font-display text-3xl font-extrabold text-white mb-2">Medidas Personalizadas</h3>
+                <div className="text-accent text-sm font-semibold mb-4">Según la Necesidad del Cliente</div>
                 <p className="text-white/70 text-sm leading-relaxed">
-                  Diseñado para optimización de corte en mesa digital para displays POP de mostrador, señalética corporativa y exhibidores modulares compactos.
+                  Ofrecemos diferentes medidas y cortes especiales adaptados a los requerimientos específicos de tu cliente, optimizando el uso de material y el rendimiento en mesas de corte digital.
                 </p>
               </div>
 
               <div className="mt-8 pt-4 border-t border-white/10 text-xs text-white/50 flex items-center justify-between">
-                <span>Manipulación ágil y despacho rápido</span>
-                <span className="font-bold text-white">Formato POP</span>
+                <span>Formatos y dimensiones bajo pedido</span>
+                <span className="font-bold text-white">100% Personalizable</span>
               </div>
             </div>
 
@@ -365,7 +365,58 @@ export default function GraphicboardPage() {
 
           </div>
 
-          <div className="mt-12 bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Visual Application Showcases */}
+          <div className="grid md:grid-cols-2 gap-8 mt-12">
+            {/* Card 1: 3D Tree / Flat pack */}
+            <div className="bg-[#181818] border border-white/10 rounded-2xl overflow-hidden group hover:border-accent/40 transition-all flex flex-col justify-between">
+              <div className="relative aspect-[4/3] bg-[#141414] flex items-center justify-center p-4 overflow-hidden border-b border-white/5">
+                <Image 
+                  src="/assets/imgcategorias/GRAPHICBOARD/GRAPHICBOARD1.png"
+                  alt="Estructura 3D de Graphicboard cortada y ensamblada"
+                  fill
+                  className="object-contain p-4 transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute top-4 left-4 z-10">
+                  <div className="inline-flex items-center gap-2 bg-brand-dark/90 backdrop-blur-md border border-white/15 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow">
+                    <Hexagon size={10} bg={accentColor} />
+                    <span>Encastre 3D sin adhesivos</span>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <h4 className="text-lg font-bold text-white mb-2">Transformación de Plancha a Volumen</h4>
+                <p className="text-white/70 text-sm leading-relaxed">
+                  Corte por hendido y ranurado de precisión en mesa digital para figuras volumétricas, packaging de alta gama y displays modulares.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 2: Fair Stand */}
+            <div className="bg-[#181818] border border-white/10 rounded-2xl overflow-hidden group hover:border-accent/40 transition-all flex flex-col justify-between">
+              <div className="relative aspect-[4/3] bg-[#141414] flex items-center justify-center p-4 overflow-hidden border-b border-white/5">
+                <Image 
+                  src="/assets/imgcategorias/GRAPHICBOARD/GRAPHICBOARD3.png"
+                  alt="Stand de feria y mobiliario corporativo construido en Graphicboard"
+                  fill
+                  className="object-contain p-4 transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute top-4 left-4 z-10">
+                  <div className="inline-flex items-center gap-2 bg-brand-dark/90 backdrop-blur-md border border-white/15 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow">
+                    <Hexagon size={10} bg={accentColor} />
+                    <span>Arquitectura Efímera y Stands</span>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <h4 className="text-lg font-bold text-white mb-2">Stands y Mobiliario Ferial Completo</h4>
+                <p className="text-white/70 text-sm leading-relaxed">
+                  Pabellones, estanterías hexagonales, muros para pantallas y asientos autoportantes con estética moderna y montaje ultrarrápido.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
               <div className="p-3 bg-accent/20 text-accent rounded-xl">
                 <Wrench className="w-6 h-6" />
