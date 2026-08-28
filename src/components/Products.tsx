@@ -210,8 +210,10 @@ const ProductCard = ({
   );
 };
 
+type ProductItem = Omit<ProductCardProps, 'accentColor'>;
+
 export const Products = ({ accentColor = '#94C11F' }: { accentColor?: string }) => {
-  const products = [
+  const products: ProductItem[] = [
     { 
       name: 'Packingboard', 
       desc: 'Solución robusta de cartón para empaques industriales de alta resistencia y máxima protección.',
