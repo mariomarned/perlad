@@ -15,9 +15,21 @@ interface ProductCardProps {
   accentColor: string;
   href?: string;
   pdfUrl?: string;
+  imageFit?: 'cover' | 'contain';
+  imageClassName?: string;
 }
 
-const ProductCard = ({ name, desc, image, images, accentColor, href, pdfUrl }: ProductCardProps) => {
+const ProductCard = ({ 
+  name, 
+  desc, 
+  image, 
+  images, 
+  accentColor, 
+  href, 
+  pdfUrl,
+  imageFit = 'cover',
+  imageClassName
+}: ProductCardProps) => {
   const allImages = images || (image ? [image] : []);
   const [currentIdx, setCurrentIdx] = useState(0);
 
@@ -79,14 +91,14 @@ const ProductCard = ({ name, desc, image, images, accentColor, href, pdfUrl }: P
       }}
     >
       {/* Product Image Area */}
-      <div className="h-64 sm:h-60 relative overflow-hidden bg-gray-100">
+      <div className={`h-64 sm:h-60 relative overflow-hidden ${imageFit === 'contain' ? 'bg-white' : 'bg-gray-100'}`}>
         <ImageWrapper>
           {displayImage ? (
             <Image 
               src={displayImage} 
               alt={name} 
               fill 
-              className="object-cover transition-transform duration-700 group-hover:scale-108"
+              className={`${imageFit === 'contain' ? 'object-contain p-2.5' : 'object-cover'} transition-transform duration-700 group-hover:scale-105 ${imageClassName || ''}`}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               quality={85}
             />
@@ -203,7 +215,8 @@ export const Products = ({ accentColor = '#94C11F' }: { accentColor?: string }) 
     { 
       name: 'Packingboard', 
       desc: 'Solución robusta de cartón para empaques industriales de alta resistencia y máxima protección.',
-      image: '/assets/imgcategorias/packingboard.jpg',
+      image: '/assets/imgcategorias/PackingBoard/PackingBoard1.jpg',
+      imageFit: 'contain',
       href: '/packingboard',
       pdfUrl: '/assets/catalogos/PackingboardV1.pdf'
     },
