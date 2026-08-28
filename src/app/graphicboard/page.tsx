@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Hexagon } from "@/components/ui/Hexagon";
 import { SectionTitle } from "@/components/ui/SectionTitle";
+import { GraphicboardCarousel } from "@/components/GraphicboardCarousel";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -435,6 +436,9 @@ export default function GraphicboardPage() {
           </div>
         </div>
       </section>
+
+      {/* Galería de Aplicaciones Reales en Modo Carrusel */}
+      <GraphicboardCarousel accentColor={accentColor} />
 
       {/* Slide 11: La evolución del sustrato rígido (Comparison Table) */}
       <section className="py-24 px-6 bg-[#121212] relative border-t border-white/5">
