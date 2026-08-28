@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export const Clients = ({ accentColor = '#94C11F' }: { accentColor?: string }) => {
   const clients = [
-    { name: "KONKRETUS", logo: "/assets/Clientes/konkretus.png" },
+    { name: "KONKRETUS", logo: "/assets/Clientes/konkretus.png?v=2" },
     { name: "Districarnaval", logo: "/assets/Clientes/Districarnaval.png" },
     { name: "Craft", logo: "/assets/Clientes/craft.png" },
     { name: "El Río", logo: "/assets/Clientes/elrio.png" },
