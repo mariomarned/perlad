@@ -8,6 +8,11 @@ import { cn } from '@/lib/utils';
 export const Testimonials = ({ accentColor = '#94C11F' }: { accentColor?: string }) => {
   const [active, setActive] = useState(0);
   const testimonials = [
+    { 
+      text: 'Confiar en Perlad ha sido una decisión estratégica clave para KONKRETUS. Sus soluciones a la medida en cartón panal nos garantizan una protección estructural de alto rendimiento, entregas impecables y cero novedades en cada despacho.', 
+      author: 'KONKRETUS', 
+      role: 'Operaciones y Cadena de Suministro' 
+    },
     { text: 'Perlad transformó nuestra cadena de embalaje. Redujimos costos y nuestro impacto ambiental simultáneamente.', author: 'Carlos Méndez', role: 'Director de Logística, Alimentos del Valle' },
     { text: 'La calidad del cartón panal superó nuestras expectativas. Nuestros productos llegan intactos y sin plástico.', author: 'María Fernández', role: 'Gerente de Compras, TechPack' },
     { text: 'Excelente servicio y compromiso con la sostenibilidad. Son nuestro aliado estratégico en empaques.', author: 'Roberto Silva', role: 'CEO, EcoExport' }
