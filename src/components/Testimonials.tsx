@@ -9,7 +9,7 @@ export const Testimonials = ({ accentColor = '#94C11F' }: { accentColor?: string
   const [active, setActive] = useState(0);
   const testimonials = [
     { 
-      text: 'Confiar en Perlad ha sido una decisión estratégica clave para KONKRETUS. Sus soluciones a la medida en cartón panal nos garantizan una protección estructural de alto rendimiento, entregas impecables y cero novedades en cada despacho.', 
+      text: 'Trabajar con Perlad fue una gran decisión para Konkretus. Sus soluciones en cartón panal de abeja (honeycomb) nos garantizan que nuestros productos lleguen a su destino en excelente estado, cuidando la calidad que nuestros clientes esperan.', 
       author: 'KONKRETUS', 
       role: 'Operaciones y Cadena de Suministro' 
     },

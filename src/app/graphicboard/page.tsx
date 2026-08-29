@@ -104,10 +104,10 @@ export default function GraphicboardPage() {
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-accent/20 bg-gradient-to-b from-white/10 to-brand-dark p-2 shadow-2xl group">
                 <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#161616] flex items-center justify-center">
                   <Image 
-                    src="/assets/imgcategorias/GRAPHICBOARD/GRAPHICBOARD4.png" 
+                    src="/assets/productos/GB/GB8.jpeg" 
                     alt="Graphicboard Perlad - Muestras con Impresión UV Directa" 
                     fill 
-                    className="object-contain p-3 transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover scale-[1.25] -translate-y-10 transition-transform duration-700 group-hover:scale-[1.32] group-hover:-translate-y-10"
                     priority
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent opacity-80 pointer-events-none"></div>
@@ -370,12 +370,12 @@ export default function GraphicboardPage() {
           <div className="grid md:grid-cols-2 gap-8 mt-12">
             {/* Card 1: 3D Tree / Flat pack */}
             <div className="bg-[#181818] border border-white/10 rounded-2xl overflow-hidden group hover:border-accent/40 transition-all flex flex-col justify-between">
-              <div className="relative aspect-[4/3] bg-[#141414] flex items-center justify-center p-4 overflow-hidden border-b border-white/5">
+              <div className="relative aspect-[4/3] bg-[#141414] overflow-hidden border-b border-white/5">
                 <Image 
-                  src="/assets/imgcategorias/GRAPHICBOARD/GRAPHICBOARD1.png"
-                  alt="Estructura 3D de Graphicboard cortada y ensamblada"
-                  fill
-                  className="object-contain p-4 transition-transform duration-700 group-hover:scale-105"
+                  src="/assets/productos/GB/GB12.jpeg" 
+                  alt="Estructura 3D de Graphicboard cortada y ensamblada" 
+                  fill 
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute top-4 left-4 z-10">
                   <div className="inline-flex items-center gap-2 bg-brand-dark/90 backdrop-blur-md border border-white/15 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow">
@@ -394,12 +394,12 @@ export default function GraphicboardPage() {
 
             {/* Card 2: Fair Stand */}
             <div className="bg-[#181818] border border-white/10 rounded-2xl overflow-hidden group hover:border-accent/40 transition-all flex flex-col justify-between">
-              <div className="relative aspect-[4/3] bg-[#141414] flex items-center justify-center p-4 overflow-hidden border-b border-white/5">
+              <div className="relative aspect-[4/3] bg-[#141414] overflow-hidden border-b border-white/5">
                 <Image 
-                  src="/assets/imgcategorias/GRAPHICBOARD/GRAPHICBOARD3.png"
+                  src="/assets/productos/GB/GB19.jpeg"
                   alt="Stand de feria y mobiliario corporativo construido en Graphicboard"
                   fill
-                  className="object-contain p-4 transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute top-4 left-4 z-10">
                   <div className="inline-flex items-center gap-2 bg-brand-dark/90 backdrop-blur-md border border-white/15 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow">

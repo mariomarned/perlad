@@ -111,7 +111,7 @@ export const Hero = ({ accentColor = '#94C11F' }: HeroProps) => {
                 width={732} 
                 height={488} 
                 priority
-                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.02]" 
+                className="w-full h-auto object-cover scale-[1.04] transition-transform duration-700 group-hover:scale-[1.07]" 
               />
               
               {/* Degradado sutil inferior para suavizar la integración */}
