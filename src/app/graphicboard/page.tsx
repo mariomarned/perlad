@@ -116,7 +116,7 @@ export default function GraphicboardPage() {
                   <div className="absolute bottom-4 left-4 right-4 bg-[#161616]/95 backdrop-blur-md border border-white/10 p-3.5 rounded-xl flex items-center justify-between z-10 shadow-lg">
                     <div>
                       <div className="text-[11px] text-accent font-bold uppercase tracking-widest">Impresión UV Directa</div>
-                      <div className="text-xs sm:text-sm font-bold text-white">Liner Blanco Estucado de Alta Fidelidad</div>
+                      <div className="text-xs sm:text-sm font-bold text-white">Liner Blanco de Alta Fidelidad</div>
                     </div>
                     <div className="bg-accent/20 text-accent p-2 rounded-lg border border-accent/30 shrink-0">
                       <Sparkles className="w-4 h-4" />
@@ -217,7 +217,7 @@ export default function GraphicboardPage() {
                 </div>
                 <h3 className="text-2xl font-bold mb-2">Construcción en 3 Capas de Alta Tensión</h3>
                 <p className="text-white/80 text-xs leading-relaxed">
-                  Liner blanco estucado + Núcleo estructural hexagonal Kraft + Liner blanco de contención.
+                  Liner blanco + Núcleo estructural hexagonal Kraft + Liner blanco de contención.
                 </p>
               </div>
             </div>
@@ -328,7 +328,7 @@ export default function GraphicboardPage() {
       <section className="py-24 px-6 bg-[#121212] border-t border-white/5">
         <div className="max-w-7xl mx-auto">
           <SectionTitle light sub="No solo imprima. Construya estructuras volumétricas de alto margen." accentColor={accentColor}>
-            De la Segunda a la Tercera Dimensión
+            Todo lo que puedes hacer con nuestros tableros Graphicboard de la Segunda a la Tercera Dimensión
           </SectionTitle>
 
           {/* Workflow Steps 1-2-3 */}
@@ -350,7 +350,7 @@ export default function GraphicboardPage() {
               </div>
               <h3 className="text-xl font-bold text-white mb-3">Fricción y Anclaje</h3>
               <p className="text-white/70 text-sm leading-relaxed">
-                Pliegue fácil sin agrietar el liner estucado. Pestañas de encastre directo para acople perfecto entre piezas.
+                Pliegue fácil sin agrietar el liner blanco. Pestañas de encastre directo para acople perfecto entre piezas.
               </p>
             </div>
 
@@ -444,7 +444,7 @@ export default function GraphicboardPage() {
       <section className="py-24 px-6 bg-[#121212] relative border-t border-white/5">
         <div className="max-w-6xl mx-auto">
           <SectionTitle light sub="Comparación directa frente a cartón corrugado y MDF" accentColor={accentColor}>
-            La Evolución del Sustrato Rígido
+            La Evolución del Material Gráfico Rígido
           </SectionTitle>
 
           <div className="mt-14 overflow-x-auto">
@@ -464,7 +464,7 @@ export default function GraphicboardPage() {
                 <tr>
                   <td className="py-5 px-6 font-semibold text-white">Calidad de Impresión UV</td>
                   <td className="py-5 px-6 font-bold text-accent bg-accent/10 border-x border-accent/20">
-                    Perfecta (Estucado Blanco)
+                    Perfecta (Superficie Blanca para Impresión)
                   </td>
                   <td className="py-5 px-6 text-amber-400">Media (Requiere fondeo)</td>
                   <td className="py-5 px-6 text-red-400">Baja (Se deforma y transparenta)</td>

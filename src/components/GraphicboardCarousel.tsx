@@ -28,170 +28,87 @@ const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: 1,
     src: '/assets/productos/GB/GB1.jpeg',
-    title: 'Exhibidor POP de Piso Autoportante',
-    category: 'Exhibidor POP',
-    desc: 'Estructura rígida de alto impacto para punto de venta con ranurado y hendido de alta resistencia.'
+    title: 'Mobiliario Creativo',
+    category: 'Mobiliario',
+    desc: 'Tablero gráfico transformado en muebles temáticos. Combina funcionalidad y diseño innovador, ideal para espacios educativos y comerciales.'
   },
   {
     id: 2,
     src: '/assets/productos/GB/GB2.jpeg',
-    title: 'Display Estructural con Encastre',
-    category: 'Estructura 3D',
-    desc: 'Diseño modular flat-pack ensamblable por fricción sin requerir pegamentos ni tornillería.'
+    title: 'Mobiliario Corporativo Ligero',
+    category: 'Mobiliario',
+    desc: 'Tablero gráfico rígido con superficie blanca, ensamblado sin herramientas. Perfecto para mobiliario temporal, oficinas y espacios creativos.'
   },
   {
     id: 3,
     src: '/assets/productos/GB/GB3.jpeg',
-    title: 'Stand Ferial y Mostrador Promocional',
-    category: 'Mobiliario Ferial',
-    desc: 'Módulo comercial ultraligero y resistente con capacidad de carga para exhibición en ferias.'
+    title: 'Mobiliario Modular',
+    category: 'Mobiliario',
+    desc: 'Tablero gráfico aplicado en escritorios y estanterías. Diseño limpio y resistente, adaptable a oficinas, retail y exhibiciones.'
   },
   {
     id: 4,
     src: '/assets/productos/GB/GB4.jpeg',
-    title: 'Isla de Producto para Retail',
-    category: 'Retail',
-    desc: 'Exhibidor perimetral de 360 grados con acabados gráficos impecables en impresión directa UV.'
+    title: 'Decoración Volumétrica',
+    category: 'Decoración',
+    desc: 'Tablero gráfico transformado en piezas decorativas. Ensamblaje simple y acabado blanco que resalta en ambientes corporativos y artísticos.'
   },
   {
     id: 5,
     src: '/assets/productos/GB/GB5.jpeg',
-    title: 'Tótem Publicitario de Gran Formato',
+    title: 'Núcleo Hexagonal Kraft, : Ingeniería del Panal',
     category: 'Gran Formato',
-    desc: 'Planimetría absoluta que previene el pandeo y resalta la identidad corporativa.'
+    desc: 'Geometría alveolar que brinda máxima resistencia con peso ultraligero. Elimina deformaciones y asegura estabilidad en aplicaciones de gran formato. Tablero gráfico con núcleo hexagonal Kraft. Alta resistencia estructural con peso ultraligero, ideal para arquitectura efímera y mobiliario modular.'
   },
+
   {
     id: 6,
-    src: '/assets/productos/GB/GB6.jpeg',
-    title: 'Estantería Hexagonal de Exhibición',
-    category: 'Mobiliario Ferial',
-    desc: 'Geometría alveolar aprovechada al máximo para repisas y módulos de soporte rígido.'
+    src: '/assets/productos/GB/GB7.jpeg',
+    title: 'Corte de Alta Precisión ',
+    category: 'Corte Digital',
+    desc: 'Tablero gráfico con superficie blanca diseñado para mesas digitales CNC. Permite V-cut y hendidos exactos, asegurando planimetría perfecta y ensamblajes de alta resistencia sin deformación.'
   },
   {
     id: 7,
-    src: '/assets/productos/GB/GB7.jpeg',
-    title: 'Corte V-Cut y Plegado de Precisión',
-    category: 'Corte Digital',
-    desc: 'Muestra de dobles a 90 y 45 grados sin agrietar el liner estucado blanco de alta fidelidad.'
+    src: '/assets/productos/GB/GB8.jpeg',
+    title: 'Superficie Blanca Premium',
+    category: 'Exhibidor POP',
+    desc: 'Acabado de blancura absoluta que maximiza el gamut cromático. Garantiza anclaje UV perfecto y colores vibrantes, ideal para impresión directa de piezas artísticas y corporativas.'
   },
   {
     id: 8,
-    src: '/assets/productos/GB/GB8.jpeg',
-    title: 'Exhibidor de Mesón y Punto de Pago',
-    category: 'Exhibidor POP',
-    desc: 'Display compacto para venta por impulso con gráficos de máxima vivacidad cromática.'
+    src: '/assets/productos/GB/GB9.jpeg',
+    title: 'Impresión Digital UV',
+    category: 'Gran Formato',
+    desc: 'Tablero gráfico optimizado para impresión digital directa. Secado inmediato sin sangrado, con resultados impecables de extremo a extremo y máxima fidelidad cromática. Tablero gráfico rígido y ligero que soporta gráficas personalizadas. Combina resistencia estructural con precisión gráfica, ideal para branding en mobiliario y displays.'
   },
   {
     id: 9,
-    src: '/assets/productos/GB/GB9.jpeg',
-    title: 'Muro Escenográfico y Panel Divisorio',
-    category: 'Gran Formato',
-    desc: 'Paneles de gran formato (122 x 244 cm) con estabilidad dimensional superior al MDF.'
+    src: '/assets/productos/GB/GB11.jpeg',
+    title: 'Ensamblaje Volumétrico',
+    category: 'Packaging',
+    desc: 'Tablero gráfico transformado de plano a tridimensional. Sistema de encastre sin adhesivos que permite crear exhibidores autoportantes con alta percepción de valor. Ofrece resistencia comparable a la madera con la precisión gráfica del papel.'
   },
   {
     id: 10,
-    src: '/assets/productos/GB/GB10.jpeg',
-    title: 'Módulo de Marca y Activación BTL',
-    category: 'Eventos',
-    desc: 'Pieza volumétrica ligera para transportación económica y armado exprés en eventos de marca.'
+    src: '/assets/productos/GB/GB14.jpeg',
+    title: 'Escenografía Temática Eco-Amigables',
+    category: 'Punto de Venta',
+    desc: 'Tablero gráfico aplicado en esculturas de gran escala. Combina sostenibilidad y resistencia estructural para exhibiciones educativas y comerciales de alto impacto. Tablero gráfico transformado en estructuras temáticas. Ideal para ferias y centros comerciales, con diseño volumétrico resistente y 100% reciclable.'
   },
   {
     id: 11,
-    src: '/assets/productos/GB/GB11.jpeg',
-    title: 'Packaging Estructural de Lujo',
-    category: 'Packaging',
-    desc: 'Estuche rígido ecológico 100% reciclable con protección perimetral y rigidez excepcional.'
+    src: '/assets/productos/GB/GB20.jpeg',
+    title: 'Stands Corporativos, Diseño Modular Modulares',
+    category: 'Mobiliario Ferial',
+    desc: 'Tablero gráfico rígido aplicado en arquitectura efímera. Estructuras hexagonales que comunican innovación, ligereza y compromiso ambiental. Tablero gráfico aplicado en mobiliario y exhibidores. Su bajo peso y resistencia permiten crear espacios corporativos funcionales y ecológicos.'
   },
   {
     id: 12,
-    src: '/assets/productos/GB/GB12.jpeg',
-    title: 'Encastres y Uniones Geométricas',
-    category: 'Ingeniería',
-    desc: 'Detalle de uniones machihembradas en cartón panal blanco de alta tensión.'
-  },
-  {
-    id: 13,
-    src: '/assets/productos/GB/GB13.jpeg',
-    title: 'Expositor Ranurado Escalonado',
-    category: 'Retail',
-    desc: 'Niveles de exhibición escalonados que maximizan la visibilidad del producto en góndola.'
-  },
-  {
-    id: 14,
-    src: '/assets/productos/GB/GB14.jpeg',
-    title: 'Display Tipo Tótem con Portafolletos',
-    category: 'Punto de Venta',
-    desc: 'Solución combinada de branding visual y compartimento dispensador de folletos informativos.'
-  },
-  {
-    id: 15,
-    src: '/assets/productos/GB/GB15.jpeg',
-    title: 'Mobiliario Desarmable Eco-Friendly',
-    category: 'Mobiliario Ferial',
-    desc: 'Sillas, banquetas y mesas para stands corporativos que eliminan el uso de madera pesada.'
-  },
-  {
-    id: 16,
-    src: '/assets/productos/GB/GB16.jpeg',
-    title: 'Estructura Volumétrica Publicitaria',
-    category: 'Estructura 3D',
-    desc: 'Construcción tridimensional de líneas limpias con blancura pura estucada.'
-  },
-  {
-    id: 17,
-    src: '/assets/productos/GB/GB17.jpeg',
-    title: 'Figura Troquelada en Gran Escala',
-    category: 'Impresión UV',
-    desc: 'Corte perimetral en mesa digital CNC con anclaje perfecto de tintas UV sin sangrado.'
-  },
-  {
-    id: 18,
-    src: '/assets/productos/GB/GB18.jpeg',
-    title: 'Display Portaproducto Personalizado',
-    category: 'Exhibidor POP',
-    desc: 'Cavidades y troqueles adaptados al packaging específico para una presentación premium.'
-  },
-  {
-    id: 19,
-    src: '/assets/productos/GB/GB19.jpeg',
-    title: 'Podio Promocional y Peana',
-    category: 'Eventos',
-    desc: 'Base autoportante con acabado satinado diseñada para soportar productos de exhibición.'
-  },
-  {
-    id: 20,
-    src: '/assets/productos/GB/GB20.jpeg',
-    title: 'Mostrador de Recepción Ferial',
-    category: 'Mobiliario Ferial',
-    desc: 'Mostrador frontal curvo o recto para recepción en ferias de negocios y congresos.'
-  },
-  {
-    id: 21,
-    src: '/assets/productos/GB/GB21.jpeg',
-    title: 'Display Alveolar con Acabado Premium',
-    category: 'Punto de Venta',
-    desc: 'Calidad litográfica impecable que sustituye al plástico corrugado y láminas plásticas.'
-  },
-  {
-    id: 22,
-    src: '/assets/productos/GB/GB22.jpeg',
-    title: 'Caja Estructural y Contenedor Rígido',
-    category: 'Packaging',
-    desc: 'Cajas de alta gama para envíos corporativos especiales con interior alveolar amortiguado.'
-  },
-  {
-    id: 23,
-    src: '/assets/productos/GB/GB23.jpeg',
-    title: 'Torre de Señalización para Grandes Superficies',
-    category: 'Gran Formato',
-    desc: 'Señalética aérea y de piso de fácil suspensión gracias a su peso ultraligero.'
-  },
-  {
-    id: 24,
     src: '/assets/productos/GB/GB24.jpeg',
-    title: 'Detalle de Acabado e Impresión Digital',
-    category: 'Impresión UV',
-    desc: 'Superficie estucada que resalta los degradados y la saturación del color sin desvanecimiento.'
+    title: 'Exhibición Comercial Integral',
+    category: 'Retail',
+    desc: 'Tablero gráfico rígido para displays, mobiliario y señalética. Solución liviana y eco-amigable que maximiza la presencia de marca en ferias y eventos.'
   }
 ];
 

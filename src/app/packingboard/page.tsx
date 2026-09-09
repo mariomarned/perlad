@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Hexagon } from "@/components/ui/Hexagon";
@@ -25,20 +25,100 @@ import {
   Leaf,
   FileText,
   ChevronRight,
+  ChevronLeft,
   PackageCheck,
   Factory,
-  Compass
+  Compass,
+  Maximize2,
+  X,
+  Eye,
+  Package
 } from "lucide-react";
 
 export default function PackingboardPage() {
   const accentColor = '#94C11F';
   const [activeTab, setActiveTab] = useState<'estibas' | 'refrigeracion' | 'fragil' | 'estructural'>('estibas');
+  const [selectedGalleryIdx, setSelectedGalleryIdx] = useState<number>(0);
+  const [lightboxOpen, setLightboxOpen] = useState<boolean>(false);
+  const [galleryCategoryFilter, setGalleryCategoryFilter] = useState<'all' | 'Estiba' | 'Guacal'>('all');
+
+  const estibasGallery = [
+    {
+      id: 'eg2',
+      src: '/assets/productos/Packingboard/EstibasyGuacales/EG2.png',
+      title: 'Estiba Estándar de Exportación',
+      category: 'Estiba',
+      badge: '4 Entradas • Carga Certificada 500 kg',
+      specs: 'Plataforma completa de cartón panal de ultra bajo peso. Totalmente compatible con montacargas y estibadores manuales, 100% exenta de normativa fitosanitaria NIMF 15.',
+    },
+    {
+      id: 'eg3',
+      src: '/assets/productos/Packingboard/EstibasyGuacales/EG3.png',
+      title: 'Estibas en Apilamiento Multinivel',
+      category: 'Estiba',
+      badge: 'Resistencia Máxima a Compresión',
+      specs: 'Excelente capacidad de estiba vertical en bodega y contenedor marítimo sin deformación ni aplastamiento de las pestañas.',
+    },
+    {
+      id: 'eg4',
+      src: '/assets/productos/Packingboard/EstibasyGuacales/EG4.png',
+      title: 'Guacal / Contenedor Pesado Cerrado',
+      category: 'Guacal',
+      badge: 'Sustituto Integral de Madera',
+      specs: 'Estructura rígida de alta absorción de impacto para envíos marítimos y aéreos sin riesgos de astillas, clavos ni sellos térmicos.',
+    },
+    {
+      id: 'eg5',
+      src: '/assets/productos/Packingboard/EstibasyGuacales/EG5.png',
+      title: 'Guacal con Tapa Superior Abatible',
+      category: 'Guacal',
+      badge: 'Carga Superior Ergonómica',
+      specs: 'Acceso superior optimizado para maquinaria, motores y ensambles industriales de gran volumen con máxima rigidez en sus 6 caras.',
+    },
+    {
+      id: 'eg6',
+      src: '/assets/productos/Packingboard/EstibasyGuacales/EG6.png',
+      title: 'Bandeja Gran Formato con Tapa',
+      category: 'Guacal',
+      badge: 'Perfil Bajo Telescópico',
+      specs: 'Diseñado a la medida para piezas planas, tableros arquitectónicos, láminas y repuestos de gran dimensión con soporte perimetral.',
+    },
+    {
+      id: 'eg1',
+      src: '/assets/productos/Packingboard/EstibasyGuacales/EG1.jpg',
+      title: 'Núcleo y Tacos Estructurales',
+      category: 'Estiba',
+      badge: 'Estructura Celular Reforzada',
+      specs: 'Detalle de los tacos macizos de cartón panal que absorben la vibración en ruta y distribuyen uniformemente las cargas dinámicas.',
+    },
+  ];
+
+  const activeImage = estibasGallery[selectedGalleryIdx] || estibasGallery[0];
+
+  const handlePrevImage = () => {
+    setSelectedGalleryIdx((prev) => (prev === 0 ? estibasGallery.length - 1 : prev - 1));
+  };
+
+  const handleNextImage = () => {
+    setSelectedGalleryIdx((prev) => (prev === estibasGallery.length - 1 ? 0 : prev + 1));
+  };
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxOpen(false);
+      if (e.key === 'ArrowLeft') handlePrevImage();
+      if (e.key === 'ArrowRight') handleNextImage();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxOpen]);
 
   const useCases = {
     estibas: {
       title: "Estibas y Guacales para Exportación Pesada",
       badge: "Hasta 500 kg Certificados",
-      image: "/assets/imgcategorias/packingboard.jpg",
+      image: "/assets/productos/Packingboard/EstibasyGuacales/EG2.png",
       items: [
         "Capacidad de carga certificada para pesos de hasta 500 kilos.",
         "Eliminación total de inspecciones fitosanitarias en aduanas internacionales (sin NIMF 15).",
@@ -509,7 +589,7 @@ export default function PackingboardPage() {
           <div className="bg-[#181818] border border-white/10 rounded-2xl p-8 lg:p-12">
             <div className="grid lg:grid-cols-12 gap-10 items-center">
               
-              <div className="lg:col-span-7">
+              <div className="lg:col-span-6">
                 <div className="inline-block bg-accent/20 border border-accent/40 text-accent text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">
                   {useCases[activeTab].badge}
                 </div>
@@ -526,7 +606,7 @@ export default function PackingboardPage() {
                   ))}
                 </ul>
 
-                <div className="mt-8 pt-6 border-t border-white/10">
+                <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
                   <Link
                     href="/#contacto?producto=Packingboard"
                     className="inline-flex items-center gap-2 text-accent hover:text-white font-bold text-xs uppercase tracking-widest transition-colors cursor-pointer"
@@ -534,16 +614,197 @@ export default function PackingboardPage() {
                     <span>Solicitar diseño para este sector</span>
                     <ChevronRight className="w-4 h-4" />
                   </Link>
+                  {activeTab === 'estibas' && (
+                    <span className="text-white/50 text-xs font-mono">
+                      6 modelos en catálogo
+                    </span>
+                  )}
                 </div>
               </div>
 
-              <div className="lg:col-span-5 relative aspect-square rounded-xl overflow-hidden border border-white/10 bg-black/40">
-                <Image
-                  src={useCases[activeTab].image}
-                  alt={useCases[activeTab].title}
-                  fill
-                  className="object-cover transition-transform duration-700 hover:scale-105"
-                />
+              <div className="lg:col-span-6">
+                {activeTab === 'estibas' ? (
+                  <div className="relative">
+                    {/* Ambient Glow */}
+                    <div 
+                      className="absolute -inset-2 rounded-3xl opacity-25 blur-xl pointer-events-none"
+                      style={{ background: `radial-gradient(circle, ${accentColor} 0%, transparent 70%)` }}
+                    />
+
+                    {/* Main Gallery Card */}
+                    <div className="relative bg-[#141414] border border-white/15 rounded-2xl p-4 sm:p-5 shadow-2xl overflow-hidden">
+                      
+                      {/* Sub-Filters & Counter */}
+                      <div className="flex items-center justify-between gap-2 mb-3">
+                        <div className="flex items-center gap-1.5 p-1 bg-white/5 border border-white/10 rounded-lg">
+                          {[
+                            { id: 'all', label: 'Todos (6)' },
+                            { id: 'Estiba', label: 'Estibas (3)' },
+                            { id: 'Guacal', label: 'Guacales (3)' }
+                          ].map((f) => (
+                            <button
+                              key={f.id}
+                              type="button"
+                              onClick={() => {
+                                setGalleryCategoryFilter(f.id as any);
+                                if (f.id === 'Estiba' && !['eg2', 'eg3', 'eg1'].includes(activeImage.id)) {
+                                  setSelectedGalleryIdx(0);
+                                } else if (f.id === 'Guacal' && !['eg4', 'eg5', 'eg6'].includes(activeImage.id)) {
+                                  setSelectedGalleryIdx(2);
+                                }
+                              }}
+                              className={`px-2.5 py-1 text-[11px] font-semibold rounded-md transition-all cursor-pointer ${
+                                galleryCategoryFilter === f.id
+                                  ? 'bg-accent text-brand-dark shadow-sm'
+                                  : 'text-white/60 hover:text-white hover:bg-white/5'
+                              }`}
+                            >
+                              {f.label}
+                            </button>
+                          ))}
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <span className="text-[11px] font-mono text-white/60 bg-white/5 border border-white/10 px-2.5 py-1 rounded-md">
+                            {selectedGalleryIdx + 1} / {estibasGallery.length}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setLightboxOpen(true)}
+                            className="p-1.5 bg-white/5 hover:bg-white/15 border border-white/10 text-white/80 hover:text-white rounded-md transition-all cursor-pointer"
+                            title="Ver en pantalla completa"
+                            aria-label="Ver en pantalla completa"
+                          >
+                            <Maximize2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Studio Showcase Stage */}
+                      <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-gradient-to-b from-[#FAFBFD] via-[#F4F5F7] to-[#E5E7EB] border border-black/10 shadow-inner group">
+                        
+                        {/* Category Tag */}
+                        <div className="absolute top-3 left-3 z-10">
+                          <span className="inline-flex items-center gap-1.5 bg-brand-dark/90 backdrop-blur-md border border-white/15 px-2.5 py-1 rounded-full text-[10px] font-bold text-white shadow-md">
+                            <Hexagon size={8} bg={accentColor} />
+                            <span>{activeImage.category}</span>
+                          </span>
+                        </div>
+
+                        {/* Interactive Main Image */}
+                        <div 
+                          onClick={() => setLightboxOpen(true)}
+                          className="relative w-full h-full cursor-zoom-in flex items-center justify-center p-3 sm:p-4"
+                        >
+                          <Image
+                            key={activeImage.src}
+                            src={activeImage.src}
+                            alt={activeImage.title}
+                            fill
+                            className="object-contain p-4 sm:p-6 transition-transform duration-500 group-hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            priority
+                          />
+                        </div>
+
+                        {/* Navigation Arrows */}
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handlePrevImage();
+                          }}
+                          className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 bg-black/60 hover:bg-black/90 backdrop-blur-md border border-white/20 text-white rounded-full flex items-center justify-center opacity-85 hover:opacity-100 hover:scale-110 transition-all z-10 cursor-pointer shadow-lg"
+                          aria-label="Anterior imagen"
+                        >
+                          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleNextImage();
+                          }}
+                          className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 bg-black/60 hover:bg-black/90 backdrop-blur-md border border-white/20 text-white rounded-full flex items-center justify-center opacity-85 hover:opacity-100 hover:scale-110 transition-all z-10 cursor-pointer shadow-lg"
+                          aria-label="Siguiente imagen"
+                        >
+                          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                        </button>
+
+                        {/* Click to zoom overlay badge on hover */}
+                        <div className="absolute bottom-2.5 right-2.5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                          <span className="inline-flex items-center gap-1 bg-black/75 backdrop-blur-md text-white text-[10px] font-medium px-2 py-0.5 rounded shadow">
+                            <Eye className="w-3 h-3 text-accent" /> Clic para ampliar
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Technical Specs & Title */}
+                      <div className="mt-3.5 p-3 rounded-xl bg-white/[0.04] border border-white/10">
+                        <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
+                          <h4 className="text-white font-bold text-sm">
+                            {activeImage.title}
+                          </h4>
+                          <span className="text-[10px] font-bold text-accent bg-accent/10 border border-accent/30 px-2 py-0.5 rounded-full">
+                            {activeImage.badge}
+                          </span>
+                        </div>
+                        <p className="text-white/70 text-xs leading-relaxed">
+                          {activeImage.specs}
+                        </p>
+                      </div>
+
+                      {/* Thumbnails Row */}
+                      <div className="mt-3 pt-3 border-t border-white/10">
+                        <div className="grid grid-cols-6 gap-2">
+                          {estibasGallery.map((item, index) => {
+                            const isSelected = selectedGalleryIdx === index;
+                            const isDimmed = galleryCategoryFilter !== 'all' && 
+                              (galleryCategoryFilter === 'Estiba' 
+                                ? !['eg2', 'eg3', 'eg1'].includes(item.id) 
+                                : !['eg4', 'eg5', 'eg6'].includes(item.id));
+
+                            return (
+                              <button
+                                key={item.id}
+                                type="button"
+                                onClick={() => setSelectedGalleryIdx(index)}
+                                className={`relative aspect-[4/3] rounded-lg overflow-hidden bg-white p-1 transition-all duration-200 cursor-pointer ${
+                                  isSelected
+                                    ? 'ring-2 ring-accent border-accent scale-105 shadow-[0_0_12px_rgba(148,193,31,0.5)] z-10'
+                                    : isDimmed
+                                    ? 'opacity-30 border border-white/5 hover:opacity-70'
+                                    : 'border border-white/15 opacity-70 hover:opacity-100 hover:border-white/40'
+                                }`}
+                                title={item.title}
+                                aria-label={`Ver ${item.title}`}
+                              >
+                                <Image
+                                  src={item.src}
+                                  alt={item.title}
+                                  fill
+                                  className="object-contain p-0.5"
+                                  sizes="80px"
+                                />
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                ) : (
+                  <div className="relative aspect-square rounded-xl overflow-hidden border border-white/10 bg-black/40">
+                    <Image
+                      src={useCases[activeTab].image}
+                      alt={useCases[activeTab].title}
+                      fill
+                      className="object-cover transition-transform duration-700 hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                )}
               </div>
 
             </div>
@@ -551,6 +812,111 @@ export default function PackingboardPage() {
 
         </div>
       </section>
+
+      {/* Lightbox Modal for Estibas & Guacales Gallery */}
+      {lightboxOpen && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-lg flex items-center justify-center p-4 sm:p-8 animate-fade-in"
+          onClick={() => setLightboxOpen(false)}
+        >
+          <div 
+            className="relative w-full max-w-4xl bg-[#141414] border border-white/20 rounded-2xl overflow-hidden shadow-2xl flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Top Bar */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#181818]">
+              <div className="flex items-center gap-3">
+                <span className="inline-flex items-center gap-1.5 bg-accent/20 border border-accent/40 text-accent text-xs font-bold px-2.5 py-1 rounded-full uppercase">
+                  <Hexagon size={10} bg={accentColor} />
+                  <span>{activeImage.category}</span>
+                </span>
+                <h3 className="text-white font-bold text-base sm:text-lg">
+                  {activeImage.title}
+                </h3>
+              </div>
+              
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-mono text-white/60 bg-white/5 px-2.5 py-1 rounded border border-white/10">
+                  {selectedGalleryIdx + 1} / {estibasGallery.length}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setLightboxOpen(false)}
+                  className="p-1.5 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10 text-white transition-colors cursor-pointer"
+                  aria-label="Cerrar vista ampliada"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Main Stage in Lightbox */}
+            <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] bg-gradient-to-b from-[#FAFBFD] via-[#F4F5F7] to-[#E5E7EB] flex items-center justify-center p-6 sm:p-10">
+              <Image
+                src={activeImage.src}
+                alt={activeImage.title}
+                fill
+                className="object-contain p-6 sm:p-10"
+                sizes="(max-width: 1200px) 100vw, 1200px"
+                priority
+              />
+
+              {/* Navigation Controls in Modal */}
+              <button
+                type="button"
+                onClick={handlePrevImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 bg-black/60 hover:bg-black/90 backdrop-blur-md border border-white/20 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-xl hover:scale-110"
+                aria-label="Anterior imagen"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                type="button"
+                onClick={handleNextImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 bg-black/60 hover:bg-black/90 backdrop-blur-md border border-white/20 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-xl hover:scale-110"
+                aria-label="Siguiente imagen"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Bottom Specs & Thumbnails in Lightbox */}
+            <div className="p-6 bg-[#161616] border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <div className="text-xs font-bold text-accent uppercase tracking-wider mb-1">
+                  {activeImage.badge}
+                </div>
+                <p className="text-white/70 text-xs sm:text-sm max-w-xl">
+                  {activeImage.specs}
+                </p>
+              </div>
+
+              {/* Mini thumbnails in modal */}
+              <div className="flex items-center gap-2 self-center sm:self-auto">
+                {estibasGallery.map((item, index) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => setSelectedGalleryIdx(index)}
+                    className={`w-12 h-10 rounded-md overflow-hidden bg-white p-0.5 relative transition-all cursor-pointer ${
+                      selectedGalleryIdx === index
+                        ? 'ring-2 ring-accent border-accent scale-105'
+                        : 'opacity-50 hover:opacity-100'
+                    }`}
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.title}
+                      fill
+                      className="object-contain"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Slide 11: Economía Circular (ESG Cycle) */}
       <section className="py-24 px-6 bg-gradient-to-b from-[#0D0D0D] to-[#141414] relative">
