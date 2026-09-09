@@ -20,7 +20,6 @@ interface GalleryItem {
   id: number;
   src: string;
   title: string;
-  category: string;
   desc: string;
 }
 
@@ -29,35 +28,30 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: 1,
     src: '/assets/productos/GB/GB1.jpeg',
     title: 'Mobiliario Creativo',
-    category: 'Mobiliario',
     desc: 'Tablero gráfico transformado en muebles temáticos. Combina funcionalidad y diseño innovador, ideal para espacios educativos y comerciales.'
   },
   {
     id: 2,
     src: '/assets/productos/GB/GB2.jpeg',
     title: 'Mobiliario Corporativo Ligero',
-    category: 'Mobiliario',
     desc: 'Tablero gráfico rígido con superficie blanca, ensamblado sin herramientas. Perfecto para mobiliario temporal, oficinas y espacios creativos.'
   },
   {
     id: 3,
     src: '/assets/productos/GB/GB3.jpeg',
     title: 'Mobiliario Modular',
-    category: 'Mobiliario',
     desc: 'Tablero gráfico aplicado en escritorios y estanterías. Diseño limpio y resistente, adaptable a oficinas, retail y exhibiciones.'
   },
   {
     id: 4,
     src: '/assets/productos/GB/GB4.jpeg',
     title: 'Decoración Volumétrica',
-    category: 'Decoración',
     desc: 'Tablero gráfico transformado en piezas decorativas. Ensamblaje simple y acabado blanco que resalta en ambientes corporativos y artísticos.'
   },
   {
     id: 5,
     src: '/assets/productos/GB/GB5.jpeg',
     title: 'Núcleo Hexagonal Kraft, : Ingeniería del Panal',
-    category: 'Gran Formato',
     desc: 'Geometría alveolar que brinda máxima resistencia con peso ultraligero. Elimina deformaciones y asegura estabilidad en aplicaciones de gran formato. Tablero gráfico con núcleo hexagonal Kraft. Alta resistencia estructural con peso ultraligero, ideal para arquitectura efímera y mobiliario modular.'
   },
 
@@ -65,57 +59,47 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: 6,
     src: '/assets/productos/GB/GB7.jpeg',
     title: 'Corte de Alta Precisión ',
-    category: 'Corte Digital',
     desc: 'Tablero gráfico con superficie blanca diseñado para mesas digitales CNC. Permite V-cut y hendidos exactos, asegurando planimetría perfecta y ensamblajes de alta resistencia sin deformación.'
   },
   {
     id: 7,
     src: '/assets/productos/GB/GB8.jpeg',
     title: 'Superficie Blanca Premium',
-    category: 'Exhibidor POP',
     desc: 'Acabado de blancura absoluta que maximiza el gamut cromático. Garantiza anclaje UV perfecto y colores vibrantes, ideal para impresión directa de piezas artísticas y corporativas.'
   },
   {
     id: 8,
     src: '/assets/productos/GB/GB9.jpeg',
     title: 'Impresión Digital UV',
-    category: 'Gran Formato',
     desc: 'Tablero gráfico optimizado para impresión digital directa. Secado inmediato sin sangrado, con resultados impecables de extremo a extremo y máxima fidelidad cromática. Tablero gráfico rígido y ligero que soporta gráficas personalizadas. Combina resistencia estructural con precisión gráfica, ideal para branding en mobiliario y displays.'
   },
   {
     id: 9,
     src: '/assets/productos/GB/GB11.jpeg',
     title: 'Ensamblaje Volumétrico',
-    category: 'Packaging',
     desc: 'Tablero gráfico transformado de plano a tridimensional. Sistema de encastre sin adhesivos que permite crear exhibidores autoportantes con alta percepción de valor. Ofrece resistencia comparable a la madera con la precisión gráfica del papel.'
   },
   {
     id: 10,
     src: '/assets/productos/GB/GB14.jpeg',
     title: 'Escenografía Temática Eco-Amigables',
-    category: 'Punto de Venta',
     desc: 'Tablero gráfico aplicado en esculturas de gran escala. Combina sostenibilidad y resistencia estructural para exhibiciones educativas y comerciales de alto impacto. Tablero gráfico transformado en estructuras temáticas. Ideal para ferias y centros comerciales, con diseño volumétrico resistente y 100% reciclable.'
   },
   {
     id: 11,
     src: '/assets/productos/GB/GB20.jpeg',
     title: 'Stands Corporativos, Diseño Modular Modulares',
-    category: 'Mobiliario Ferial',
     desc: 'Tablero gráfico rígido aplicado en arquitectura efímera. Estructuras hexagonales que comunican innovación, ligereza y compromiso ambiental. Tablero gráfico aplicado en mobiliario y exhibidores. Su bajo peso y resistencia permiten crear espacios corporativos funcionales y ecológicos.'
   },
   {
     id: 12,
     src: '/assets/productos/GB/GB24.jpeg',
     title: 'Exhibición Comercial Integral',
-    category: 'Retail',
     desc: 'Tablero gráfico rígido para displays, mobiliario y señalética. Solución liviana y eco-amigable que maximiza la presencia de marca en ferias y eventos.'
   }
 ];
 
-const CATEGORIES = ['Todos', 'Exhibidor POP', 'Mobiliario Ferial', 'Estructura 3D', 'Gran Formato', 'Retail', 'Packaging'];
-
 export const GraphicboardCarousel = ({ accentColor = '#94C11F' }: { accentColor?: string }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [modalImageIndex, setModalImageIndex] = useState<number | null>(null);
@@ -127,10 +111,6 @@ export const GraphicboardCarousel = ({ accentColor = '#94C11F' }: { accentColor?
   const isDragging = useRef<boolean>(false);
   const startDragX = useRef<number>(0);
   const scrollLeftStart = useRef<number>(0);
-
-  const filteredItems = selectedCategory === 'Todos' 
-    ? GALLERY_ITEMS 
-    : GALLERY_ITEMS.filter(item => item.category === selectedCategory);
 
   // Sync scroll position when index changes
   const scrollToIndex = useCallback((index: number) => {
@@ -150,19 +130,19 @@ export const GraphicboardCarousel = ({ accentColor = '#94C11F' }: { accentColor?
 
   const handlePrev = useCallback(() => {
     setCurrentIndex((prev) => {
-      const newIndex = prev <= 0 ? filteredItems.length - 1 : prev - 1;
+      const newIndex = prev <= 0 ? GALLERY_ITEMS.length - 1 : prev - 1;
       scrollToIndex(newIndex);
       return newIndex;
     });
-  }, [filteredItems.length, scrollToIndex]);
+  }, [scrollToIndex]);
 
   const handleNext = useCallback(() => {
     setCurrentIndex((prev) => {
-      const newIndex = prev >= filteredItems.length - 1 ? 0 : prev + 1;
+      const newIndex = prev >= GALLERY_ITEMS.length - 1 ? 0 : prev + 1;
       scrollToIndex(newIndex);
       return newIndex;
     });
-  }, [filteredItems.length, scrollToIndex]);
+  }, [scrollToIndex]);
 
   // Autoplay timer
   useEffect(() => {
@@ -192,7 +172,7 @@ export const GraphicboardCarousel = ({ accentColor = '#94C11F' }: { accentColor?
       }
     });
 
-    if (closestIndex !== currentIndex && closestIndex < filteredItems.length) {
+    if (closestIndex !== currentIndex && closestIndex < GALLERY_ITEMS.length) {
       setCurrentIndex(closestIndex);
     }
   };
@@ -306,7 +286,7 @@ export const GraphicboardCarousel = ({ accentColor = '#94C11F' }: { accentColor?
             <div className="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl text-xs font-mono font-bold text-white/80">
               <span className="text-accent">{String(currentIndex + 1).padStart(2, '0')}</span>
               <span className="text-white/30 mx-1">/</span>
-              <span>{String(filteredItems.length).padStart(2, '0')}</span>
+              <span>{String(GALLERY_ITEMS.length).padStart(2, '0')}</span>
             </div>
 
             {/* Prev / Next Buttons */}
@@ -327,32 +307,6 @@ export const GraphicboardCarousel = ({ accentColor = '#94C11F' }: { accentColor?
           </div>
         </div>
 
-        {/* Category Filters */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 scrollbar-none mb-8">
-          {CATEGORIES.map((cat) => {
-            const isSelected = selectedCategory === cat;
-            return (
-              <button
-                key={cat}
-                onClick={() => {
-                  setSelectedCategory(cat);
-                  setCurrentIndex(0);
-                  if (trackRef.current) {
-                    trackRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-                  }
-                }}
-                className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
-                  isSelected
-                    ? 'bg-accent text-brand-dark shadow-[0_0_15px_rgba(148,193,31,0.4)] scale-105'
-                    : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border border-white/10'
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
-        </div>
-
         {/* Carousel Track */}
         <div className="relative group/carousel">
           
@@ -371,12 +325,12 @@ export const GraphicboardCarousel = ({ accentColor = '#94C11F' }: { accentColor?
               msOverflowStyle: 'none'
             }}
           >
-            {filteredItems.map((item, index) => {
+            {GALLERY_ITEMS.map((item, index) => {
               const isActive = index === currentIndex;
               return (
                 <div
                   key={item.id}
-                  onClick={() => setModalImageIndex(GALLERY_ITEMS.findIndex(g => g.id === item.id))}
+                  onClick={() => setModalImageIndex(index)}
                   className={`carousel-card flex-shrink-0 snap-center w-[85vw] sm:w-[360px] md:w-[400px] lg:w-[380px] rounded-2xl overflow-hidden bg-[#161616] border transition-all duration-500 flex flex-col justify-between group cursor-pointer ${
                     isActive 
                       ? 'border-accent/70 shadow-[0_10px_35px_rgba(148,193,31,0.2)] ring-1 ring-accent/30' 
@@ -395,14 +349,6 @@ export const GraphicboardCarousel = ({ accentColor = '#94C11F' }: { accentColor?
 
                     {/* Gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#161616] via-transparent to-black/20 opacity-80 group-hover:opacity-60 transition-opacity pointer-events-none" />
-
-                    {/* Badge top-left */}
-                    <div className="absolute top-3 left-3 z-10">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-black/70 backdrop-blur-md border border-white/15 text-accent">
-                        <Hexagon size={8} bg={accentColor} />
-                        {item.category}
-                      </span>
-                    </div>
 
                     {/* Number badge top-right */}
                     <div className="absolute top-3 right-3 z-10 bg-black/60 backdrop-blur-md border border-white/10 px-2.5 py-0.5 rounded-lg text-[10px] font-mono text-white/70">
@@ -466,7 +412,7 @@ export const GraphicboardCarousel = ({ accentColor = '#94C11F' }: { accentColor?
           <div className="w-full sm:w-1/2 bg-white/10 h-1.5 rounded-full overflow-hidden">
             <div 
               className="h-full bg-gradient-to-r from-accent to-emerald-400 transition-all duration-300 rounded-full"
-              style={{ width: `${((currentIndex + 1) / filteredItems.length) * 100}%` }}
+              style={{ width: `${((currentIndex + 1) / GALLERY_ITEMS.length) * 100}%` }}
             />
           </div>
 
@@ -510,9 +456,6 @@ export const GraphicboardCarousel = ({ accentColor = '#94C11F' }: { accentColor?
               <div>
                 <div className="text-white font-bold text-base sm:text-lg flex items-center gap-2">
                   <span>{GALLERY_ITEMS[modalImageIndex].title}</span>
-                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-accent/20 text-accent font-mono border border-accent/30">
-                    {GALLERY_ITEMS[modalImageIndex].category}
-                  </span>
                 </div>
                 <div className="text-white/50 text-xs">
                   Muestra {modalImageIndex + 1} de {GALLERY_ITEMS.length} • Graphicboard Perlad

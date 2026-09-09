@@ -38,55 +38,67 @@ import {
 
 export default function PapelPanalPage() {
   const accentColor = '#94C11F';
-  const [activeTab, setActiveTab] = useState<'ecommerce' | 'cosmetica' | 'cristaleria' | 'industrial'>('cosmetica');
+  const [activeTab, setActiveTab] = useState<'cristaleria' | 'flores' | 'regalos' | 'botellas' | 'cosmetica'>('cristaleria');
 
   const useCases = {
-    cosmetica: {
-      title: "Cosmética y Cuidado Personal",
-      badge: "Estética Premium & Protección",
-      image: "/assets/imgcategorias/papelpanalysususos.jpg",
-      description: "Ideal para marcas que buscan proyectar una imagen limpia, moderna y profesional desde el primer contacto táctil.",
-      items: [
-        "Protección acolchada perfecta para frascos de vidrio, perfumes, sueros y cremas.",
-        "Experiencia táctil y estética orgánica que deleita al cliente al abrir el empaque.",
-        "Elevación directa del valor percibido de la marca (Unboxing Premium).",
-        "Opción de capa interna de papel blanco para prevenir arañazos en envases delicados."
-      ]
-    },
-    ecommerce: {
-      title: "Comercio Electrónico y D2C Premium",
-      badge: "Alta Velocidad de Despacho",
-      image: "/assets/imgcategorias/papelpanalysususos.jpg",
-      description: "Optimice el embalaje de sus envíos diarios garantizando llegada en perfecto estado y cero uso de plásticos.",
-      items: [
-        "Aumento de la velocidad de empaque de hasta un 30% con dispensadores ergonómicos.",
-        "Eliminación total del uso de cintas adhesivas gracias al autocierre por entrelazado.",
-        "Reducción del volumen del paquete, disminuyendo costos logísticos de transporte.",
-        "Empaque 100% compostable y reciclable que enamora a los consumidores eco-conscientes."
-      ]
-    },
     cristaleria: {
-      title: "Cristalería Fina, Cerámica y Botellas",
-      badge: "Amortiguación Superior",
-      image: "/assets/productos/Captura de pantalla 2026-04-30 a la(s) 21.49.04.png",
-      description: "Estructura tridimensional hexagonal diseñada para inmovilizar piezas frágiles y absorber impactos en tránsito.",
+      title: "Cristalería y Cerámica Fina",
+      badge: "Protección de Alta Fragilidad",
+      image: "/assets/productos/papelpanal/ppa3Cristaleria.png",
+      description: "Protección superior para copas, vajillas y piezas delicadas. El papel panal amortigua impactos y evita fricciones internas, garantizando que los productos lleguen intactos a su destino.",
       items: [
-        "Inmovilización absoluta de botellas de licor, jarrones, vajillas y esculturas.",
-        "La malla 3D se amolda de forma natural a cualquier contorno irregular o complejo.",
-        "Disipación y absorción continua de impactos y vibraciones durante el transporte.",
-        "Reemplazo total del plástico de burbuja (Bubble Wrap) sin perder protección."
+        "Amortiguación continua para copas de cristal, vajillas y piezas de alta delicadeza.",
+        "La estructura de malla hexagonal previene fricciones internas y contacto entre piezas.",
+        "Disipación y absorción superior de vibraciones e impactos durante el transporte.",
+        "Sustitución 100% ecológica del plástico de burbuja cumpliendo normativas internacionales."
       ]
     },
-    industrial: {
-      title: "Piezas Industriales y Hardware de Precisión",
-      badge: "Relleno Eficiente de Vacíos",
-      image: "/assets/imgcategorias/packingboard.jpg",
-      description: "Solución versátil para proteger partes mecánicas, moldes y herramientas delicadas dentro de cajas de exportación.",
+    flores: {
+      title: "Flores y Arreglos Especiales",
+      badge: "Frescura & Cuidado Botánico",
+      image: "/assets/productos/papelpanal/ppa4Flores.jpg",
+      description: "Solución eco-amigable para transportar flores y arreglos de regalo. El papel panal mantiene la frescura y estabilidad, evitando movimientos bruscos y daños durante el envío.",
       items: [
-        "Excelente capacidad para amortiguar repuestos mecánicos y componentes electrónicos.",
-        "Previene fricciones metálicas y desplazamientos internos en contenedores.",
-        "Corte manual ultra rápido directamente en la mesa de embalaje sin herramientas.",
-        "Cumplimiento total con inspecciones ambientales y aduaneras verdes en destino."
+        "Fijación suave de tallos y flores evitando movimientos bruscos y magulladuras.",
+        "Estructura transpirable que permite la circulación de aire y mantiene la frescura.",
+        "Presentación botánica orgánica y estética que realza el valor del arreglo floral.",
+        "Material 100% biodegradable y compostable, en total armonía con la naturaleza."
+      ]
+    },
+    regalos: {
+      title: "Regalos Premium y Packaging de Lujo",
+      badge: "Unboxing & Presentación Exclusiva",
+      image: "/assets/productos/papelpanal/ppa5Regalos.jpg",
+      description: "Ideal para cajas de regalo, perfumes y artículos exclusivos. El papel panal ofrece un relleno ligero y resistente que realza la presentación y protege el contenido.",
+      items: [
+        "Relleno ligero y de alta resistencia que inmoviliza artículos dentro de cajas de regalo.",
+        "Acabado estético moderno y artesanal que maximiza la experiencia de unboxing.",
+        "Excelente adaptabilidad a formas irregulares sin necesidad de cintas ni adhesivos.",
+        "Proyecta una imagen corporativa sofisticada, sostenible y de vanguardia."
+      ]
+    },
+    botellas: {
+      title: "Botellas y Productos Frágiles",
+      badge: "Estándar de Exportación",
+      image: "/assets/productos/papelpanal/ppa5Botellas.png",
+      description: "Diseñado para vinos, licores y aceites gourmet. El papel panal evita desplazamientos internos y absorbe vibraciones, cumpliendo con estándares de exportación y sostenibilidad.",
+      items: [
+        "Envoltura envolvente y ceñida para botellas de vinos, licores y aceites gourmet.",
+        "Bloqueo efectivo de desplazamientos internos y absorción de choques en tránsito.",
+        "Cumplimiento con rigurosos estándares aduaneros y de exportación libre de plástico.",
+        "Manipulación rápida en mesas de embalaje que agiliza la preparación de pedidos."
+      ]
+    },
+    cosmetica: {
+      title: "Maquillaje y Cosmética Premium",
+      badge: "Estética & Cuidado de Envases",
+      image: "/assets/productos/papelpanal/ppa1Maquillaje.png",
+      description: "Ideal para empaques de perfumes, maquillaje y productos de cuidado personal. El papel panal ofrece un relleno ligero y resistente que protege frascos y envases frágiles, realzando la presentación de lujo.",
+      items: [
+        "Protección acolchada para frascos de vidrio, envases de serum, lociones y maquillaje.",
+        "Previene rayones superficiales y roturas en envases cosméticos de alta gama.",
+        "Relleno voluminoso ultraligero que reduce el peso y costo en envíos e-commerce.",
+        "Eleva el prestigio y valor percibido de la marca con una presentación impecable."
       ]
     }
   };
@@ -467,7 +479,7 @@ export default function PapelPanalPage() {
         <div className="max-w-7xl mx-auto px-6">
           
           <SectionTitle 
-            sub="Desde pequeños envíos de e-commerce hasta la protección de piezas industriales" 
+            sub="Protección acolchada y presentación premium para cristalería, flores, regalos, botellas y cosmética" 
             light
             accentColor={accentColor} 
           >
@@ -535,13 +547,20 @@ export default function PapelPanalPage() {
               </div>
 
               <div className="lg:col-span-5">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black/40 group">
                   <Image 
+                    key={useCases[activeTab].image}
                     src={useCases[activeTab].image} 
                     alt={useCases[activeTab].title} 
                     fill 
-                    className="object-cover"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 500px"
+                    priority
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-4 left-4 right-4 text-xs font-semibold text-white/90 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 w-fit">
+                    {useCases[activeTab].badge}
+                  </div>
                 </div>
               </div>
 

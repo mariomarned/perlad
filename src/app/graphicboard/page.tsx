@@ -74,7 +74,7 @@ export default function GraphicboardPage() {
 
               {/* Subtitle */}
               <p className="text-white/70 text-base sm:text-lg lg:text-xl leading-relaxed mb-10 max-w-2xl font-sans">
-                El sustrato revolucionario que se imprime con la precisión gráfica del papel y construye con la solidez de la madera. Diseñado para litografía moderna, impresión UV directa y arquitectura POP 3D.
+                El cartón panal revolucionario que se imprime con la precisión gráfica del papel y construye con la solidez de la madera. Diseñado para litografía moderna, impresión UV directa y arquitectura POP 3D.
               </p>
 
               {/* Actions */}
@@ -133,7 +133,7 @@ export default function GraphicboardPage() {
       {/* Slide 2: El Dilema de la Impresión Estructural */}
       <section className="py-24 px-6 relative bg-gradient-to-b from-[#0D0D0D] via-[#121212] to-[#0D0D0D]">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle light sub="Por qué la industria gráfica exige superar los sustratos pesados y deformables" accentColor={accentColor}>
+          <SectionTitle light sub="Por qué la industria gráfica exige superar los materiales pesados y deformables" accentColor={accentColor}>
             El Dilema de la Impresión Estructural
           </SectionTitle>
 
@@ -186,7 +186,7 @@ export default function GraphicboardPage() {
           {/* Core Key Phrase Banner */}
           <div className="mt-12 bg-gradient-to-r from-accent/20 via-accent/10 to-transparent border border-accent/30 rounded-2xl p-8 text-center max-w-4xl mx-auto">
             <h3 className="text-lg md:text-2xl font-display font-extrabold text-white leading-relaxed">
-              &quot;La litografía moderna necesita un sustrato que se imprima como el papel, pero construya como la madera.&quot;
+              &quot;La litografía moderna necesita un material que se imprima como el papel, pero construya como la madera.&quot;
             </h3>
           </div>
         </div>
@@ -195,7 +195,7 @@ export default function GraphicboardPage() {
       {/* Slide 3 & 4: ¿Por qué Cartón Panal Blanco Perlad? + Planimetría */}
       <section className="py-24 px-6 bg-white text-brand-dark relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <SectionTitle sub="Superficie estucada premium y planimetría perfecta para proteger sus impresoras UV" accentColor={accentColor}>
+          <SectionTitle sub="Superficie blanca premium y planimetría perfecta para proteger sus impresoras UV" accentColor={accentColor}>
             ¿Por qué elegir Graphicboard Blanco?
           </SectionTitle>
 
@@ -213,7 +213,7 @@ export default function GraphicboardPage() {
 
               <div className="relative z-10 text-white mt-auto">
                 <div className="inline-flex items-center gap-2 bg-accent text-brand-dark text-xs font-extrabold uppercase px-3 py-1 rounded mb-3">
-                  Sustrato Rígido Estucado
+                  Material Rígido
                 </div>
                 <h3 className="text-2xl font-bold mb-2">Construcción en 3 Capas de Alta Tensión</h3>
                 <p className="text-white/80 text-xs leading-relaxed">
@@ -228,10 +228,10 @@ export default function GraphicboardPage() {
               <div className="p-6 bg-brand-warm rounded-xl border-l-4 border-accent shadow-sm">
                 <div className="flex items-center gap-3 mb-2">
                   <Palette className="w-5 h-5 text-accent" />
-                  <h4 className="font-bold text-brand-dark text-lg">Superficie Estucada Premium</h4>
+                  <h4 className="font-bold text-brand-dark text-lg">Superficie Blanca Premium</h4>
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Acabado de blancura brillante superior que evita la absorción excesiva de tinta, manteniendo colores vibrantes y nitidez gráfica original.
+                  Acabado blanco brillante superior que evita la absorción excesiva de tinta, manteniendo colores vibrantes y nitidez gráfica original.
                 </p>
               </div>
 
@@ -519,7 +519,7 @@ export default function GraphicboardPage() {
                 </div>
                 <h3 className="font-display text-xl font-bold text-brand-dark mb-3">Planimetría y Calidad</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Resultados impecables. La superficie estucada maximiza el gamut cromático de sus tintas UV y protege la vida útil de sus cabezales de impresión.
+                  Resultados impecables. La superficie blanca maximiza el gamut cromático de sus tintas UV y protege la vida útil de sus cabezales de impresión.
                 </p>
               </div>
             </div>
@@ -543,7 +543,7 @@ export default function GraphicboardPage() {
                 </div>
                 <h3 className="font-display text-xl font-bold text-brand-dark mb-3">Sostenibilidad Exigida</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Cumpla con creces la demanda corporativa actual de grandes clientes. Un sustrato 100% reciclable, biodegradable y libre de plásticos.
+                  Cumpla con creces la demanda corporativa actual de grandes clientes. Un material 100% reciclable, biodegradable y libre de plásticos.
                 </p>
               </div>
             </div>
@@ -553,34 +553,88 @@ export default function GraphicboardPage() {
       </section>
 
       {/* Slide 13: Final CTA */}
-      <section className="py-24 px-6 bg-gradient-to-r from-brand-dark via-[#141414] to-brand-dark border-t border-white/10 text-center relative overflow-hidden">
+      <section className="py-24 px-6 bg-gradient-to-r from-brand-dark via-[#141414] to-brand-dark border-t border-white/10 relative overflow-hidden">
         <div className="honeycomb-bg-dark absolute inset-0 opacity-80 pointer-events-none"></div>
         
-        <div className="max-w-4xl mx-auto relative z-10">
-          <SectionTitle light sub="Transforme su portafolio impreso hoy mismo" accentColor={accentColor}>
-            Llevando la Impresión a una Nueva Dimensión Estructural
+        <div className="max-w-5xl mx-auto relative z-10">
+          <SectionTitle light sub="No fabricamos las estructuras: proveemos el tablero gráfico rígido, liviano y eco-amigable que permite a impresores, arquitectos y diseñadores, crear muebles, exhibidores y stands de alto impacto." accentColor={accentColor}>
+            Graphicboard: La Materia Prima de la Volumetría 3D
           </SectionTitle>
 
-          <p className="text-white/70 text-lg mb-10 max-w-xl mx-auto">
-            Hable con nuestros especialistas técnicos para solicitar muestras de material, perfiles de corte y cotizaciones personalizadas.
-          </p>
+          {/* Feature & Action Cards */}
+          <div className="grid md:grid-cols-2 gap-8 mt-12">
+            
+            {/* Card 1: Base de la Innovación Estructural */}
+            <div className="bg-[#181818]/90 backdrop-blur-md border border-white/10 rounded-2xl p-8 flex flex-col justify-between group hover:border-accent/50 transition-all shadow-xl">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-accent/20 border border-accent/30 text-accent flex items-center justify-center mb-6">
+                  <Sparkles className="w-6 h-6" />
+                </div>
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-white mb-4">
+                  Graphicboard es la base de la innovación estructural :
+                </h3>
+                <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-6">
+                  La combinación perfecta para impresión directa con colores vibrantes y máxima resistencia estructural. Graphicboard ofrece planimetría impecable, peso ultraligero y sostenibilidad 100% reciclable.
+                </p>
+              </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link 
-              href="/#contacto?producto=Graphicboard"
-              className="bg-accent text-brand-dark px-10 py-4 font-bold text-sm uppercase tracking-wider hover:bg-white transition-all duration-300 shadow-[0_0_30px_rgba(148,193,31,0.4)] cursor-pointer"
-              style={{ clipPath: 'polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)' }}
-            >
-              Contactar un Asesor Comercial
-            </Link>
+              <div className="pt-6 border-t border-white/10 grid grid-cols-2 gap-3 text-xs">
+                <div className="flex items-center gap-2 text-white/80">
+                  <Hexagon size={8} bg={accentColor} />
+                  <span>Planimetría Impecable</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/80">
+                  <Hexagon size={8} bg={accentColor} />
+                  <span>Colores Vibrantes</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/80">
+                  <Hexagon size={8} bg={accentColor} />
+                  <span>Máxima Resistencia</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/80">
+                  <Hexagon size={8} bg={accentColor} />
+                  <span>100% Reciclable</span>
+                </div>
+              </div>
+            </div>
 
-            <a 
-              href="/assets/catalogos/GRAPHICBOARDV1.pdf"
-              download
-              className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 font-bold text-sm uppercase tracking-wider transition-all cursor-pointer rounded"
-            >
-              Descargar Catálogo Graphicboard (PDF)
-            </a>
+            {/* Card 2: Reciba Muestras y Cotizaciones */}
+            <div className="bg-[#181818]/90 backdrop-blur-md border border-accent/40 rounded-2xl p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden group">
+              <div 
+                className="absolute -top-24 -right-24 w-48 h-48 rounded-full opacity-20 blur-3xl pointer-events-none"
+                style={{ background: accentColor }}
+              />
+
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-accent/20 border border-accent/30 text-accent flex items-center justify-center mb-6">
+                  <Layers className="w-6 h-6" />
+                </div>
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-white mb-4">
+                  Reciba muestras y cotizaciones personalizadas
+                </h3>
+                <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-6">
+                  Contacte a nuestros asesores técnicos para obtener muestras de material y propuestas comerciales adaptadas a su proyecto.
+                </p>
+              </div>
+
+              <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-stretch gap-3">
+                <Link 
+                  href="/#contacto?producto=Graphicboard"
+                  className="bg-accent text-brand-dark px-6 py-3.5 font-bold text-xs uppercase tracking-wider hover:bg-white transition-all duration-300 shadow-[0_0_20px_rgba(148,193,31,0.4)] text-center cursor-pointer rounded"
+                >
+                  Contactar un Asesor Comercial
+                </Link>
+
+                <a 
+                  href="/assets/catalogos/GRAPHICBOARDV1.pdf"
+                  download
+                  className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3.5 font-bold text-xs uppercase tracking-wider transition-all text-center cursor-pointer rounded"
+                >
+                  Descargar Catálogo (PDF)
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
