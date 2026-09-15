@@ -44,7 +44,8 @@ export default function PapelPanalPage() {
     cristaleria: {
       title: "Cristalería y Cerámica Fina",
       badge: "Protección de Alta Fragilidad",
-      image: "/assets/productos/papelpanal/ppa3Cristaleria.png",
+      image: "/assets/productos/papelpanal/ppa3Cristaleria.jpeg",
+      imagePosition: "object-center",
       description: "Protección superior para copas, vajillas y piezas delicadas. El papel panal amortigua impactos y evita fricciones internas, garantizando que los productos lleguen intactos a su destino.",
       items: [
         "Amortiguación continua para copas de cristal, vajillas y piezas de alta delicadeza.",
@@ -56,7 +57,8 @@ export default function PapelPanalPage() {
     flores: {
       title: "Flores y Arreglos Especiales",
       badge: "Frescura & Cuidado Botánico",
-      image: "/assets/productos/papelpanal/ppa4Flores.jpg",
+      image: "/assets/productos/papelpanal/ppa4Flores.jpeg",
+      imagePosition: "object-center",
       description: "Solución eco-amigable para transportar flores y arreglos de regalo. El papel panal mantiene la frescura y estabilidad, evitando movimientos bruscos y daños durante el envío.",
       items: [
         "Fijación suave de tallos y flores evitando movimientos bruscos y magulladuras.",
@@ -68,7 +70,8 @@ export default function PapelPanalPage() {
     regalos: {
       title: "Regalos Premium y Packaging de Lujo",
       badge: "Unboxing & Presentación Exclusiva",
-      image: "/assets/productos/papelpanal/ppa5Regalos.jpg",
+      image: "/assets/productos/papelpanal/ppa2Regalos.jpeg",
+      imagePosition: "object-[center_20%]",
       description: "Ideal para cajas de regalo, perfumes y artículos exclusivos. El papel panal ofrece un relleno ligero y resistente que realza la presentación y protege el contenido.",
       items: [
         "Relleno ligero y de alta resistencia que inmoviliza artículos dentro de cajas de regalo.",
@@ -80,7 +83,8 @@ export default function PapelPanalPage() {
     botellas: {
       title: "Botellas y Productos Frágiles",
       badge: "Estándar de Exportación",
-      image: "/assets/productos/papelpanal/ppa5Botellas.png",
+      image: "/assets/productos/papelpanal/ppa2Botellas.jpeg",
+      imagePosition: "object-[center_25%]",
       description: "Diseñado para vinos, licores y aceites gourmet. El papel panal evita desplazamientos internos y absorbe vibraciones, cumpliendo con estándares de exportación y sostenibilidad.",
       items: [
         "Envoltura envolvente y ceñida para botellas de vinos, licores y aceites gourmet.",
@@ -92,7 +96,8 @@ export default function PapelPanalPage() {
     cosmetica: {
       title: "Maquillaje y Cosmética Premium",
       badge: "Estética & Cuidado de Envases",
-      image: "/assets/productos/papelpanal/ppa1Maquillaje.png",
+      image: "/assets/productos/papelpanal/ppa1Maquillaje.jpeg",
+      imagePosition: "object-center",
       description: "Ideal para empaques de perfumes, maquillaje y productos de cuidado personal. El papel panal ofrece un relleno ligero y resistente que protege frascos y envases frágiles, realzando la presentación de lujo.",
       items: [
         "Protección acolchada para frascos de vidrio, envases de serum, lociones y maquillaje.",
@@ -553,7 +558,7 @@ export default function PapelPanalPage() {
                     src={useCases[activeTab].image} 
                     alt={useCases[activeTab].title} 
                     fill 
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className={`object-cover transition-transform duration-700 group-hover:scale-105 ${useCases[activeTab].imagePosition || 'object-center'}`}
                     sizes="(max-width: 768px) 100vw, 500px"
                     priority
                   />
