@@ -1,7 +1,3 @@
-'use client';
-
-import { useState, useEffect } from "react";
-import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Products } from "@/components/Products";
 import { About } from "@/components/About";
@@ -11,62 +7,15 @@ import { Blog } from "@/components/Blog";
 import { Clients } from "@/components/Clients";
 import { Distributors } from "@/components/Distributors";
 import { Contact } from "@/components/Contact";
-import { Footer } from "@/components/Footer";
+import { HomeClient } from "@/components/HomeClient";
+import { getRecentPosts } from "@/sanity/queries";
 
-export default function Home() {
-  const [activeSection, setActiveSection] = useState('hero');
+export default async function Home() {
   const accentColor = "#94C11F";
-
-  useEffect(() => {
-    const handleHashScroll = () => {
-      let id = '';
-      if (typeof window !== 'undefined') {
-        if (window.location.hash) {
-          id = window.location.hash.replace('#', '').split('?')[0];
-        } else {
-          const params = new URLSearchParams(window.location.search);
-          if (params.get('producto')) {
-            id = 'contacto';
-          }
-        }
-        if (id) {
-          const scrollToTarget = () => {
-            const el = document.getElementById(id);
-            if (el) {
-              window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
-            }
-          };
-          scrollToTarget();
-          setTimeout(scrollToTarget, 300);
-          setTimeout(scrollToTarget, 600);
-        }
-      }
-    };
-
-    handleHashScroll();
-    window.addEventListener('popstate', handleHashScroll);
-    return () => window.removeEventListener('popstate', handleHashScroll);
-  }, []);
-
-  useEffect(() => {
-    const sections = ['hero', 'productos', 'nosotros', 'sostenibilidad', 'distribuidores', 'blog', 'contacto'];
-    const handler = () => {
-      const y = window.scrollY + 200;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.offsetTop <= y) { 
-          setActiveSection(sections[i]); 
-          break; 
-        }
-      }
-    };
-    window.addEventListener('scroll', handler, { passive: true });
-    return () => window.removeEventListener('scroll', handler);
-  }, []);
+  const recentPosts = await getRecentPosts(3);
 
   return (
-    <main className="min-h-screen">
-      <Header activeSection={activeSection} accentColor={accentColor} />
+    <HomeClient accentColor={accentColor}>
       <Hero accentColor={accentColor} />
       <Products accentColor={accentColor} />
       <About accentColor={accentColor} />
@@ -74,9 +23,8 @@ export default function Home() {
       <Clients accentColor={accentColor} />
       <Testimonials accentColor={accentColor} />
       <Distributors accentColor={accentColor} />
-      <Blog accentColor={accentColor} />
+      <Blog accentColor={accentColor} posts={recentPosts} />
       <Contact accentColor={accentColor} />
-      <Footer accentColor={accentColor} />
-    </main>
+    </HomeClient>
   );
 }

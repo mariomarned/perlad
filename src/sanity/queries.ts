@@ -1,6 +1,5 @@
 import { client } from './client';
 import { BlogPost, Category } from './types';
-import { mockPosts, mockCategories } from './mockData';
 
 export const POSTS_QUERY = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
   _id,
@@ -56,15 +55,13 @@ export const CATEGORIES_QUERY = `*[_type == "category"] | order(title asc) {
 export const POST_SLUGS_QUERY = `*[_type == "post" && defined(slug.current)][].slug.current`;
 
 export async function getAllPosts(): Promise<BlogPost[]> {
-  if (!client) {
-    return mockPosts;
-  }
+  if (!client) return [];
   try {
     const posts = await client.fetch<BlogPost[]>(POSTS_QUERY, {}, { next: { revalidate: 60 } });
-    return posts && posts.length > 0 ? posts : mockPosts;
+    return posts || [];
   } catch (error) {
-    console.warn('Error fetching posts from Sanity, falling back to mock data:', error);
-    return mockPosts;
+    console.warn('Error fetching posts from Sanity:', error);
+    return [];
   }
 }
 
@@ -74,58 +71,38 @@ export async function getRecentPosts(limit: number = 3): Promise<BlogPost[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  if (!client) {
-    const found = mockPosts.find((p) => {
-      const currentSlug = typeof p.slug === 'string' ? p.slug : p.slug.current;
-      return currentSlug === slug;
-    });
-    return found || null;
-  }
+  if (!client) return null;
   try {
     const post = await client.fetch<BlogPost | null>(
       POST_BY_SLUG_QUERY,
       { slug },
       { next: { revalidate: 60 } }
     );
-    if (post) return post;
-    const found = mockPosts.find((p) => {
-      const currentSlug = typeof p.slug === 'string' ? p.slug : p.slug.current;
-      return currentSlug === slug;
-    });
-    return found || null;
+    return post || null;
   } catch (error) {
-    console.warn(`Error fetching post ${slug} from Sanity, falling back to mock data:`, error);
-    const found = mockPosts.find((p) => {
-      const currentSlug = typeof p.slug === 'string' ? p.slug : p.slug.current;
-      return currentSlug === slug;
-    });
-    return found || null;
+    console.warn(`Error fetching post ${slug} from Sanity:`, error);
+    return null;
   }
 }
 
 export async function getAllCategories(): Promise<Category[]> {
-  if (!client) {
-    return mockCategories;
-  }
+  if (!client) return [];
   try {
     const categories = await client.fetch<Category[]>(CATEGORIES_QUERY, {}, { next: { revalidate: 3600 } });
-    return categories && categories.length > 0 ? categories : mockCategories;
+    return categories || [];
   } catch (error) {
-    console.warn('Error fetching categories from Sanity, falling back to mock data:', error);
-    return mockCategories;
+    console.warn('Error fetching categories from Sanity:', error);
+    return [];
   }
 }
 
 export async function getAllPostSlugs(): Promise<string[]> {
-  if (!client) {
-    return mockPosts.map((p) => (typeof p.slug === 'string' ? p.slug : p.slug.current));
-  }
+  if (!client) return [];
   try {
     const slugs = await client.fetch<string[]>(POST_SLUGS_QUERY, {}, { next: { revalidate: 60 } });
-    return slugs && slugs.length > 0
-      ? slugs
-      : mockPosts.map((p) => (typeof p.slug === 'string' ? p.slug : p.slug.current));
-  } catch {
-    return mockPosts.map((p) => (typeof p.slug === 'string' ? p.slug : p.slug.current));
+    return slugs || [];
+  } catch (error) {
+    console.warn('Error fetching post slugs from Sanity:', error);
+    return [];
   }
 }

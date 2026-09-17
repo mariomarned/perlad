@@ -116,7 +116,19 @@ export function BlogListClient({ initialPosts, categories }: BlogListClientProps
       </div>
 
       {/* Main Content Area */}
-      {filteredPosts.length === 0 ? (
+      {initialPosts.length === 0 ? (
+        <div className="bg-white rounded-2xl p-16 text-center border border-gray-100 shadow-sm max-w-xl mx-auto my-12">
+          <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-400">
+            <Search className="w-8 h-8" />
+          </div>
+          <h3 className="font-display text-xl font-bold text-brand-dark mb-2">
+            Aún no hay publicaciones
+          </h3>
+          <p className="text-gray-500 text-sm">
+            Los artículos creados en Sanity aparecerán aquí automáticamente en cuanto sean publicados.
+          </p>
+        </div>
+      ) : filteredPosts.length === 0 ? (
         <div className="bg-white rounded-2xl p-16 text-center border border-gray-100 shadow-sm max-w-xl mx-auto my-12">
           <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4 text-accent-dark">
             <Search className="w-8 h-8" />
